@@ -1,0 +1,73 @@
+% !TEX encoding = UTF-8
+% !TEX program = pdflatex
+% !TeX spellcheck = en_GB
+% !BIB = biber
+
+
+\documentclass[english]{article}
+\usepackage{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage[obeyspaces]{url}
+\graphicspath{{./images/}}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true, 
+	linkcolor=blue, 
+	filecolor=blue, 
+	citecolor = black,       
+	urlcolor=blue, 
+}
+\usepackage{listings}
+\lstset{
+  xleftmargin=15pt,
+  xrightmargin=0pt,
+  framexleftmargin=0pt,
+  framexrightmargin=0pt,
+  basicstyle={\fontsize{9pt}{10pt}\ttfamily},
+  columns=flexible,
+  numbers=left,
+  numbersep=10pt,
+  numberstyle={\fontsize{9pt}{11pt}\selectfont\color[rgb]{0.4,0.4,0.1}},
+  keepspaces=true,
+  showstringspaces=false,
+  identifierstyle=\color[rgb]{0.1,0.1,0.1},
+  keywordstyle=\color{blue},
+  commentstyle=\color[rgb]{0,0.3,0},
+  morekeywords={rule, lemma},
+  morekeywords=[2]{let, in},
+  morekeywords=[3]{Fr, pk},
+  morekeywords=[4]{In, Out},
+  morekeywords=[5]{senc, aenc, h}
+  morecomment=[s][keywordstyle3]{/*}{/},
+  keywordstyle=\color[rgb]{0.44,0.57,0.65},
+  stringstyle=\color{green},
+  keywordstyle=[2]{\color[rgb]{0.86,0.57,0.18}},
+  keywordstyle=[3]{\bfseries\color[rgb]{0,0.3,0.2}}
+  }
+\usepackage{biblatex}
+\addbibresource{thud.bib}
+
+\title{LTL+P Based Framework for Intrusion Detection}
+\author{Zanolin Lorenzo}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+The purpose of this paper is to introduce MONID, which is a framework created for system intrusion detection. This framework uses EAGLE, a rich and effectively monitorable logic, to express intrusion patterns using temporal logic formulas; EAGLE's ability to include data values and parameterized recursive equations makes it possible to represent security threats that include complex temporal event sequences and attacks with intrinsically statistical signatures succinctly. This tool can be used in offline and real-time scenarios. The implementation uses an algorithm for online monitoring that matches descriptions of the lack of an assault with indications of system execution; an alarm is set off whenever the standard is broken.
+\end{abstract}
+
+\tableofcontents
+\newpage
+
+\section{Introduction}
+
+
+
+
+
+\printbibliography
+
+\end{document}
