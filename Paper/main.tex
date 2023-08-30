@@ -3,8 +3,9 @@
 % !TeX spellcheck = en_GB
 % !BIB = biber
 
-
 \documentclass[english]{article}
+\usepackage{amsmath}
+\usepackage{wasysym}
 \usepackage{babel}
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
@@ -48,7 +49,7 @@
 \usepackage{biblatex}
 \addbibresource{thud.bib}
 
-\title{LTL+P Based Framework for Intrusion Detection}
+\title{A Temporal Logic Based Framework for Intrusion Detection}
 \author{Zanolin Lorenzo}
 
 \begin{document}
@@ -73,6 +74,18 @@ We'll see how the implementation, MONID, examines the event stream to see if the
 %%%%%   DA RISCRIVERE ALLA FINE
 In Section 2 we will analyze the basics of EAGLE. In Section 3 we will analyze MONID framework and some evalutations on the performances. In Section 4 we will see some attacks specifications. In section 5 we will conclude.
 %%%%5
+
+\section{EAGLE, a Temporal Monitoring Logic}
+According to~\cite{barringer2004program}, EAGLE offers a succinct but powerful set of primitives, essentially supporting recursive parameterized equations, with a minimal/maximal fix-point semantics together with three temporal operators: next-time ($\ocircle$), previous-time ($\odot$), and concatenation ($\cdot$).
+\subsection{Basics and syntax}
+In EAGLE recursion definitions are supported; in the current framework we can define the following definitions:
+
+\begin{align*}
+& \underline{\text{max}}\ \text{Always}(\underline{\text{Form}}\ F) = F \land \bigcirc \text{Always}(F) \\
+& \underline{\text{min}}\ \text{Sometime}(\underline{\text{Form}}\ F) = F \lor \bigcirc \text{Sometime}(F) \\
+\end{align*}
+
+We will use it to create formulas that describe the absence of some attacks and given a trace of events $\sigma$ generated from the logs we will check whether 
 
 \printbibliography
 
