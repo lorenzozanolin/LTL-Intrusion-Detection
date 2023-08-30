@@ -16,5 +16,155 @@
   {}
 \endgroup
 
+
+\refsection{0}
+  \datalist[entry]{nty/global//global/global}
+    \entry{barringer2004rule}{inproceedings}{}
+      \name{author}{4}{}{%
+        {{hash=175157342391bea2537e9791a6ae2569}{%
+           family={Barringer},
+           familyi={B\bibinitperiod},
+           given={Howard},
+           giveni={H\bibinitperiod}}}%
+        {{hash=21443a49806efd35f679c7c7b1e59be0}{%
+           family={Goldberg},
+           familyi={G\bibinitperiod},
+           given={Allen},
+           giveni={A\bibinitperiod}}}%
+        {{hash=447759174db1a0695b8fbcfef2e61570}{%
+           family={Havelund},
+           familyi={H\bibinitperiod},
+           given={Klaus},
+           giveni={K\bibinitperiod}}}%
+        {{hash=6dec3318a42d8d397a59554c48b43851}{%
+           family={Sen},
+           familyi={S\bibinitperiod},
+           given={Koushik},
+           giveni={K\bibinitperiod}}}%
+      }
+      \list{organization}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{f759ad625b8f083dc58299d779fb3b7e}
+      \strng{fullhash}{b9a29843acc47d4c613b754d5990bc32}
+      \strng{bibnamehash}{f759ad625b8f083dc58299d779fb3b7e}
+      \strng{authorbibnamehash}{f759ad625b8f083dc58299d779fb3b7e}
+      \strng{authornamehash}{f759ad625b8f083dc58299d779fb3b7e}
+      \strng{authorfullhash}{b9a29843acc47d4c613b754d5990bc32}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Verification, Model Checking, and Abstract Interpretation: 5th International Conference, VMCAI 2004 Venice, Italy, January 11-13, 2004 Proceedings 5}
+      \field{title}{Rule-based runtime verification}
+      \field{year}{2004}
+      \field{pages}{44\bibrangedash 57}
+      \range{pages}{14}
+    \endentry
+    \entry{gao2014cyber}{article}{}
+      \name{author}{2}{}{%
+        {{hash=054b420c0df050e7b7e60aeaf6c1b99c}{%
+           family={Gao},
+           familyi={G\bibinitperiod},
+           given={Wei},
+           giveni={W\bibinitperiod}}}%
+        {{hash=58b4bc09af05feafac4dda3fc779f714}{%
+           family={Morris},
+           familyi={M\bibinitperiod},
+           given={Thomas\bibnamedelima H},
+           giveni={T\bibinitperiod\bibinitdelim H\bibinitperiod}}}%
+      }
+      \strng{namehash}{15d0fe54c6b7c11f303d00aa59382760}
+      \strng{fullhash}{15d0fe54c6b7c11f303d00aa59382760}
+      \strng{bibnamehash}{15d0fe54c6b7c11f303d00aa59382760}
+      \strng{authorbibnamehash}{15d0fe54c6b7c11f303d00aa59382760}
+      \strng{authornamehash}{15d0fe54c6b7c11f303d00aa59382760}
+      \strng{authorfullhash}{15d0fe54c6b7c11f303d00aa59382760}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Digital Forensics, Security and Law}
+      \field{number}{1}
+      \field{title}{On cyber attacks and signature based intrusion detection for modbus based industrial control systems}
+      \field{volume}{9}
+      \field{year}{2014}
+      \field{pages}{3}
+      \range{pages}{1}
+    \endentry
+    \entry{garg2016hybrid}{inproceedings}{}
+      \name{author}{2}{}{%
+        {{hash=fc9777b2c3e4acd3bdbc3016a7725f51}{%
+           family={Garg},
+           familyi={G\bibinitperiod},
+           given={Akash},
+           giveni={A\bibinitperiod}}}%
+        {{hash=ddc2ab584e77d42ab9cddd3ef3014038}{%
+           family={Maheshwari},
+           familyi={M\bibinitperiod},
+           given={Prachi},
+           giveni={P\bibinitperiod}}}%
+      }
+      \list{organization}{1}{%
+        {IEEE}%
+      }
+      \strng{namehash}{9b06266095754284ff41caa19fa35e97}
+      \strng{fullhash}{9b06266095754284ff41caa19fa35e97}
+      \strng{bibnamehash}{9b06266095754284ff41caa19fa35e97}
+      \strng{authorbibnamehash}{9b06266095754284ff41caa19fa35e97}
+      \strng{authornamehash}{9b06266095754284ff41caa19fa35e97}
+      \strng{authorfullhash}{9b06266095754284ff41caa19fa35e97}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{2016 10th International Conference on Intelligent Systems and Control (ISCO)}
+      \field{title}{A hybrid intrusion detection system: A review}
+      \field{year}{2016}
+      \field{pages}{1\bibrangedash 5}
+      \range{pages}{5}
+    \endentry
+    \entry{jyothsna2011review}{article}{}
+      \name{author}{3}{}{%
+        {{hash=507b5c5b62ab9963d78590f5acd148a5}{%
+           family={Jyothsna},
+           familyi={J\bibinitperiod},
+           given={VVRPV},
+           giveni={V\bibinitperiod}}}%
+        {{hash=22f44b66e80e5e68ec00180b3e49e6ca}{%
+           family={Prasad},
+           familyi={P\bibinitperiod},
+           given={Rama},
+           giveni={R\bibinitperiod}}}%
+        {{hash=3016b6685607b997b9d2f9fbea7bfe44}{%
+           family={Prasad},
+           familyi={P\bibinitperiod},
+           given={K\bibnamedelima Munivara},
+           giveni={K\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Citeseer}%
+      }
+      \strng{namehash}{75baccec8f1f4f62960920389aeec9c9}
+      \strng{fullhash}{75baccec8f1f4f62960920389aeec9c9}
+      \strng{bibnamehash}{75baccec8f1f4f62960920389aeec9c9}
+      \strng{authorbibnamehash}{75baccec8f1f4f62960920389aeec9c9}
+      \strng{authornamehash}{75baccec8f1f4f62960920389aeec9c9}
+      \strng{authorfullhash}{75baccec8f1f4f62960920389aeec9c9}
+      \field{sortinit}{J}
+      \field{sortinithash}{b2f54a9081ace9966a7cb9413811edb4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{International Journal of Computer Applications}
+      \field{number}{7}
+      \field{title}{A review of anomaly based intrusion detection systems}
+      \field{volume}{28}
+      \field{year}{2011}
+      \field{pages}{26\bibrangedash 35}
+      \range{pages}{10}
+    \endentry
+  \enddatalist
+  \missing{barringer2003eagle}
+\endrefsection
 \endinput
 
