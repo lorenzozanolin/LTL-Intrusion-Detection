@@ -68,6 +68,9 @@ Even with all of the advances in computer security research, totally safe comput
 There are three Intrusion Detection System approaches, according to the literature: \textit{signature-based}\cite{gao2014cyber}, \textit{anomaly-based}\cite{jyothsna2011review} and \textit{hybrid}\cite{garg2016hybrid}. The first approach aims to identify patterns and match them with known signs of intrusions relying on a database of previous intrusions. If activity within the network matches the “signature” of an attack or breach from the database, the detection system creates an alert. This approach has a low false-alarm rate, but it requires us to know the patterns of security attacks in advance and previously unknown attacks would go undetected. In contrast, \textit{anomaly-based} is capable to detect new attacks since an alarm is raised if an observed behavior deviates significantly from pre-learned normal behavior. Finally, a \textit{hybrid system} combines the best of both worlds by looking at patterns and one-off events, a Hybrid Intrusion Detection system can flag new and existing intrusion strategies. 
 
 In this paper we will focus on \textit{signature-based} approach using temporal logic; we use EAGLE\cite{barringer2004rule,barringer2003eagle} to specify a system's attack-safe behavior. EAGLE allows recursively built temporal formulas, parameterizable by both logical formulas and data expressions, across three primitive modalities: "next", "previous", and "concatenation". The logic allows us to describe temporal patterns involving reasoning about data-values observed in individual events, allowing us to design attacks with fundamentally statistical characteristics. Password guessing attacks and ICMP-flood denial of service attacks are two examples. 
+The implementation, MONID, will analyze the event stream and checks whether the monitored formula (used to store the relevant summary of the system) is violated.
+
+In 
 
 
 \printbibliography
