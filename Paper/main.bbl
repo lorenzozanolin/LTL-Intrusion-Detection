@@ -19,6 +19,44 @@
 
 \refsection{0}
   \datalist[entry]{nty/global//global/global}
+    \entry{barringer2003eagle}{inproceedings}{}
+      \name{author}{4}{}{%
+        {{hash=175157342391bea2537e9791a6ae2569}{%
+           family={Barringer},
+           familyi={B\bibinitperiod},
+           given={Howard},
+           giveni={H\bibinitperiod}}}%
+        {{hash=21443a49806efd35f679c7c7b1e59be0}{%
+           family={Goldberg},
+           familyi={G\bibinitperiod},
+           given={Allen},
+           giveni={A\bibinitperiod}}}%
+        {{hash=447759174db1a0695b8fbcfef2e61570}{%
+           family={Havelund},
+           familyi={H\bibinitperiod},
+           given={Klaus},
+           giveni={K\bibinitperiod}}}%
+        {{hash=6dec3318a42d8d397a59554c48b43851}{%
+           family={Sen},
+           familyi={S\bibinitperiod},
+           given={Koushik},
+           giveni={K\bibinitperiod}}}%
+      }
+      \strng{namehash}{f759ad625b8f083dc58299d779fb3b7e}
+      \strng{fullhash}{b9a29843acc47d4c613b754d5990bc32}
+      \strng{bibnamehash}{f759ad625b8f083dc58299d779fb3b7e}
+      \strng{authorbibnamehash}{f759ad625b8f083dc58299d779fb3b7e}
+      \strng{authornamehash}{f759ad625b8f083dc58299d779fb3b7e}
+      \strng{authorfullhash}{b9a29843acc47d4c613b754d5990bc32}
+      \field{extraname}{1}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Fossacs Ortacas}
+      \field{title}{EAGLE can do Efficient LTL Monitoring}
+      \field{year}{2003}
+    \endentry
     \entry{barringer2004rule}{inproceedings}{}
       \name{author}{4}{}{%
         {{hash=175157342391bea2537e9791a6ae2569}{%
@@ -51,6 +89,7 @@
       \strng{authorbibnamehash}{f759ad625b8f083dc58299d779fb3b7e}
       \strng{authornamehash}{f759ad625b8f083dc58299d779fb3b7e}
       \strng{authorfullhash}{b9a29843acc47d4c613b754d5990bc32}
+      \field{extraname}{2}
       \field{sortinit}{B}
       \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
       \field{labelnamesource}{author}
@@ -164,7 +203,6 @@
       \range{pages}{10}
     \endentry
   \enddatalist
-  \missing{barringer2003eagle}
 \endrefsection
 \endinput
 
