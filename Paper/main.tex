@@ -81,8 +81,10 @@ According to~\cite{barringer2004program}, EAGLE offers a succinct but powerful s
 \subsection{Basics}
 In EAGLE recursion definitions are supported; in the current framework we can build the following definitions:
 \begin{align*}
+& \underline{\text{min}}\ \text{Next}(\underline{\text{Form}}\ F) = \bigcirc F \\
 & \underline{\text{max}}\ \text{Always}(\underline{\text{Form}}\ F) = F \land \bigcirc \text{Always}(F) \\
-& \underline{\text{min}}\ \text{Eventually}(\underline{\text{Form}}\ F) = F \lor \bigcirc \text{Eventually}(F) 
+& \underline{\text{min}}\ \text{Eventually}(\underline{\text{Form}}\ F) = F \lor \bigcirc \text{Eventually}(F) \\
+& \underline{\text{min}}\ \text{Until}(\underline{\text{Form}}\ F_1, \underline{\text{Form}}\ F_2) = F_2 \lor (F_1 \land \bigcirc \text{Until}(F_1,F_2))
 \end{align*}
 
 As we can see, rules are parameterized by an EAGLE formula (of type $\underline{\text{Form}}$), which means that we will be able to write EAGLE formulas such as $\text{Always}(\text{Eventually}(x>0))$. Also, the $\text{Always}$ operator is defined as maximal solution of the equation $X=F\land \bigcirc X$ and the $\text{Sometime}$ operator represents the minimal solution to the equation $X=F\lor \bigcirc X$.
@@ -105,13 +107,13 @@ A specification $S$ is made up of an observer part $O$ and a declaration part $D
     S &::= D \, O \\
     D &::= R^* \\
     O &::= M^* \\
-    R &::= \{ \underline{\text{max}}\ |\ \underline{\text{min}} \}\ N(T_1\ x_1, \ldots, T_n\ x_n) = F \\
+    R &::= \{\underline{\text{max}}\ |\ \underline{\text{min}} \}\ N(T_1\ x_1, \ldots, T_n\ x_n) = F \\
     M &::= \underline{\text{mon}}\ N = F \\
     T &::= \underline{\text{Form}}\ |\ \text{primitive type} \\
     F &::= \text{expression}\ |\ \underline{\text{true}}\ |\ \underline{\text{false}}\ |\ \neg F\ |\ F_1 \land F_2\ |\ F_1 \lor F_2\ |\\
             &F_1 \rightarrow F_2\ |\ \bigcirc F\ |\ \odot F\ |\ F_1 \cdot F_2\ |\ N(F_1, \ldots, F_n)\ |\ x_i
 \end{align*}
-
+A term indicating whether the interpretation is maximal ($\underline{\text{max}}$) or minimal ($\underline{\text{min}}$) comes before a rule specification $R$. While minimal rules establish \textit{liveness properties} (something good eventually happens), maximal rules define \textit{safety properties} (nothing bad ever happens); as we will see, the difference becomes important only when we are evaluating the formula in specific instants. Finally,the definitions starting with keyword $\underline{\text{mon}}$ specifies the EAGLE formulas to be monitored.
 
 
 
