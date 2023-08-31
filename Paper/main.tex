@@ -72,6 +72,8 @@ There are three Intrusion Detection System approaches, according to the literatu
 In this paper we will focus on \textit{signature-based} approach using temporal logic; we use EAGLE\cite{barringer2004rule,barringer2003eagle} to specify a system's attack-safe behavior. EAGLE allows recursively built temporal formulas, parameterizable by both logical formulas and data expressions, across three primitive modalities: "next", "previous", and "concatenation". The logic allows us to describe temporal patterns involving reasoning about data-values observed in individual events. Unlike LTL, EAGLE allowa us to design attacks with fundamentally statistical characteristics; password guessing attacks and ICMP-flood denial of service attacks are two examples. 
 We'll see how the implementation, MONID, examines the event stream to see if the monitored formula (which is used to hold the pertinent summary of the system) is being broken.
 
+%% INTRODURRE VELOCE ESEMPIO E STRUTTURA DEL PROGRAMMA
+
 %%%%%   DA RISCRIVERE ALLA FINE
 In Section 2 we will analyze the basics of EAGLE. In Section 3 we will analyze MONID framework and some evalutations on the performances. In Section 4 we will see some attacks specifications. In section 5 we will conclude.
 %%%%5
@@ -113,8 +115,8 @@ A specification $S$ is made up of an observer part $O$ and a declaration part $D
     F &::= \text{expression}\ |\ \underline{\text{true}}\ |\ \underline{\text{false}}\ |\ \neg F\ |\ F_1 \land F_2\ |\ F_1 \lor F_2\ |\\
             &F_1 \rightarrow F_2\ |\ \bigcirc F\ |\ \odot F\ |\ F_1 \cdot F_2\ |\ N(F_1, \ldots, F_n)\ |\ x_i
 \end{align*}
-A term indicating whether the interpretation is maximal ($\underline{\text{max}}$) or minimal ($\underline{\text{min}}$) comes before a rule specification $R$. While minimal rules establish \textit{liveness properties} (something good eventually happens), maximal rules define \textit{safety properties} (nothing bad ever happens); as we will see, the difference becomes important only when we are evaluating the formula in specific instants. Finally,the definitions starting with keyword $\underline{\text{mon}}$ specifies the EAGLE formulas to be monitored.
-
+The types of parameters include primitive types like \underline{int}, \underline{long}, \underline{float}, etc. or formulas of type \underline{Form}.
+A term indicating whether the interpretation is maximal ($\underline{\text{max}}$) or minimal ($\underline{\text{min}}$) comes before a rule specification $R$. While minimal rules establish \textit{liveness properties} (something good eventually happens), maximal rules define \textit{safety properties} (nothing bad ever happens); as we will see, the difference becomes important only when we are evaluating the formula in specific instants. Recursive definitions of rules are permitted as long as they are tightly guarded by a temporal operator. Finally,the definitions starting with keyword $\underline{\text{mon}}$ specifies the EAGLE formulas to be monitored and cannot have a recursive definition. We shall see that monitored rules will evolve as new events appear.
 
 
 

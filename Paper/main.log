@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.6.20)  31 AUG 2023 11:26
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.6.20)  31 AUG 2023 16:24
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -669,7 +669,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 [1
 
 {/usr/local/texlive/2022/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-[2] [3] [4] (./main.aux)
+[2] [3] [4] [5] (./main.aux)
 Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: 9F1A477E00653691A48EE6AF216DA4B0;578.
 Package logreq Info: Writing requests to 'main.run.xml'.
@@ -677,8 +677,8 @@ Package logreq Info: Writing requests to 'main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 19478 strings out of 478268
- 334654 string characters out of 5846347
+ 19479 strings out of 478268
+ 334660 string characters out of 5846347
  1052098 words of memory out of 5000000
  37456 multiletter control sequences out of 15000+600000
  479390 words of font info for 68 fonts, out of 8000000 for 9000
@@ -698,10 +698,10 @@ ve/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texliv
 e/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/
 2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2
 022/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb>
-Output written on main.pdf (4 pages, 190096 bytes).
+Output written on main.pdf (5 pages, 190936 bytes).
 PDF statistics:
- 133 PDF objects out of 1000 (max. 8388607)
- 98 compressed objects within 1 object stream
- 17 named destinations out of 1000 (max. 500000)
+ 138 PDF objects out of 1000 (max. 8388607)
+ 101 compressed objects within 2 object streams
+ 18 named destinations out of 1000 (max. 500000)
  33 words of extra memory for PDF output out of 10000 (max. 10000000)
 
