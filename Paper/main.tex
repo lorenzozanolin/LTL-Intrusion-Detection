@@ -71,7 +71,7 @@ There are three Intrusion Detection System approaches, according to the literatu
 
 In this paper we will focus on \textit{signature-based} approach using temporal logic; we use EAGLE\cite{barringer2004rule,barringer2003eagle} to specify a system's attack-safe behavior. EAGLE allows recursively built temporal formulas, parameterizable by both logical formulas and data expressions, across three primitive modalities: "next", "previous", and "concatenation". The logic allows us to describe temporal patterns involving reasoning about data-values observed in individual events. Unlike LTL, EAGLE allowa us to design attacks with fundamentally statistical characteristics; password guessing attacks and ICMP-flood denial of service attacks are two examples. 
 We'll see how the implementation, MONID, examines the event stream to see if the monitored formula (which is used to hold the pertinent summary of the system) is being broken.
-
+%% RAPPORTI CON LE ALTRE LOGICHE?????
 %% INTRODURRE VELOCE ESEMPIO E STRUTTURA DEL PROGRAMMA
 
 %%%%%   DA RISCRIVERE ALLA FINE
@@ -125,6 +125,8 @@ We will use it to create formulas that describe the absence of some attacks and 
 \section{MONID: Structure analysis}
 
 \section{Example of attacks}
+
+\section{Conclusions}
 
 \printbibliography
 
