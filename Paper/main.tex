@@ -78,13 +78,13 @@ In Section 2 we will analyze the basics of EAGLE. In Section 3 we will analyze M
 \section{EAGLE, a Temporal Monitoring Logic}
 According to~\cite{barringer2004program}, EAGLE offers a succinct but powerful set of primitives, essentially supporting recursive parameterized equations, with a minimal/maximal fix-point semantics together with three temporal operators: next-time ($\ocircle$), previous-time ($\odot$), and concatenation ($\cdot$).
 \subsection{Basics and syntax}
-In EAGLE recursion definitions are supported; in the current framework we can define the following definitions:
+In EAGLE recursion definitions are supported; in the current framework we can build the following definitions:
 \begin{align*}
-\underline{\text{max}}\ \text{Always}(\underline{\text{Form}}\ F) = F \land \bigcirc \text{Always}(F) \\
+& \underline{\text{max}}\ \text{Always}(\underline{\text{Form}}\ F) = F \land \bigcirc \text{Always}(F) \\
 & \underline{\text{min}}\ \text{Sometime}(\underline{\text{Form}}\ F) = F \lor \bigcirc \text{Sometime}(F) \\
 \end{align*}
 
-
+As we can see, rules are parameterized, which means that we will be able to write EAGLE formulas such as $\text{Always}(\text{Sometime}(x>0))$. Also, the $\text{Always}$ operator is defined as maximal solution of the equation $X=F\land \ocircle X$ and the $\text{Sometime}$ operator represents the minimal solution to the equation $X=F\lor \ocircle X$.
 
 
 
