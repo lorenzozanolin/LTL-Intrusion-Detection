@@ -6,6 +6,7 @@
 \documentclass[english]{article}
 \usepackage{amsmath}
 \usepackage{wasysym}
+\usepackage{amssymb}
 \usepackage{babel}
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
@@ -76,15 +77,42 @@ In Section 2 we will analyze the basics of EAGLE. In Section 3 we will analyze M
 %%%%5
 
 \section{EAGLE, a Temporal Monitoring Logic}
-According to~\cite{barringer2004program}, EAGLE offers a succinct but powerful set of primitives, essentially supporting recursive parameterized equations, with a minimal/maximal fix-point semantics together with three temporal operators: next-time ($\ocircle$), previous-time ($\odot$), and concatenation ($\cdot$).
-\subsection{Basics and syntax}
+According to~\cite{barringer2004program}, EAGLE offers a succinct but powerful set of primitives, essentially supporting recursive parameterized equations, with a minimal/maximal fix-point semantics together with three temporal operators: next-time ($\bigcirc$), previous-time ($\odot$), and concatenation ($\cdot$).
+\subsection{Basics}
 In EAGLE recursion definitions are supported; in the current framework we can build the following definitions:
 \begin{align*}
 & \underline{\text{max}}\ \text{Always}(\underline{\text{Form}}\ F) = F \land \bigcirc \text{Always}(F) \\
-& \underline{\text{min}}\ \text{Sometime}(\underline{\text{Form}}\ F) = F \lor \bigcirc \text{Sometime}(F) \\
+& \underline{\text{min}}\ \text{Eventually}(\underline{\text{Form}}\ F) = F \lor \bigcirc \text{Eventually}(F) 
 \end{align*}
 
-As we can see, rules are parameterized, which means that we will be able to write EAGLE formulas such as $\text{Always}(\text{Sometime}(x>0))$. Also, the $\text{Always}$ operator is defined as maximal solution of the equation $X=F\land \ocircle X$ and the $\text{Sometime}$ operator represents the minimal solution to the equation $X=F\lor \ocircle X$.
+As we can see, rules are parameterized by an EAGLE formula (of type $\underline{\text{Form}}$), which means that we will be able to write EAGLE formulas such as $\text{Always}(\text{Eventually}(x>0))$. Also, the $\text{Always}$ operator is defined as maximal solution of the equation $X=F\land \bigcirc X$ and the $\text{Sometime}$ operator represents the minimal solution to the equation $X=F\lor \bigcirc X$.
+%%  QUI MANCA LA PARTE DOVE SPIEGHI MAX, MIN, MON
+
+Assume that we want to state the following property: "\textit{Whenever there is a login by any user x, then eventually the user x logs out}". In LTL we can write the following formula: 
+\begin{align*}
+    & \square{(\text{(action = login)}\rightarrow \underline{\text{let}}\ \text{k} =\ userId\ \underline{\text{in}}\ \lozenge(\text{action = logout}\land userId = k))}
+\end{align*}
+In this formula we use the operator \underline{let} \_ \underline{in} \_ to bind the value of $userId$ in the current event to the local variable $k$ whenever $\text{(action = login)}$ in the current event; we then impose the condition that the value of $userId$ in some event in future must be same as the user id bound to k and that the action of the event must be logout.
+In EAGLE we can express the same property with the following rules:
+\begin{align*}
+    & \underline{\text{min}}\ \text{EvLogout}(\underline{\text{string}}\ k) = (\text{action = logout}\land userId = k) \lor \bigcirc \text{EvLogout}(k) \\
+    & \underline{\text{mon}}\ M_2 = ((\text{action = login})\rightarrow \text{EvLogout}(userId)) 
+\end{align*}
+As a result, rules in EAGLE give us the power to create specific temporal operators as well as to bind and modify data. This property turns out to be crucial for succinctly expressing executions of attack-safe systems. To make the paper self-contained, we go back to the syntax and semantics of EAGLE.
+\subsection{Syntax and Semantics}
+A specification $S$ is made up of an observer part $O$ and a declaration part $D$. $O$ is made up of zero or more monitor definitions $M$, which define what will be watched, while $D$ is made up of zero or more rule definitions $R$. The names of rules and monitors are $(N)$.
+\begin{align*}
+    S &::= D \, O \\
+    D &::= R^* \\
+    O &::= M^* \\
+    R &::= \{ \underline{\text{max}}\ |\ \underline{\text{min}} \}\ N(T_1\ x_1, \ldots, T_n\ x_n) = F \\
+    M &::= \underline{\text{mon}}\ N = F \\
+    T &::= \underline{\text{Form}}\ |\ \text{primitive type} \\
+    F &::= \text{expression}\ |\ \underline{\text{true}}\ |\ \underline{\text{false}}\ |\ \neg F\ |\ F_1 \land F_2\ |\ F_1 \lor F_2\ |\\
+            &F_1 \rightarrow F_2\ |\ \bigcirc F\ |\ \odot F\ |\ F_1 \cdot F_2\ |\ N(F_1, \ldots, F_n)\ |\ x_i
+\end{align*}
+
+
 
 
 
