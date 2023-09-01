@@ -71,7 +71,7 @@ There are three Intrusion Detection System approaches, according to the literatu
 
 In this paper we will focus on \textit{signature-based} approach using temporal logic; we use EAGLE\cite{barringer2004rule,barringer2003eagle} to specify a system's attack-safe behavior. EAGLE allows recursively built temporal formulas, parameterizable by both logical formulas and data expressions, across three primitive modalities: "next", "previous", and "concatenation". The logic allows us to describe temporal patterns involving reasoning about data-values observed in individual events. Unlike LTL, EAGLE allowa us to design attacks with fundamentally statistical characteristics; password guessing attacks and ICMP-flood denial of service attacks are two examples. 
 We'll see how the implementation, MONID, examines the event stream to see if the monitored formula (which is used to hold the pertinent summary of the system) is being broken.
-%% RAPPORTI CON LE ALTRE LOGICHE?????
+
 %% INTRODURRE VELOCE ESEMPIO E STRUTTURA DEL PROGRAMMA
 
 %%%%%   DA RISCRIVERE ALLA FINE
@@ -90,6 +90,7 @@ In EAGLE recursion definitions are supported; in the current framework we can bu
 \end{align*}
 
 As we can see, rules are parameterized by an EAGLE formula (of type $\underline{\text{Form}}$), which means that we will be able to write EAGLE formulas such as $\text{Always}(\text{Eventually}(x>0))$. Also, the $\text{Always}$ operator is defined as maximal solution of the equation $X=F\land \bigcirc X$ and the $\text{Sometime}$ operator represents the minimal solution to the equation $X=F\lor \bigcirc X$.
+
 %%  QUI MANCA LA PARTE DOVE SPIEGHI MAX, MIN, MON
 
 Assume that we want to state the following property: "\textit{Whenever there is a login by any user x, then eventually the user x logs out}". In LTL we can write the following formula: 
@@ -104,6 +105,7 @@ In EAGLE we can express the same property with the following rules:
 \end{align*}
 As a result, rules in EAGLE give us the power to create specific temporal operators as well as to bind and modify data. This property turns out to be crucial for succinctly expressing executions of attack-safe systems. To make the paper self-contained, we go back to the syntax and semantics of EAGLE.
 \subsection{Syntax and Semantics}
+\textbf{Syntax.}
 A specification $S$ is made up of an observer part $O$ and a declaration part $D$. $O$ is made up of zero or more monitor definitions $M$, which define what will be watched, while $D$ is made up of zero or more rule definitions $R$. The names of rules and monitors are $(N)$.
 \begin{align*}
     S &::= D \, O \\
@@ -118,7 +120,11 @@ A specification $S$ is made up of an observer part $O$ and a declaration part $D
 The types of parameters include primitive types like \underline{int}, \underline{long}, \underline{float}, etc. or formulas of type \underline{Form}.
 A term indicating whether the interpretation is maximal ($\underline{\text{max}}$) or minimal ($\underline{\text{min}}$) comes before a rule specification $R$. While minimal rules establish \textit{liveness properties} (something good eventually happens), maximal rules define \textit{safety properties} (nothing bad ever happens); as we will see, the difference becomes important only when we are evaluating the formula in specific instants. Recursive definitions of rules are permitted as long as they are tightly guarded by a temporal operator. Finally,the definitions starting with keyword $\underline{\text{mon}}$ specifies the EAGLE formulas to be monitored and cannot have a recursive definition. We shall see that monitored rules will evolve as new events appear.
 
+\textbf{Semantics.}
 
+\subsection{Relationship to Other Logics}
+%% RAPPORTI CON LE ALTRE LOGICHE?????
+According to~\cite{barringer2004rule},
 
 We will use it to create formulas that describe the absence of some attacks and given a trace of events $\sigma$ generated from the logs we will check whether 
 

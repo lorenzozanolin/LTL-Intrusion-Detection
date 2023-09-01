@@ -2350,12 +2350,13 @@
     <bcf:citekey order="4">barringer2004rule</bcf:citekey>
     <bcf:citekey order="4">barringer2003eagle</bcf:citekey>
     <bcf:citekey order="5">barringer2004program</bcf:citekey>
-    <bcf:citekey order="6">gao2014cyber</bcf:citekey>
-    <bcf:citekey order="7">jyothsna2011review</bcf:citekey>
-    <bcf:citekey order="8">garg2016hybrid</bcf:citekey>
-    <bcf:citekey order="9">barringer2004rule</bcf:citekey>
-    <bcf:citekey order="10">barringer2003eagle</bcf:citekey>
-    <bcf:citekey order="11">barringer2004program</bcf:citekey>
+    <bcf:citekey order="6">barringer2004rule</bcf:citekey>
+    <bcf:citekey order="7">gao2014cyber</bcf:citekey>
+    <bcf:citekey order="8">jyothsna2011review</bcf:citekey>
+    <bcf:citekey order="9">garg2016hybrid</bcf:citekey>
+    <bcf:citekey order="10">barringer2004rule</bcf:citekey>
+    <bcf:citekey order="11">barringer2003eagle</bcf:citekey>
+    <bcf:citekey order="12">barringer2004program</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="nty">
