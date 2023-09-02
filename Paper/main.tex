@@ -148,15 +148,14 @@ In other words, a trace satisfies a specification if it fulfills each monitored 
     \sigma, i &\models_D F_1 \rightarrow F_2 &\text{iff} \quad &\sigma, i \models_D F_1 \text{ implies } \sigma, i \models_D F_2 \\
     \sigma, i &\models_D \bigcirc F &\text{iff} \quad &i \leq |\sigma|\ \text{and}\ \sigma, i+1 \models_D F \\
     \sigma, i &\models_D \Bigg\bigodot F &\text{iff} \quad &1 \leq i\ \text{and}\ \sigma, i-1 \models_D F \\
-    \sigma, i &\models_D F_1 \cdot F_2 &\text{iff} \quad &\exists j \text{ such that } i \leq j \leq |\sigma|+1 \quad \text{and} \\
-    & &&\sigma[1, j-1], i \models_D F_1 \quad \text{and} \quad \sigma[j,|\sigma|], 1 \models_D F_2 \\
-    \sigma, i &\models_D N(F, P) &\text{iff} 
+    \sigma, i &\models_D F_1 \cdot F_2 &\text{iff} \quad &\exists j \text{ s.t. } i \leq j \leq |\sigma|+1\ \text{and}\ \sigma^{[1, j-1]}, i \models_D F_1\ \text{and}\ \sigma^{[j,|\sigma|]}, 1 \models_D F_2 \\
+    \sigma, i &\models_D N(\overline{F}, \overline{P}) &\text{iff} 
     &\begin{cases}
     \text{if } 1 \leq i \leq |\sigma| \text{ then:} \\
-    \sigma, i \models_D F[ f \mapsto F, p \mapsto \text{evaluate}(P)(\sigma(i))] \\
-    \text{where } (N(\text{Form } f, \text{T } p) = F) \in D \\
+    \quad \sigma, i \models_D F[ \overline{f} \mapsto \overline{F}, \overline{p} \mapsto\ evaluate(\overline{P})(\sigma(i))] \\
+    \quad \text{where } (N(\underline{\overline{\text{Form}}}\ \overline{f}, \text{T } p) = F) \in D \\
     \text{otherwise, if } i = 0 \text{ or } i = |\sigma|+1 \text{ then:} \\
-    \text{rule } N \text{ is defined as max in } D
+    \quad \text{rule } N \text{ is defined as }\underline{\text{max}}\text{ in } D
     \end{cases}
 \end{align*}
     
