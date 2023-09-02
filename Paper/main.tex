@@ -137,7 +137,7 @@ Given a trace $\sigma$ and a specification $D \, O$, satisfaction is defined as 
 \[
 \sigma \models D \, O \text{ iff } \forall (\underline{\text{mon}}\ N = F) \in O.\ \sigma ,1 \vDash_D \, F
 \]
-That is, a trace satisfies a specification if the trace, observed from position 1 (the first state), satisfies each monitored formula.
+In other words, a trace satisfies a specification if it fulfills each monitored formula when monitoring from position 1, which is the initial state.
 
 
 
