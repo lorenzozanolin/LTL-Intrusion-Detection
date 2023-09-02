@@ -120,7 +120,12 @@ A specification $S$ is made up of an observer part $O$ and a declaration part $D
 The types of parameters include primitive types like \underline{int}, \underline{long}, \underline{float}, etc. or formulas of type \underline{Form}.
 A term indicating whether the interpretation is maximal ($\underline{\text{max}}$) or minimal ($\underline{\text{min}}$) comes before a rule specification $R$. While minimal rules establish \textit{liveness properties} (something good eventually happens), maximal rules define \textit{safety properties} (nothing bad ever happens); as we will see, the difference becomes important only when we are evaluating the formula in specific instants. Recursive definitions of rules are permitted as long as they are tightly guarded by a temporal operator. Finally,the definitions starting with keyword $\underline{\text{mon}}$ specifies the EAGLE formulas to be monitored and cannot have a recursive definition. We shall see that monitored rules will evolve as new events appear.
 
-\textbf{Semantics.}
+\textbf{Semantics.} First of all two assumptions are important:\begin{enumerate}
+    \item There is a finite sequence of occurrences called $\sigma$ that is a merge of the system registered logs organized by ascending time. An example of event could be the following: 
+    \begin{align*}
+        & \text{LoginLogoutEvent}\{userId:\ \underline{\text{string}},action:\ \underline{\text{int}}, userId:\ \time{\text{double}}\} 
+    \end{align*}
+\end{enumerate}
 
 \subsection{Relationship to Other Logics}
 %% RAPPORTI CON LE ALTRE LOGICHE?????
