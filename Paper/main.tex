@@ -79,7 +79,7 @@ In Section 2 we will analyze the basics of EAGLE. In Section 3 we will analyze M
 %%%%5
 
 \section{EAGLE, a Temporal Monitoring Logic}
-According to~\cite{barringer2004program}, EAGLE offers a succinct but powerful set of primitives, essentially supporting recursive parameterized equations, with a minimal/maximal fix-point semantics together with three temporal operators: next-time ($\bigcirc$), previous-time ($\odot$), and concatenation ($\cdot$).
+According to~\cite{barringer2004program}, EAGLE offers a succinct but powerful set of primitives, essentially supporting recursive parameterized equations, with a minimal/maximal fix-point semantics together with three temporal operators: next-time ($\bigcirc$), previous-time ($\astrosun$), and concatenation ($\cdot$).
 \subsection{Basics}
 In EAGLE recursion definitions are supported; in the current framework we can build the following definitions:
 \begin{align*}
@@ -131,13 +131,35 @@ A specification $S$ is made up of an observer part $O$ and a declaration part $D
 The types of parameters include primitive types like \underline{int}, \underline{long}, \underline{float}, etc. or formulas of type \underline{Form}.
 A term indicating whether the interpretation is maximal ($\underline{\text{max}}$) or minimal ($\underline{\text{min}}$) comes before a rule specification $R$. While minimal rules establish \textit{liveness properties} (something good eventually happens), maximal rules define \textit{safety properties} (nothing bad ever happens); as we will see, the difference becomes important only when we are evaluating the formula in specific instants. Recursive definitions of rules are permitted as long as they are tightly guarded by a temporal operator. Finally,the definitions starting with keyword $\underline{\text{mon}}$ specifies the EAGLE formulas to be monitored and cannot have a recursive definition. We shall see that monitored rules will evolve as new events appear.
 
-\textbf{Semantics.} The semantics of the logic is defined from the \textit{satisfaction} relation $\vDash$ which defines whether an execution trace $\sigma$ satisfy the specification $\varphi$. The $i$'th state $s_i$ of a trace $\sigma$ is denoted by $\sigma(i)$. The term $\sigma[i, j]$ denotes the sub-trace of $\sigma$ from position $i$ to position $j$, both positions included; if $i \geq j$ then $\sigma[i, j]$ denotes the empty trace.
+\textbf{Semantics.} The semantics of the logic is defined from the \textit{satisfaction} relation $\models$ which defines whether an execution trace $\sigma$ satisfy the specification $\varphi=D \, O$. The $i$'th state $s_i$ of a trace $\sigma$ is denoted by $\sigma(i)$. The term $\sigma[i, j]$ denotes the sub-trace of $\sigma$ from position $i$ to position $j$, both positions included; if $i \geq j$ then $\sigma[i, j]$ denotes the empty trace.
 
 Given a trace $\sigma$ and a specification $D \, O$, satisfaction is defined as follows:
 \[
-\sigma \models D \, O \text{ iff } \forall (\underline{\text{mon}}\ N = F) \in O.\ \sigma ,1 \vDash_D \, F
+\sigma \models D \, O \text{ iff } \forall (\underline{\text{mon}}\ N = F) \in O.\ \sigma ,1 \models_D \, F
 \]
-In other words, a trace satisfies a specification if it fulfills each monitored formula when monitoring from position 1, which is the initial state.
+In other words, a trace satisfies a specification if it fulfills each monitored formula when monitoring from position 1, which is the initial state. An \textbf{important} note is that, given a trace $\sigma=\alpha_{1},\ldots ,\alpha_{n}$ the index $i$ of the trace can become $0$ (before the first state) and $n+1$, thus going beyond the limits; both of these situations result in rule applications evaluating to either true if maximal or false if minimal, without first taking the rules body into account. The definition of the satisfaction relation $\models_D \subseteq (Trace \times \mathbb{N}) \times \underline{\text{Form}}$, for a set of rule definitions $D$, is the following:
+\begin{align*}
+    \sigma, i &\models_D\ expression &\text{iff} \quad &1 \leq i \leq |\sigma|\ \text{and}\ evaluate(expression)(\sigma(i)) = true \\
+    \sigma, i &\models_D\ \underline{\text{true}} \\
+    \sigma, i &\not\models_D\ \underline{\text{false}} \\
+    \sigma, i &\models_D \neg F &\text{iff} \quad &\sigma, i \not\models_D F \\
+    \sigma, i &\models_D F_1 \land F_2 &\text{iff} \quad &\sigma, i \models_D F_1\ \text{and}\ \sigma, i \models_D F_2 \\
+    \sigma, i &\models_D F_1 \lor F_2 &\text{iff} \quad &\sigma, i \models_D F_1\ \text{or}\ \sigma, i \models_D F_2 \\
+    \sigma, i &\models_D F_1 \rightarrow F_2 &\text{iff} \quad &\sigma, i \models_D F_1 \text{ implies } \sigma, i \models_D F_2 \\
+    \sigma, i &\models_D \bigcirc F &\text{iff} \quad &i \leq |\sigma|\ \text{and}\ \sigma, i+1 \models_D F \\
+    \sigma, i &\models_D \Bigg\bigodot F &\text{iff} \quad &1 \leq i\ \text{and}\ \sigma, i-1 \models_D F \\
+    \sigma, i &\models_D F_1 \cdot F_2 &\text{iff} \quad &\exists j \text{ such that } i \leq j \leq |\sigma|+1 \quad \text{and} \\
+    & &&\sigma[1, j-1], i \models_D F_1 \quad \text{and} \quad \sigma[j,|\sigma|], 1 \models_D F_2 \\
+    \sigma, i &\models_D N(F, P) &\text{iff} 
+    &\begin{cases}
+    \text{if } 1 \leq i \leq |\sigma| \text{ then:} \\
+    \sigma, i \models_D F[ f \mapsto F, p \mapsto \text{evaluate}(P)(\sigma(i))] \\
+    \text{where } (N(\text{Form } f, \text{T } p) = F) \in D \\
+    \text{otherwise, if } i = 0 \text{ or } i = |\sigma|+1 \text{ then:} \\
+    \text{rule } N \text{ is defined as max in } D
+    \end{cases}
+\end{align*}
+    
 
 
 
