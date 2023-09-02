@@ -104,6 +104,17 @@ In EAGLE we can express the same property with the following rules:
     & \underline{\text{mon}}\ M_2 = ((\text{action = login})\rightarrow \text{EvLogout}(userId)) 
 \end{align*}
 As a result, rules in EAGLE give us the power to create specific temporal operators as well as to bind and modify data. This property turns out to be crucial for succinctly expressing executions of attack-safe systems. To make the paper self-contained, we go back to the syntax and semantics of EAGLE.
+
+Lastly, two assumptions must be made:\begin{enumerate}
+    \item There is a finite sequence of occurrences called $\sigma=\alpha_{1},\ldots ,\alpha_{n}$ that is a merge of the system registered logs organized by ascending time. 
+    The structure of an event record $\alpha_i$ is the following:
+    \begin{align*}
+        & \text{LoginLogoutEvent}\{userId:\underline{\text{string}},action: \underline{\text{int}}, time: \underline{\text{double}}\} 
+    \end{align*}
+    An example of event could be: $\{userId:\text{"Lori"},action:\text{login},time:\text{20}\}$
+    \item For each attack, there is a formula $F$ which specifies the absence of it.
+\end{enumerate}
+
 \subsection{Syntax and Semantics}
 \textbf{Syntax.}
 A specification $S$ is made up of an observer part $O$ and a declaration part $D$. $O$ is made up of zero or more monitor definitions $M$, which define what will be watched, while $D$ is made up of zero or more rule definitions $R$. The names of rules and monitors are $(N)$.
@@ -120,14 +131,15 @@ A specification $S$ is made up of an observer part $O$ and a declaration part $D
 The types of parameters include primitive types like \underline{int}, \underline{long}, \underline{float}, etc. or formulas of type \underline{Form}.
 A term indicating whether the interpretation is maximal ($\underline{\text{max}}$) or minimal ($\underline{\text{min}}$) comes before a rule specification $R$. While minimal rules establish \textit{liveness properties} (something good eventually happens), maximal rules define \textit{safety properties} (nothing bad ever happens); as we will see, the difference becomes important only when we are evaluating the formula in specific instants. Recursive definitions of rules are permitted as long as they are tightly guarded by a temporal operator. Finally,the definitions starting with keyword $\underline{\text{mon}}$ specifies the EAGLE formulas to be monitored and cannot have a recursive definition. We shall see that monitored rules will evolve as new events appear.
 
-\textbf{Semantics.} First of all two assumptions are important:\begin{enumerate}
-    \item There is a finite sequence of occurrences called $\sigma=\alpha_{1},\ldots ,\alpha_{n}$ that is a merge of the system registered logs organized by ascending time. 
-    The structure of an event record $\alpha_i$ is the following:
-    \begin{align*}
-        & \text{LoginLogoutEvent}\{userId:\underline{\text{string}},action: \underline{\text{int}}, time: \underline{\text{double}}\} 
-    \end{align*}
-    An example of event could be: $\{userId:\text{"Lori"},action:\text{login},time:\text{20}\}$
-\end{enumerate}
+\textbf{Semantics.} The semantics of the logic is defined from the \textit{satisfaction} relation $\vDash$ which defines whether an execution trace $\sigma$ satisfy the specification $\varphi$. The $i$'th state $s_i$ of a trace $\sigma$ is denoted by $\sigma(i)$. The term $\sigma[i, j]$ denotes the sub-trace of $\sigma$ from position $i$ to position $j$, both positions included; if $i \geq j$ then $\sigma[i, j]$ denotes the empty trace.
+
+Given a trace $\sigma$ and a specification $D \, O$, satisfaction is defined as follows:
+\[
+\sigma \models D \, O \text{ iff } \forall (\underline{\text{mon}}\ N = F) \in O.\ \sigma ,1 \vDash_D \, F
+\]
+That is, a trace satisfies a specification if the trace, observed from position 1 (the first state), satisfies each monitored formula.
+
+
 
 \subsection{Relationship to Other Logics}
 %% RAPPORTI CON LE ALTRE LOGICHE?????
