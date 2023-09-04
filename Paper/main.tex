@@ -181,7 +181,7 @@ According to~\cite{barringer2004rule}, the definitions of $evaluate$, $update$ a
 \begin{align*}
     evaluate(\underline{\text{true}},\alpha_i) & =\ \underline{\text{true}} \\
     evaluate(\underline{\text{false}},\alpha_i) & =\ \underline{\text{false}} \\ 
-    evaluate(\text{exp},\alpha_i) & =\ \text{value of } exp\text{ in } \alpha_i \\
+    evaluate(exp,\alpha_i) & =\ \text{value of } exp\text{ in } \alpha_i \\
     evaluate(F_1\ op\ F_2,\alpha_i) & =\  evaluate(F_1,\alpha_i)\ op\ evaluate(F_2,\alpha_i)\\
     evaluate(\neg{F},\alpha_i) & =\ \neg{evaluate(F,\alpha_i)}  \\
     evaluate(\bigcirc F,\alpha_i) & =\ update(F,\alpha_i)  \\
@@ -193,7 +193,7 @@ According to~\cite{barringer2004rule}, the definitions of $evaluate$, $update$ a
 %value
     value(\underline{\text{true}}) & =\ \underline{\text{true}} \\
     value(\underline{\text{false}}) & =\ \underline{\text{false}} \\ 
-    value(\text{exp}) & =\ \underline{\text{false}} \\
+    value(exp) & =\ \underline{\text{false}} \\
     value(F_1\ op\ F_2) & =\  value(F_1)\ op\ value(F_2) \\
     value(\neg{F}) & =\ \neg{value(F)}  \\
     value(\bigcirc F) & =
@@ -201,23 +201,15 @@ According to~\cite{barringer2004rule}, the definitions of $evaluate$, $update$ a
         F \quad \text{if at the beginning of a trace} \\
         \underline{\text{false}}\quad \text{if at the end of a trace} \\
     \end{cases}\\
-    value(F_1 \cdot F_2,\alpha_i) & =\  value(F_1)\land value(F_2) 
-\end{align*}
+    value(F_1 \cdot F_2,\alpha_i) & =\  value(F_1)\land value(F_2) \\ \\ 
 %update
-\begin{align*}
-    evaluate(\underline{\text{true}},\alpha_i) & =\ \underline{\text{true}} \\
-    evaluate(\underline{\text{false}},\alpha_i) & =\ \underline{\text{false}} \\ 
-    evaluate(\text{exp},\alpha_i) & =\ \text{value of } exp\text{ in } \alpha_i \\
-    evaluate(F_1\ op\ F_2,\alpha_i) & =\  evaluate(F_1,\alpha_i)\ op\ evaluate(F_2,\alpha_i)\quad \text{where op can be }\lor , \land, \rightarrow \\
-    evaluate(\neg{F},\alpha_i) & =\ \neg{evaluate(F,\alpha_i)}  \\
-    evaluate(\bigcirc F,\alpha_i) & =\ update(F,\alpha_i)  \\
-    evaluate(F_1 \cdot F_2,\alpha_i) & =
-    \begin{cases}
-        \text{if } value(F_1)=\ \underline{\text{false}} \\
-        \quad  evaluate(F_1,\alpha_i)\cdot F_2 \\
-        \text{else} \\
-        \quad  evaluate(F_1,\alpha_i)\cdot F_2 \lor evaluate(F_2,\alpha_i)
-    \end{cases}
+    update(\underline{\text{true}},\alpha_i) & =\ \underline{\text{true}} \\
+    update(\underline{\text{false}},\alpha_i) & =\ \underline{\text{false}} \\ 
+    update(exp,\alpha_i) & =\ exp\\
+    update(F_1\ op\ F_2,\alpha_i) & =\  update(F_1,\alpha_i)\ op\ update(F_2,\alpha_i) \\
+    update(\neg{F},\alpha_i) & =\ \neg{update(F,\alpha_i)}  \\
+    update(\bigcirc F,\alpha_i) & =\ update(F,\alpha_i)  \\
+    update(F_1 \cdot F_2,\alpha_i) & =\ update(F_1,\alpha_i)\cdot F_2
 \end{align*}
 
     
