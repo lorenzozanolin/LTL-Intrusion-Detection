@@ -91,8 +91,6 @@ In EAGLE recursion definitions are supported; in the current framework we can bu
 
 As we can see, rules are parameterized by an EAGLE formula (of type $\underline{\text{Form}}$), which means that we will be able to write EAGLE formulas such as $\text{Always}(\text{Eventually}(x>0))$. Also, the $\text{Always}$ operator is defined as maximal solution of the equation $X=F\land \bigcirc X$, while the $\text{Eventually}$ operator represents the minimal solution to the equation $X=F\lor \bigcirc X$.
 
-%%  QUI MANCA LA PARTE DOVE SPIEGHI MAX, MIN, MON
-
 Assume that we want to state the following property: "\textit{Whenever there is a login by any user x, then eventually the user x logs out}". In LTL we can write the following formula: 
 \begin{align*}
     & \square{(\text{(action = login)}\rightarrow \underline{\text{let}}\ \text{k} =userId\ \underline{\text{in}}\ \lozenge(\text{action = logout}\land userId = k))}
@@ -103,10 +101,10 @@ In EAGLE we can express the same property with the following rules:
     & \underline{\text{min}}\ \text{EvLogout}(\underline{\text{string}}\ k) = (\text{action = logout}\land userId = k) \lor \bigcirc \text{EvLogout}(k) \\
     & \underline{\text{mon}}\ M_2 = ((\text{action = login})\rightarrow \text{EvLogout}(userId)) 
 \end{align*}
-As a result, rules in EAGLE give us the power to create specific temporal operators as well as to bind and modify data. This property turns out to be crucial for succinctly expressing executions of attack-safe systems. To make the paper self-contained, we go back to the syntax and semantics of EAGLE.
+As a result, rules in EAGLE give us the power to create specific temporal operators as well as to bind and modify data. This property turns out to be crucial for succinctly expressing executions of attack-safe systems. As we can see, each rule begins with a term that describes its type ($\underline{\text{min}}$, $\underline{\text{max}}$, $\underline{\text{mon}}$); we will read more about it later.
 
 Lastly, two assumptions must be made:\begin{enumerate}
-    \item There is a finite sequence of occurrences called $\sigma=\alpha_{1},\ldots ,\alpha_{n}$ that is a merge of the system registered logs organized by ascending time. 
+    \item There is a finite sequence of events called $\sigma=\alpha_{1},\ldots ,\alpha_{n}$ that is a merge of the system registered logs organized by ascending time. 
     The structure of an event record $\alpha_i$ is the following:
     \begin{align*}
         & \text{LoginLogoutEvent}\{userId:\underline{\text{string}},action: \underline{\text{int}}, time: \underline{\text{double}}\} 
@@ -114,6 +112,7 @@ Lastly, two assumptions must be made:\begin{enumerate}
     An example of event could be: $\{userId:\text{"Lori"},action:\text{login},time:\text{20}\}$
     \item For each attack, there is a formula $F$ which specifies the absence of it.
 \end{enumerate}
+To make the paper self-contained, we will present the syntax and semantics of EAGLE.
 
 \subsection{Syntax and Semantics}
 \textbf{Syntax.}
@@ -128,18 +127,29 @@ A specification $S$ is made up of an observer part $O$ and a declaration part $D
     F &::= \text{expression}\ |\ \underline{\text{true}}\ |\ \underline{\text{false}}\ |\ \neg F\ |\ F_1 \land F_2\ |\ F_1 \lor F_2\ |\\
             &F_1 \rightarrow F_2\ |\ \bigcirc F\ |\ \odot F\ |\ F_1 \cdot F_2\ |\ N(F_1, \ldots, F_n)\ |\ x_i
 \end{align*}
-The types of parameters include primitive types like \underline{int}, \underline{long}, \underline{float}, etc. or formulas of type \underline{Form}.
-A term indicating whether the interpretation is maximal ($\underline{\text{max}}$) or minimal ($\underline{\text{min}}$) comes before a rule specification $R$. While minimal rules establish \textit{liveness properties} (something good eventually happens), maximal rules define \textit{safety properties} (nothing bad ever happens); as we will see, the difference becomes important only when we are evaluating the formula in specific instants. Recursive definitions of rules are permitted as long as they are tightly guarded by a temporal operator. Finally,the definitions starting with keyword $\underline{\text{mon}}$ specifies the EAGLE formulas to be monitored and cannot have a recursive definition. We shall see that monitored rules will evolve as new events appear.
+The types $T_i$ of parameters include primitive types like \underline{int}, \underline{long}, \underline{float}, etc. or formulas of type \underline{Form}. Definitions starting with keyword $\underline{\text{mon}}$ specifies the EAGLE formulas to be monitored and cannot have a recursive definition. We will see that these kind of rules will evolve as new events appear. 
+A term indicating whether the interpretation is maximal ($\underline{\text{max}}$) or minimal ($\underline{\text{min}}$) comes before a rule specification $R$. While minimal rules establish \textit{liveness properties} (something good eventually happens), maximal rules define \textit{safety properties} (nothing bad ever happens); we shall see that the difference becomes important only when we are evaluating the at the boundaries of a trace. Finally, recursive definitions of rules are permitted as long as they are tightly guarded by a temporal operator. 
 
-\textbf{Semantics.} The semantics of the logic is defined from the \textit{satisfaction} relation $\models$ which defines whether an execution trace $\sigma$ satisfy the specification $\varphi=D \, O$. The $i$'th state $s_i$ of a trace $\sigma$ is denoted by $\sigma(i)$. The term $\sigma[i, j]$ denotes the sub-trace of $\sigma$ from position $i$ to position $j$, both positions included; if $i \geq j$ then $\sigma[i, j]$ denotes the empty trace.
+\textbf{Semantics.} The semantics of the logic is defined in terms of the \textit{satisfaction} relation $\models$ which defines whether an execution trace $\sigma$ satisfy the specification $\varphi=D \, O$. The $i$'th state $s_i$ of a trace $\sigma$ is denoted by $\sigma(i)$. The term $\sigma[i, j]$ denotes the sub-trace of $\sigma$ from position $i$ to position $j$, both positions included; if $i \geq j$ then $\sigma[i, j]$ denotes the empty trace.
 
 Given a trace $\sigma$ and a specification $D \, O$, satisfaction is defined as follows:
 \[
 \sigma \models D \, O \text{ iff } \forall (\underline{\text{mon}}\ N = F) \in O.\ \sigma ,1 \models_D \, F
 \]
-In other words, a trace satisfies a specification if it fulfills each monitored formula when monitoring from position 1, which is the initial state. An \textbf{important} note is that, given a trace $\sigma=\alpha_{1},\ldots ,\alpha_{n}$ the index $i$ of the trace can become $0$ (before the first state) and $n+1$, thus going beyond the limits; both of these situations result in rule applications evaluating to either true if maximal or false if minimal, without first taking the rules body into account. The definition of the satisfaction relation $\models_D \subseteq (Trace \times \mathbb{N}) \times \underline{\text{Form}}$, for a set of rule definitions $D$, is the following:
+In other words, a trace satisfies a specification if it fulfills each monitored formula ($\underline{\text{mon}}$) when monitoring from position 1, which is the initial state. An \textbf{important} note is that, given a trace $\sigma=\alpha_{1},\ldots ,\alpha_{n}$ the index $i$ of the trace can become $0$ (before the first state) and $n+1$, thus going beyond the limits; both of these situations result in rule applications evaluating to either true if maximal or false if minimal, without first taking the rules body into account. Let us explain why using an example. Given the definition 
 \begin{align*}
-    \sigma, i &\models_D\ expression &\text{iff} \quad &1 \leq i \leq |\sigma|\ \text{and}\ evaluate(expression)(\sigma(i)) = true \\
+    & \underline{\text{min}}\ \text{Property}(\underline{\text{Form}}\ F) =F \lor \bigcirc \text{Property}(F)
+\end{align*}
+and the sequence $\sigma=\alpha_{1},\ldots ,\alpha_{n}$, Property will evaluate to \textit{true} 
+\begin{align*}
+    & evaluate(\ldots evaluate(evaluate(\text{Property},\alpha_1),\alpha_2),\ldots,\alpha_n)=true
+\end{align*}
+if and only if the rule is true at some given event $\alpha_i$. 
+Once the sequence has been completely analyzed, we will obtain a big disjunction (in case of a \underline{\text{min}}) or a big conjunction (in case of a \underline{\text{max}}) and the final value will close the evalutation.  
+
+The definition of the satisfaction relation $\models_D \subseteq (Trace \times \mathbb{N}) \times \underline{\text{Form}}$, for a set of rule definitions $D$, is the following:
+\begin{align*}
+    \sigma, i &\models_D\ expression &\text{iff} \quad &1 \leq i \leq |\sigma|\ \text{and}\ evaluate(expression, \sigma(i)) = true \\
     \sigma, i &\models_D\ \underline{\text{true}} \\
     \sigma, i &\not\models_D\ \underline{\text{false}} \\
     \sigma, i &\models_D \neg F &\text{iff} \quad &\sigma, i \not\models_D F \\
@@ -152,7 +162,7 @@ In other words, a trace satisfies a specification if it fulfills each monitored 
     \sigma, i &\models_D N(\overline{F}, \overline{P}) &\text{iff} 
     &\begin{cases}
     \text{if } 1 \leq i \leq |\sigma| \text{ then:} \\
-    \quad \sigma, i \models_D F[ \overline{f} \mapsto \overline{F}, \overline{p} \mapsto\ evaluate(\overline{P})(\sigma(i))] \\
+    \quad \sigma, i \models_D F[ \overline{f} \mapsto \overline{F}, \overline{p} \mapsto\ evaluate(\overline{P}, \sigma(i))] \\
     \quad \text{where } (N(\underline{\overline{\text{Form}}}\ \overline{f}, \text{T } p) = F) \in D \\
     \text{otherwise, if } i = 0 \text{ or } i = |\sigma|+1 \text{ then:} \\
     \quad \text{rule } N \text{ is defined as }\underline{\text{max}}\text{ in } D
