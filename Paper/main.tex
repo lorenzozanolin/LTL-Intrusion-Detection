@@ -130,7 +130,7 @@ A specification $S$ is made up of an observer part $O$ and a declaration part $D
 The types $T_i$ of parameters include primitive types like \underline{int}, \underline{long}, \underline{float}, etc. or formulas of type \underline{Form}. Definitions starting with keyword $\underline{\text{mon}}$ specifies the EAGLE formulas to be monitored and cannot have a recursive definition. We will see that these kind of rules will evolve as new events appear. 
 A term indicating whether the interpretation is maximal ($\underline{\text{max}}$) or minimal ($\underline{\text{min}}$) comes before a rule specification $R$. While minimal rules establish \textit{liveness properties} (something good eventually happens), maximal rules define \textit{safety properties} (nothing bad ever happens); we shall see that the difference becomes important only when we are evaluating the at the boundaries of a trace. Finally, recursive definitions of rules are permitted as long as they are tightly guarded by a temporal operator. 
 
-\textbf{Semantics.} The semantics of the logic is defined in terms of the \textit{satisfaction} relation $\models$ which defines whether an execution trace $\sigma$ satisfy the specification $\varphi=D \, O$. The $i$'th state $s_i$ of a trace $\sigma$ is denoted by $\sigma(i)$. The term $\sigma[i, j]$ denotes the sub-trace of $\sigma$ from position $i$ to position $j$, both positions included; if $i \geq j$ then $\sigma[i, j]$ denotes the empty trace.
+\textbf{Semantics.} The semantics of the logic is defined in terms of the \textit{satisfaction} relation $\models$ which defines whether a finite execution trace $\sigma$ satisfy the specification $\varphi=D \, O$. The $i$'th state $s_i$ of a trace $\sigma$ is denoted by $\sigma(i)$. The term $\sigma[i, j]$ denotes the sub-trace of $\sigma$ from position $i$ to position $j$, both positions included; if $i \geq j$ then $\sigma[i, j]$ denotes the empty trace.
 
 Given a trace $\sigma$ and a specification $D \, O$, satisfaction is defined as follows:
 \[
@@ -146,7 +146,7 @@ In other words, a trace satisfies a specification if it fulfills each monitored 
     \sigma, i &\models_D F_1 \lor F_2 &\text{iff} \quad &\sigma, i \models_D F_1\ \text{or}\ \sigma, i \models_D F_2 \\
     \sigma, i &\models_D F_1 \rightarrow F_2 &\text{iff} \quad &\sigma, i \models_D F_1 \text{ implies } \sigma, i \models_D F_2 \\
     \sigma, i &\models_D \bigcirc F &\text{iff} \quad &i \leq |\sigma|\ \text{and}\ \sigma, i+1 \models_D F \\
-    \sigma, i &\models_D \Bigg\bigodot F &\text{iff} \quad &1 \leq i\ \text{and}\ \sigma, i-1 \models_D F \\
+    \sigma, i &\models_D \odot F &\text{iff} \quad &1 \leq i\ \text{and}\ \sigma, i-1 \models_D F \\
     \sigma, i &\models_D F_1 \cdot F_2 &\text{iff} \quad &\exists j \text{ s.t. } i \leq j \leq |\sigma|+1\ \text{and}\ \sigma^{[1, j-1]}, i \models_D F_1\ \text{and}\ \sigma^{[j,|\sigma|]}, 1 \models_D F_2 \\
     \sigma, i &\models_D N(\overline{F}, \overline{P}) &\text{iff} 
     &\begin{cases}
@@ -157,6 +157,7 @@ In other words, a trace satisfies a specification if it fulfills each monitored 
     \quad \text{rule } N \text{ is defined as }\underline{\text{max}}\text{ in } D
     \end{cases}
 \end{align*}
+where $\overline{F}$ and $\overline{P}$ represent tuples of type $\overline{\text{Form}}$ and $\overline{T}$ respectively
     
 An \textbf{important} note is that, given a trace $\sigma=\alpha_{1},\ldots ,\alpha_{n}$ the index $i$ of the trace can become $0$ (before the first state) and $n+1$, thus going beyond the limits; both of these situations result in rule applications evaluating to either true if maximal or false if minimal, without first taking the rules body into account. Let us explain why using an example. Given the definition 
 \begin{align*}
@@ -172,6 +173,12 @@ Once the sequence has been completely analyzed, we will obtain a big disjunction
     & F \lor \bigcirc(F \lor \bigcirc(\ldots F \lor \bigcirc \textbf{Property(F)})) 
 \end{align*}
 and the bold \textbf{Property(F)} will be evaluated to false, since it is the last of a big disjunction.
+\subsection{Evaluation algorithm}
+As already mentioned, monitored formulas ($\underline{\text{mon}}$) evolve at every event, to store relevant informations about past istants. The evolved formula's value is determined at the conclusion of the event series; if it is true, the formula is satisfied by the event sequence; otherwise, it is violated. Formally, a formula $F' = \text evaluate(F, \alpha_i)$ is created when a formula $F$ is evaluated at an event $\alpha_i = \sigma(i)$ and has the condition that $\sigma, i \models F$ if and only if $\sigma, i+1 \models F'$. With $F$ being the evolved formula, we compute the boolean function $value(F)$ at the conclusion of the trace. The definition of the function $evaluate: \underline{\text{Form}} \times \underline{\text{State}} \to \underline{\text{Form}}$ uses an auxiliary function $update: \underline{\text{Form}} \times \underline{\text{State}} \to \underline{\text{Form}}$ to pre-evaluate a formula if it is guarded by the previous operator $\bigodot$.
+
+
+
+
 
 
 \subsection{Relationship to Other Logics}
