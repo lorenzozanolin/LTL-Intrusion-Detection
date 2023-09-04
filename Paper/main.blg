@@ -1,15 +1,15 @@
 [0] Config.pm:307> INFO - This is Biber 2.17
 [0] Config.pm:310> INFO - Logfile is 'main.blg'
-[57] biber-darwin:340> INFO - === Mon Sep  4, 2023, 16:09:31
-[70] Biber.pm:418> INFO - Reading 'main.bcf'
-[139] Biber.pm:972> INFO - Found 6 citekeys in bib section 0
-[150] Biber.pm:4383> INFO - Processing section 0
-[160] Biber.pm:4574> INFO - Looking for bibtex file 'thud.bib' for section 0
-[161] bibtex.pm:1713> INFO - LaTeX decoding ...
-[166] bibtex.pm:1518> INFO - Found BibTeX data source 'thud.bib'
-[218] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
-[218] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[218] Biber.pm:4203> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'en-US'
-[218] Biber.pm:4209> INFO - No sort tailoring available for locale 'en-US'
-[223] bbl.pm:654> INFO - Writing 'main.bbl' with encoding 'UTF-8'
-[226] bbl.pm:757> INFO - Output to main.bbl
+[63] biber-darwin:340> INFO - === Mon Sep  4, 2023, 17:27:51
+[75] Biber.pm:418> INFO - Reading 'main.bcf'
+[164] Biber.pm:972> INFO - Found 6 citekeys in bib section 0
+[179] Biber.pm:4383> INFO - Processing section 0
+[187] Biber.pm:4574> INFO - Looking for bibtex file 'thud.bib' for section 0
+[188] bibtex.pm:1713> INFO - LaTeX decoding ...
+[194] bibtex.pm:1518> INFO - Found BibTeX data source 'thud.bib'
+[248] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[248] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[248] Biber.pm:4203> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'en-US'
+[248] Biber.pm:4209> INFO - No sort tailoring available for locale 'en-US'
+[253] bbl.pm:654> INFO - Writing 'main.bbl' with encoding 'UTF-8'
+[256] bbl.pm:757> INFO - Output to main.bbl
