@@ -234,7 +234,7 @@ and a trace $\sigma=\alpha_1,\alpha_2$, where $\alpha_1=\{userId:\text{"Lori"},a
 \end{align*}
 At the second event the predicate $(time-t \leq \delta)$ gets instantiated to $(150.0-17.0 \leq 100)$ which is false; thus the whole formula becomes false, indicating that the two-event trace violates the property $M_3$. 
 
-It's essential to emphasize that the logic EAGLE operates with a \textit{finite} trace semantics; the monitoring algorithm, as written before, can check whetet the formula is satisfied or not only at the conclusion of a trace. However, in intrusion detection scenarios, the notion of the 'end of a trace' makes no sense since event sequences can theoretically be infinite. In such cases, the aim is to trigger an alarm as soon as a property is violated and this is done by continuously checking the formula's satisfaction status after each event.
+It's essential to emphasize that the logic EAGLE operates with a \textit{finite} trace semantics; the monitoring algorithm, as written before, can check whetet the formula is satisfied or not only at the conclusion of a trace. However, in intrusion detection scenarios, the notion of the 'end of a trace' makes no sense since event sequences can theoretically be infinite. In such cases, the aim is to trigger an alarm as soon as a property is violated and this is done by continuously checking the formula's satisfaction status after each event. In practice, once we have the specification of the attack pattern in terms of $\varphi$, we can express the system's safe behavior as $\square(\neg \varphi)$. Note that if a sequence of events corresponding to the attack is discovered, this formula becomes false.
 
 \subsection{Relationship to Other Logics}
 %% RAPPORTI CON LE ALTRE LOGICHE?????
