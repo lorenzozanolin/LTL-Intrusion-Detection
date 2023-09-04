@@ -136,18 +136,7 @@ Given a trace $\sigma$ and a specification $D \, O$, satisfaction is defined as 
 \[
 \sigma \models D \, O \text{ iff } \forall (\underline{\text{mon}}\ N = F) \in O.\ \sigma ,1 \models_D \, F
 \]
-In other words, a trace satisfies a specification if it fulfills each monitored formula ($\underline{\text{mon}}$) when monitoring from position 1, which is the initial state. An \textbf{important} note is that, given a trace $\sigma=\alpha_{1},\ldots ,\alpha_{n}$ the index $i$ of the trace can become $0$ (before the first state) and $n+1$, thus going beyond the limits; both of these situations result in rule applications evaluating to either true if maximal or false if minimal, without first taking the rules body into account. Let us explain why using an example. Given the definition 
-\begin{align*}
-    & \underline{\text{min}}\ \text{Property}(\underline{\text{Form}}\ F) =F \lor \bigcirc \text{Property}(F)
-\end{align*}
-and the sequence $\sigma=\alpha_{1},\ldots ,\alpha_{n}$, Property will evaluate to \textit{true} 
-\begin{align*}
-    & evaluate(\ldots evaluate(evaluate(\text{Property},\alpha_1),\alpha_2),\ldots,\alpha_n)=true
-\end{align*}
-if and only if the rule is true at some given event $\alpha_i$. 
-Once the sequence has been completely analyzed, we will obtain a big disjunction (in case of a \underline{\text{min}}) or a big conjunction (in case of a \underline{\text{max}}) and the final value will close the evalutation.  
-
-The definition of the satisfaction relation $\models_D \subseteq (Trace \times \mathbb{N}) \times \underline{\text{Form}}$, for a set of rule definitions $D$, is the following:
+In other words, a trace satisfies a specification if it fulfills each monitored formula ($\underline{\text{mon}}$) when monitoring from position 1, which is the initial state. The definition of the satisfaction relation $\models_D \subseteq (Trace \times \mathbb{N}) \times \underline{\text{Form}}$, for a set of rule definitions $D$, is the following:
 \begin{align*}
     \sigma, i &\models_D\ expression &\text{iff} \quad &1 \leq i \leq |\sigma|\ \text{and}\ evaluate(expression, \sigma(i)) = true \\
     \sigma, i &\models_D\ \underline{\text{true}} \\
@@ -169,7 +158,20 @@ The definition of the satisfaction relation $\models_D \subseteq (Trace \times \
     \end{cases}
 \end{align*}
     
-
+An \textbf{important} note is that, given a trace $\sigma=\alpha_{1},\ldots ,\alpha_{n}$ the index $i$ of the trace can become $0$ (before the first state) and $n+1$, thus going beyond the limits; both of these situations result in rule applications evaluating to either true if maximal or false if minimal, without first taking the rules body into account. Let us explain why using an example. Given the definition 
+\begin{align*}
+    & \underline{\text{min}}\ \text{Property}(\underline{\text{Form}}\ F) =F \lor \bigcirc \text{Property}(F)
+\end{align*}
+and the sequence $\sigma=\alpha_{1},\ldots ,\alpha_{n}$, Property will evaluate to \textit{true} 
+\begin{align*}
+    & evaluate(\ldots evaluate(evaluate(\text{Property},\alpha_1),\alpha_2),\ldots,\alpha_n)=true
+\end{align*}
+if and only if the rule is true at some given event $\alpha_i$. 
+Once the sequence has been completely analyzed, we will obtain a big disjunction (in case of a \underline{\text{min}}) or a big conjunction (in case of a \underline{\text{max}}) and the final value will close the evalutation. Continuing the example, the extended formula will be:
+\begin{align*}
+    & F \lor \bigcirc(F \lor \bigcirc(\ldots F \lor \bigcirc \textbf{Property(F)})) 
+\end{align*}
+and the bold \textbf{Property(F)} will be evaluated to false, since it is the last of a big disjunction.
 
 
 \subsection{Relationship to Other Logics}
