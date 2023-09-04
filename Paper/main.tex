@@ -89,13 +89,13 @@ In EAGLE recursion definitions are supported; in the current framework we can bu
 & \underline{\text{min}}\ \text{Until}(\underline{\text{Form}}\ F_1, \underline{\text{Form}}\ F_2) = F_2 \lor (F_1 \land \bigcirc \text{Until}(F_1,F_2))
 \end{align*}
 
-As we can see, rules are parameterized by an EAGLE formula (of type $\underline{\text{Form}}$), which means that we will be able to write EAGLE formulas such as $\text{Always}(\text{Eventually}(x>0))$. Also, the $\text{Always}$ operator is defined as maximal solution of the equation $X=F\land \bigcirc X$ and the $\text{Eventually}$ operator represents the minimal solution to the equation $X=F\lor \bigcirc X$.
+As we can see, rules are parameterized by an EAGLE formula (of type $\underline{\text{Form}}$), which means that we will be able to write EAGLE formulas such as $\text{Always}(\text{Eventually}(x>0))$. Also, the $\text{Always}$ operator is defined as maximal solution of the equation $X=F\land \bigcirc X$, while the $\text{Eventually}$ operator represents the minimal solution to the equation $X=F\lor \bigcirc X$.
 
 %%  QUI MANCA LA PARTE DOVE SPIEGHI MAX, MIN, MON
 
 Assume that we want to state the following property: "\textit{Whenever there is a login by any user x, then eventually the user x logs out}". In LTL we can write the following formula: 
 \begin{align*}
-    & \square{(\text{(action = login)}\rightarrow \underline{\text{let}}\ \text{k} =\ userId\ \underline{\text{in}}\ \lozenge(\text{action = logout}\land userId = k))}
+    & \square{(\text{(action = login)}\rightarrow \underline{\text{let}}\ \text{k} =userId\ \underline{\text{in}}\ \lozenge(\text{action = logout}\land userId = k))}
 \end{align*}
 In this formula we use the operator \underline{let} \_ \underline{in} \_ to bind the value of $userId$ in the current event to the local variable $k$ whenever $\text{(action = login)}$ in the current event; we then impose the condition that the value of $userId$ in some event in future must be same as the user id bound to k and that the action of the event must be logout.
 In EAGLE we can express the same property with the following rules:
