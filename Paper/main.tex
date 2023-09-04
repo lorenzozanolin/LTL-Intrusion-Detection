@@ -189,11 +189,11 @@ According to~\cite{barringer2004rule}, the definitions of $evaluate$, $update$ a
     \begin{cases}
         evaluate(F_1,\alpha_i)\cdot F_2 \quad \text{if } value(F_1)=\ \underline{\text{false}} \\
         evaluate(F_1,\alpha_i)\cdot F_2 \lor evaluate(F_2,\alpha_i)\quad \text{else} 
-    \end{cases}
-\end{align*}
-
-\noindent\begin{minipage}{0.3\linewidth}
-    \begin{flalign*}
+    \end{cases} \\ \\
+%\end{align*}
+%\noindent\begin{minipage}[l]{\textwidth}
+   % \raggedright
+    %\begin{align*}
         \text{value}(\underline{\text{true}}) & = \underline{\text{true}} \\
         \text{value}(\underline{\text{false}}) & = \underline{\text{false}} \\ 
         \text{value}(\text{exp}) & = \underline{\text{false}} \\
@@ -204,12 +204,13 @@ According to~\cite{barringer2004rule}, the definitions of $evaluate$, $update$ a
             F & \text{if at the beginning of a trace} \\
             \underline{\text{false}} & \text{if at the end of a trace} \\
         \end{cases}\\
-        \text{value}(F_1 \cdot F_2,\alpha_i) & = \text{value}(F_1)\land \text{value}(F_2)
-    \end{flalign*}
-\end{minipage}
-\hfill
-\begin{minipage}{0.5\linewidth}
-    \begin{align*}
+        \text{value}(F_1 \cdot F_2,\alpha_i) & = \text{value}(F_1)\land \text{value}(F_2) \\ \\
+   % \end{align*}
+%\end{minipage}
+%\hfill
+%\begin{minipage}[r]{\textwidth}
+   % \raggedleft
+    %\begin{align*}
         \text{update}(\underline{\text{true}},\alpha_i) & = \underline{\text{true}} \\
         \text{update}(\underline{\text{false}},\alpha_i) & = \underline{\text{false}} \\ 
         \text{update}(\text{exp},\alpha_i) & = \text{exp}\\
@@ -218,8 +219,8 @@ According to~\cite{barringer2004rule}, the definitions of $evaluate$, $update$ a
         \text{update}(\bigcirc F,\alpha_i) & = \text{update}(F,\alpha_i)  \\
         \text{update}(F_1 \cdot F_2,\alpha_i) & = \text{update}(F_1,\alpha_i)\cdot F_2
     \end{align*}
-\end{minipage}
-    
+%\end{minipage}
+%% manca l'esempio
 
 \subsection{Relationship to Other Logics}
 %% RAPPORTI CON LE ALTRE LOGICHE?????
