@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.6.20)  4 SEP 2023 12:52
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.6.20)  4 SEP 2023 16:13
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -675,7 +675,7 @@ Overfull \hbox (51.55774pt too wide) detected at line 159
  []
 
 [4] [5]
-Overfull \hbox (44.06119pt too wide) detected at line 194
+Overfull \hbox (44.06119pt too wide) detected at line 221
 []
  []
 
@@ -710,10 +710,10 @@ e/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive
 022/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/20
 22/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texliv
 e/2022/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (7 pages, 223398 bytes).
+Output written on main.pdf (7 pages, 224239 bytes).
 PDF statistics:
- 188 PDF objects out of 1000 (max. 8388607)
- 145 compressed objects within 2 object streams
+ 189 PDF objects out of 1000 (max. 8388607)
+ 146 compressed objects within 2 object streams
  27 named destinations out of 1000 (max. 500000)
  73 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -4,7 +4,7 @@
 \contentsline {subsection}{\numberline {2.1}Basics}{3}{subsection.2.1}%
 \contentsline {subsection}{\numberline {2.2}Syntax and Semantics}{4}{subsection.2.2}%
 \contentsline {subsection}{\numberline {2.3}Evaluation algorithm}{5}{subsection.2.3}%
-\contentsline {subsection}{\numberline {2.4}Relationship to Other Logics}{6}{subsection.2.4}%
-\contentsline {section}{\numberline {3}MONID: Structure analysis}{6}{section.3}%
-\contentsline {section}{\numberline {4}Example of attacks}{6}{section.4}%
-\contentsline {section}{\numberline {5}Conclusions}{6}{section.5}%
+\contentsline {subsection}{\numberline {2.4}Relationship to Other Logics}{7}{subsection.2.4}%
+\contentsline {section}{\numberline {3}MONID: Structure analysis}{7}{section.3}%
+\contentsline {section}{\numberline {4}Example of attacks}{7}{section.4}%
+\contentsline {section}{\numberline {5}Conclusions}{7}{section.5}%
