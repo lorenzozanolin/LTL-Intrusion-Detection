@@ -80,8 +80,8 @@ In Section 2 we will analyze the basics of EAGLE. In Section 3 we will analyze M
 
 \section{EAGLE, a Temporal Monitoring Logic}
 According to~\cite{barringer2004program}, EAGLE offers a succinct but powerful set of primitives, essentially supporting recursive parameterized equations, with a minimal/maximal fix-point semantics together with three temporal operators: next-time ($\bigcirc$), previous-time ($\astrosun$), and concatenation ($\cdot$).
-\subsection{Basics}
-In EAGLE recursion definitions are supported; in the current framework we can build the following definitions:
+\subsection{Basics}\label{sec:ltl}
+In EAGLE recursion definitions are supported; as exmaple, in the current framework we can build the following definitions:
 \begin{align*}
 & \underline{\text{min}}\ \text{Next}(\underline{\text{Form}}\ F) = \bigcirc F \\
 & \underline{\text{max}}\ \text{Always}(\underline{\text{Form}}\ F) = F \land \bigcirc \text{Always}(F) \\
@@ -241,12 +241,16 @@ At the second event the predicate $(time-t \leq \delta)$ gets instantiated to $(
 
 It's essential to emphasize that the logic EAGLE operates with a \textit{finite} trace semantics; the monitoring algorithm, as written before, can check whetet the formula is satisfied or not only at the conclusion of a trace. However, in intrusion detection scenarios, the notion of the "end of a trace" makes no sense since event sequences can theoretically be infinite. In such cases, the aim is to trigger an alarm as soon as a property is violated and this is done by continuously checking the formula's satisfaction status after each event. In practice, once we have the specification of the attack pattern in terms of $\varphi$, we can express the system's safe behavior as $\square(\neg \varphi)$. Note that if a sequence of events corresponding to the attack is discovered, this formula becomes false.
 
-\subsection{Relationship to Other Logics}
-%% RAPPORTI CON LE ALTRE LOGICHE?????
-According to~\cite{barringer2004rule},
-
-We will use it to create formulas that describe the absence of some attacks and given a trace of events $\sigma$ generated from the logs we will check whether 
-
+\subsection{Relationship to LTL+P}
+According to~\cite{barringer2004rule,barringer2003eagle}, we can define both \textbf{Future Time LTL} and \textbf{Past Time LTL} operators. The future modalities are written in section~\ref{sec:ltl}, therefore let us list the past ones:
+\begin{align*}
+    & \underline{\text{min}}\ \text{Previous}(\underline{\text{Form}}\ F) = \odot F \\
+    & \underline{\text{max}}\ \text{AlwaysInPast}(\underline{\text{Form}}\ F) = F \land \odot \text{AlwaysInPast}(F) \\
+    & \underline{\text{min}}\ \text{EventuallyInPast}(\underline{\text{Form}}\ F) = F \lor \odot \text{EventuallyInPast}(F) \\
+    & \underline{\text{min}}\ \text{Since}(\underline{\text{Form}}\ F_1, \underline{\text{Form}}\ F_2) = F_2 \lor (F_1 \land \odot \text{Since}(F_1,F_2))
+\end{align*}
+% Note that UNLESS is maximal
+By combining the definitions for the future and past time LTLs defined above, we obtain a temporal logic over the future, present and past, in which one can freely intermix the future and past time modalities. 
 \section{MONID: Structure analysis}
 
 \section{Example of attacks}
