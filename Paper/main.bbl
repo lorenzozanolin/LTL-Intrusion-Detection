@@ -245,6 +245,72 @@
       \field{pages}{26\bibrangedash 35}
       \range{pages}{10}
     \endentry
+    \entry{mchugh2000testing}{article}{}
+      \name{author}{1}{}{%
+        {{hash=7185e56b04836e18e995b763f90c1d65}{%
+           family={McHugh},
+           familyi={M\bibinitperiod},
+           given={John},
+           giveni={J\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {ACM New York, NY, USA}%
+      }
+      \strng{namehash}{7185e56b04836e18e995b763f90c1d65}
+      \strng{fullhash}{7185e56b04836e18e995b763f90c1d65}
+      \strng{bibnamehash}{7185e56b04836e18e995b763f90c1d65}
+      \strng{authorbibnamehash}{7185e56b04836e18e995b763f90c1d65}
+      \strng{authornamehash}{7185e56b04836e18e995b763f90c1d65}
+      \strng{authorfullhash}{7185e56b04836e18e995b763f90c1d65}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{ACM Transactions on Information and System Security (TISSEC)}
+      \field{number}{4}
+      \field{title}{Testing intrusion detection systems: a critique of the 1998 and 1999 darpa intrusion detection system evaluations as performed by lincoln laboratory}
+      \field{volume}{3}
+      \field{year}{2000}
+      \field{pages}{262\bibrangedash 294}
+      \range{pages}{33}
+    \endentry
+    \entry{naldurg2004temporal}{inproceedings}{}
+      \name{author}{3}{}{%
+        {{hash=bc25a1175699169d8549117030e0045a}{%
+           family={Naldurg},
+           familyi={N\bibinitperiod},
+           given={Prasad},
+           giveni={P\bibinitperiod}}}%
+        {{hash=6dec3318a42d8d397a59554c48b43851}{%
+           family={Sen},
+           familyi={S\bibinitperiod},
+           given={Koushik},
+           giveni={K\bibinitperiod}}}%
+        {{hash=70b769f8dd37345e45d2346ebaa1fb36}{%
+           family={Thati},
+           familyi={T\bibinitperiod},
+           given={Prasanna},
+           giveni={P\bibinitperiod}}}%
+      }
+      \list{organization}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{0d0fbe50f6d31cd65b62312ae7666d78}
+      \strng{fullhash}{0d0fbe50f6d31cd65b62312ae7666d78}
+      \strng{bibnamehash}{0d0fbe50f6d31cd65b62312ae7666d78}
+      \strng{authorbibnamehash}{0d0fbe50f6d31cd65b62312ae7666d78}
+      \strng{authornamehash}{0d0fbe50f6d31cd65b62312ae7666d78}
+      \strng{authorfullhash}{0d0fbe50f6d31cd65b62312ae7666d78}
+      \field{sortinit}{N}
+      \field{sortinithash}{22369a73d5f88983a108b63f07f37084}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Formal Techniques for Networked and Distributed Systems--FORTE 2004: 24th IFIP WG 6.1 International Conference, Madrid Spain, September 27-30, 2004. Proceedings 24}
+      \field{title}{A temporal logic based framework for intrusion detection}
+      \field{year}{2004}
+      \field{pages}{359\bibrangedash 376}
+      \range{pages}{18}
+    \endentry
   \enddatalist
 \endrefsection
 \endinput

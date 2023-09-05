@@ -1,11 +1,11 @@
 # Fdb version 3
-["biber main"] 1693917928 "main.bcf" "main.bbl" "main" 1693918786
-  "main.bcf" 1693918786 107863 7465d6aae6b9ef4c159dbbfc23821489 "pdflatex"
-  "thud.bib" 1693408097 1822 41b661a1661886506f9f9d4ffc8f77c1 ""
+["biber main"] 1693923949 "main.bcf" "main.bbl" "main" 1693923994
+  "main.bcf" 1693923994 108169 879b921dac957516ef2d07524d7f32f7 "pdflatex"
+  "thud.bib" 1693923946 2622 7311284962ee2c50a89f91cabe3c8bc5 ""
   (generated)
   "main.bbl"
   "main.blg"
-["pdflatex"] 1693918786 "main.tex" "main.pdf" "main" 1693918786
+["pdflatex"] 1693923993 "main.tex" "main.pdf" "main" 1693923994
   "/usr/local/texlive/2022/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2022/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
   "/usr/local/texlive/2022/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1246382020 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -135,12 +135,13 @@
   "/usr/local/texlive/2022/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1647878959 4410336 7d30a02e9fa9a16d7d1f8d037ba69641 ""
   "/usr/local/texlive/2022/texmf-var/web2c/pdftex/pdflatex.fmt" 1655737347 2826443 f0239110e117b9c997e741837a19f9cb ""
   "/usr/local/texlive/2022/texmf.cnf" 1647878952 577 209b46be99c9075fd74d4c0369380e8c ""
-  "main.aux" 1693918786 3134 52e418a65d056944465fedaf3f8e72df "pdflatex"
-  "main.bbl" 1693917929 9712 615e61fb0514e542257ea70f65661458 "biber main"
-  "main.out" 1693918786 1317 f6d5ed996a8718f504c2993149d87f69 "pdflatex"
-  "main.run.xml" 1693918786 2299 afd998816403c29f3cad7b7ad156e87d "pdflatex"
-  "main.tex" 1693918783 21935 5511e7864bfc99eeb97928527fa54027 ""
-  "main.toc" 1693918786 741 f21c12fdf316f502a7570e4e38c39c55 "pdflatex"
+  "images/monid.png" 1693921289 94997 013a85a73ba33886fce8c382a1010459 ""
+  "main.aux" 1693923994 3834 f49f78867606629fd2303e448e621854 "pdflatex"
+  "main.bbl" 1693923950 12572 590651eb6d3b0c5dce325fcff0821280 "biber main"
+  "main.out" 1693923994 1317 f6d5ed996a8718f504c2993149d87f69 "pdflatex"
+  "main.run.xml" 1693923994 2299 afd998816403c29f3cad7b7ad156e87d "pdflatex"
+  "main.tex" 1693923990 24654 c6580f6d48bcac3701ea47cd424e8dd5 ""
+  "main.toc" 1693923994 741 d3de7e456a6bf889578b1864c58b73bd "pdflatex"
   (generated)
   "main.aux"
   "main.bcf"

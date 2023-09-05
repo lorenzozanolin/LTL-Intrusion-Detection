@@ -69,8 +69,7 @@ Even with all of the advances in computer security research, totally safe comput
 
 There are three Intrusion Detection System approaches, according to the literature: \textit{signature-based}\cite{gao2014cyber}, \textit{anomaly-based}\cite{jyothsna2011review} and \textit{hybrid}\cite{garg2016hybrid}. The first approach aims to identify patterns and match them with known signs of intrusions relying on a database of previous intrusions. If activity within the network matches the “signature” of an attack or breach from the database, the detection system creates an alert. This approach has a low false-alarm rate, but it requires us to know the patterns of security attacks in advance and previously unknown attacks would go undetected. In contrast, \textit{anomaly-based} is capable to detect new attacks since an alarm is raised if an observed behavior deviates significantly from pre-learned normal behavior. Finally, a \textit{hybrid system} combines the best of both worlds by looking at patterns and one-off events, a Hybrid Intrusion Detection system can flag new and existing intrusion strategies. 
 
-In this paper we will focus on \textit{signature-based} approach using temporal logic; we use EAGLE\cite{barringer2004rule,barringer2003eagle} to specify a system's attack-safe behavior. EAGLE allows recursively built temporal formulas, parameterizable by both logical formulas and data expressions, across three primitive modalities: "next", "previous", and "concatenation". The logic allows us to describe temporal patterns involving reasoning about data-values observed in individual events. Unlike LTL, EAGLE allowa us to design attacks with fundamentally statistical characteristics; password guessing attacks and ICMP-flood denial of service attacks are two examples. 
-We'll see how the implementation, MONID, examines the event stream to see if the monitored formula (which is used to hold the pertinent summary of the system) is being broken.
+In this paper we will focus on \textit{signature-based} approach using temporal logic; we use EAGLE\cite{barringer2004rule,barringer2003eagle} to specify a system's attack-safe behavior. EAGLE allows recursively built temporal formulas, parameterizable by both logical formulas and data expressions, across three primitive modalities: "next", "previous", and "concatenation". The logic allows us to describe temporal patterns involving reasoning about data-values observed in individual events. Unlike LTL, EAGLE allows us to design attacks with fundamentally statistical characteristics; password guessing attacks and ICMP-flood denial of service attacks are two examples. We will monitor EAGLE formulas using an online algorithm that processes each event as it happens and updates the monitored formula to store a relevant summary. An intrusion alarm is triggered if, for any reason, the updated formula turns out to be false; as a result, the entire process operates in real-time. We'll see how the implementation, MONID, examines the event stream to see if the monitored formula (which is used to hold the pertinent summary of the system) is being broken.
 
 %% INTRODURRE VELOCE ESEMPIO E STRUTTURA DEL PROGRAMMA
 
@@ -173,7 +172,7 @@ Once the sequence has been completely analyzed, we will obtain a big disjunction
     & F \lor \bigcirc(F \lor \bigcirc(\ldots F \lor \bigcirc \textbf{Property(F)})) 
 \end{align*}
 and the bold \textbf{Property(F)} will be evaluated to false, since it is the last of a big disjunction.
-\subsection{Evaluation algorithm}
+\subsection{Evaluation algorithm}\label{algo}
 As already mentioned, monitored formulas ($\underline{\text{mon}}$) evolve at every event, to store relevant informations about past istants. The evolved formula's value is determined at the conclusion of the event series; if it is true, the formula is satisfied by the event sequence; otherwise, it is violated. Formally, a formula $F' = \text evaluate(F, \alpha_i)$ is created when a formula $F$ is evaluated at an event $\alpha_i = \sigma(i)$ and has the condition that $\sigma, i \models F$ if and only if $\sigma, i+1 \models F'$. With $F$ being the evolved formula, we compute the boolean function $value(F)$ at the conclusion of the trace. The definition of the function $evaluate: \underline{\text{Form}} \times \underline{\text{State}} \to \underline{\text{Form}}$ uses an auxiliary function $update: \underline{\text{Form}} \times \underline{\text{State}} \to \underline{\text{Form}}$ to pre-evaluate a formula if it is guarded by the previous operator $\bigodot$. At the end (or at the beginning) of a trace, the
 function $value : \underline{\text{Form}} \rightarrow \{ \underline{\text{true}}, \underline{\text{false}} \}$, when applied to $F$, returns true if and only if $\sigma,|\sigma|+1 \models F$ (or $\sigma,0 \models F$), and returns false otherwise.
 
@@ -251,11 +250,24 @@ According to~\cite{barringer2004rule,barringer2003eagle}, we can define both \te
 \end{align*}
 % Note that UNLESS is maximal
 By combining the definitions for the future and past time LTLs defined above, we obtain a temporal logic over the future, present and past, in which one can freely intermix the future and past time modalities. 
+
 \section{MONID: Structure analysis}
-MONID is a prototype which can detect intrusions either online or offline. System-level event data is delivered to MONID server either directly from relevant log files (offline) or online via application code that has been properly instrumented; to create a single event trace, the server combines events from numerous sources according to timestamps and preprocesses them into an abstract intermediate form. Note that sometimes it is necessary to watch events from multiple sources in order to detect certain attacks; then, MONID monitor checks this event trail against a predetermined criteria, and if the specification is broken, an intrusion alarm is raised. The entire framework is represented in figure~.
+MONID is a prototype which can detect intrusions either online or offline. System-level event data is delivered to MONID server either directly from relevant log files (offline) or online via application code that has been properly instrumented. In the online mode, MONID runs as a server that receives streams of events
+from various sources and to generate these events, the different logging modules are instrumented so that they filter and send relevant events to the server.
+To create a single event trace, the server combines events from numerous sources according to timestamps and preprocesses them into an abstract intermediate form. Note that sometimes it is necessary to watch events from multiple sources in order to detect certain attacks; then, MONID monitor checks this event trail against a predetermined criteria, and if the specification is broken, an intrusion alarm is raised. While, in the offline mode, MONID reads various log files and sends an event corresponding each log entry to the server. The server then processes the event stream as before to detect intrusion.
 
+The entire framework is represented in Figure~\ref{monid}. In paper~\cite{naldurg2004temporal}, the implementation was written in Java and available as a library; there were two available methods used. The first one is \textit{parse} which takes a file containing a list of EAGLE specifications and monitor formulas and compiles them into a data structure used to represent the \textit{monitor} represented in Figure~\ref{monid}. The client software iteratively invokes the method \textit{evaluate} for each event after compilation; this call internally adjusts the monitor formulas in accordance with Subsection~\ref{algo}.
+An error notice is produced or a pre-specified mechanism is triggered to take a corrective action if the monitored formulas become false at any stage.
+\begin{figure}[]
+	\centering
+	\includegraphics[width=\textwidth]{images/monid.png}
+	\caption{MONID Architecture.}
+	\label{monid}
+\end{figure}
 
-\section{Example of attacks}
+Some evaluations were also have been done in~\cite{naldurg2004temporal}, using the DARPA Intrusion Detection Evaluation dataset~\cite{mchugh2000testing}. The experiment was done using offline mode, against some of the attacks presented in Section~\ref{attacks}. Although the used hardware is now outdated and obsolete, the overhead was rather modest, thus this method should still be helpful in theory today.
+
+\section{Example of attacks}\label{attacks}
 
 \section{Conclusions}
 
