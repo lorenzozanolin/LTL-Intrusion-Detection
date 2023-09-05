@@ -252,6 +252,8 @@ According to~\cite{barringer2004rule,barringer2003eagle}, we can define both \te
 % Note that UNLESS is maximal
 By combining the definitions for the future and past time LTLs defined above, we obtain a temporal logic over the future, present and past, in which one can freely intermix the future and past time modalities. 
 \section{MONID: Structure analysis}
+MONID is a prototype which can detect intrusions either online or offline. System-level event data is delivered to MONID server either directly from relevant log files (offline) or online via application code that has been properly instrumented; to create a single event trace, the server combines events from numerous sources according to timestamps and preprocesses them into an abstract intermediate form. Note that sometimes it is necessary to watch events from multiple sources in order to detect certain attacks; then, MONID monitor checks this event trail against a predetermined criteria, and if the specification is broken, an intrusion alarm is raised. The entire framework is represented in figure~.
+
 
 \section{Example of attacks}
 
