@@ -174,10 +174,14 @@ Once the sequence has been completely analyzed, we will obtain a big disjunction
 \end{align*}
 and the bold \textbf{Property(F)} will be evaluated to false, since it is the last of a big disjunction.
 \subsection{Evaluation algorithm}
-As already mentioned, monitored formulas ($\underline{\text{mon}}$) evolve at every event, to store relevant informations about past istants. The evolved formula's value is determined at the conclusion of the event series; if it is true, the formula is satisfied by the event sequence; otherwise, it is violated. Formally, a formula $F' = \text evaluate(F, \alpha_i)$ is created when a formula $F$ is evaluated at an event $\alpha_i = \sigma(i)$ and has the condition that $\sigma, i \models F$ if and only if $\sigma, i+1 \models F'$. With $F$ being the evolved formula, we compute the boolean function $value(F)$ at the conclusion of the trace. The definition of the function $evaluate: \underline{\text{Form}} \times \underline{\text{State}} \to \underline{\text{Form}}$ uses an auxiliary function $update: \underline{\text{Form}} \times \underline{\text{State}} \to \underline{\text{Form}}$ to pre-evaluate a formula if it is guarded by the previous operator $\bigodot$.
+As already mentioned, monitored formulas ($\underline{\text{mon}}$) evolve at every event, to store relevant informations about past istants. The evolved formula's value is determined at the conclusion of the event series; if it is true, the formula is satisfied by the event sequence; otherwise, it is violated. Formally, a formula $F' = \text evaluate(F, \alpha_i)$ is created when a formula $F$ is evaluated at an event $\alpha_i = \sigma(i)$ and has the condition that $\sigma, i \models F$ if and only if $\sigma, i+1 \models F'$. With $F$ being the evolved formula, we compute the boolean function $value(F)$ at the conclusion of the trace. The definition of the function $evaluate: \underline{\text{Form}} \times \underline{\text{State}} \to \underline{\text{Form}}$ uses an auxiliary function $update: \underline{\text{Form}} \times \underline{\text{State}} \to \underline{\text{Form}}$ to pre-evaluate a formula if it is guarded by the previous operator $\bigodot$. At the end (or at the beginning) of a trace, the
+function $value : \underline{\text{Form}} \rightarrow \{ \underline{\text{true}}, \underline{\text{false}} \}$, when applied to $F$, returns true if and only if $\sigma,|\sigma|+1 \models F$ (or $\sigma,0 \models F$), and returns false otherwise.
 
-\textbf{Calculus.} According to~\cite{barringer2004rule}, the definitions of $evaluate$, $update$ and $value$ on the different primitive operators are the following ($op\text{ can be }\lor , \land, \rightarrow $):
+
+\textbf{Calculus.} According to~\cite{barringer2004rule}, the $evaluate$, $update$ and $value$ functions are defined a priori for all operators except for the
+rule application, for which get generated based on the definition of rules in the specification. The definitions of these functions on the different primitive operators are the following ($op\text{ can be }\lor , \land, \rightarrow $):
 %evaluate
+{\allowdisplaybreaks
 \begin{align*}
     evaluate(\underline{\text{true}},\alpha_i) & =\ \underline{\text{true}} \\
     evaluate(\underline{\text{false}},\alpha_i) & =\ \underline{\text{false}} \\ 
@@ -219,6 +223,7 @@ As already mentioned, monitored formulas ($\underline{\text{mon}}$) evolve at ev
         \text{update}(\bigcirc F,\alpha_i) & = \text{update}(F,\alpha_i)  \\
         \text{update}(F_1 \cdot F_2,\alpha_i) & = \text{update}(F_1,\alpha_i)\cdot F_2
     \end{align*}
+    }
 %\end{minipage}
 Let us introduce an example to better understand the algorithm. Given the following rules 
 \begin{align*}
@@ -229,12 +234,12 @@ Let us introduce an example to better understand the algorithm. Given the follow
 \end{align*}
 and a trace $\sigma=\alpha_1,\alpha_2$, where $\alpha_1=\{userId:\text{"Lori"},action:\text{login},time:\text{17.0}\}$ and $\alpha_1=\{userId:\text{"Lori"},action:\text{logout},time:\text{150.0}\}$, the initial formula $M_3$ gets modified. At time $1$, when $\alpha_1$ is analyzed, $M_3$ changes as follows:
 \begin{align*}
-    &evaluate(M_3,\alpha_1)  = \text{EvTimedLogout("Lori",17.0, 100)} \land \\ 
-    &\quad\quad\quad\quad \text{Always}((action = \text{login}) \rightarrow \text{EvTimedLogout}(userId,time, 100))
+    &evaluate(M_3,\alpha_1)  = \text{EvTimedLogout("Lori",17.0, 100)} \\ 
+    &\quad\quad\quad\quad \land\text{Always}((action = \text{login}) \rightarrow \text{EvTimedLogout}(userId,time, 100))
 \end{align*}
 At the second event the predicate $(time-t \leq \delta)$ gets instantiated to $(150.0-17.0 \leq 100)$ which is false; thus the whole formula becomes false, indicating that the two-event trace violates the property $M_3$. 
 
-It's essential to emphasize that the logic EAGLE operates with a \textit{finite} trace semantics; the monitoring algorithm, as written before, can check whetet the formula is satisfied or not only at the conclusion of a trace. However, in intrusion detection scenarios, the notion of the 'end of a trace' makes no sense since event sequences can theoretically be infinite. In such cases, the aim is to trigger an alarm as soon as a property is violated and this is done by continuously checking the formula's satisfaction status after each event. In practice, once we have the specification of the attack pattern in terms of $\varphi$, we can express the system's safe behavior as $\square(\neg \varphi)$. Note that if a sequence of events corresponding to the attack is discovered, this formula becomes false.
+It's essential to emphasize that the logic EAGLE operates with a \textit{finite} trace semantics; the monitoring algorithm, as written before, can check whetet the formula is satisfied or not only at the conclusion of a trace. However, in intrusion detection scenarios, the notion of the "end of a trace" makes no sense since event sequences can theoretically be infinite. In such cases, the aim is to trigger an alarm as soon as a property is violated and this is done by continuously checking the formula's satisfaction status after each event. In practice, once we have the specification of the attack pattern in terms of $\varphi$, we can express the system's safe behavior as $\square(\neg \varphi)$. Note that if a sequence of events corresponding to the attack is discovered, this formula becomes false.
 
 \subsection{Relationship to Other Logics}
 %% RAPPORTI CON LE ALTRE LOGICHE?????
