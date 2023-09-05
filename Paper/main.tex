@@ -176,7 +176,7 @@ and the bold \textbf{Property(F)} will be evaluated to false, since it is the la
 \subsection{Evaluation algorithm}
 As already mentioned, monitored formulas ($\underline{\text{mon}}$) evolve at every event, to store relevant informations about past istants. The evolved formula's value is determined at the conclusion of the event series; if it is true, the formula is satisfied by the event sequence; otherwise, it is violated. Formally, a formula $F' = \text evaluate(F, \alpha_i)$ is created when a formula $F$ is evaluated at an event $\alpha_i = \sigma(i)$ and has the condition that $\sigma, i \models F$ if and only if $\sigma, i+1 \models F'$. With $F$ being the evolved formula, we compute the boolean function $value(F)$ at the conclusion of the trace. The definition of the function $evaluate: \underline{\text{Form}} \times \underline{\text{State}} \to \underline{\text{Form}}$ uses an auxiliary function $update: \underline{\text{Form}} \times \underline{\text{State}} \to \underline{\text{Form}}$ to pre-evaluate a formula if it is guarded by the previous operator $\bigodot$.
 
-According to~\cite{barringer2004rule}, the definitions of $evaluate$, $update$ and $value$ on the different primitive operators are the following ($op\text{ can be }\lor , \land, \rightarrow $):
+\textbf{Calculus.} According to~\cite{barringer2004rule}, the definitions of $evaluate$, $update$ and $value$ on the different primitive operators are the following ($op\text{ can be }\lor , \land, \rightarrow $):
 %evaluate
 \begin{align*}
     evaluate(\underline{\text{true}},\alpha_i) & =\ \underline{\text{true}} \\
