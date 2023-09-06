@@ -292,6 +292,10 @@ According to the formula below, a specific cookie must always be utilized by the
 \end{align*}
 A trace that violates this formula therefore encodes a cookie-stealing attack. The rule $\mathtt{Hijack}$ checks wheter it occurs a situation in which we have the same coookie $c$ associated with two different ip $i$; if it's true then it means that a cookie has been stolen and reused by an attacker. With $\mathtt{CookieSafe}$ we want to check that it never occurs a situation just as the one described.
 
+\textbf{Multi-domain Buffer Overflows}
+According to~\cite{piromsopa2006buffer}, a buffer-overflow attack is an attack that (possibly implicitly) uses memory-manipulating operations to overflow a buffer which results in the modification of an address to point to malicious or unexpected code. In this case, we will integrate data from various log sources; to be more exact, we will examine both network and web server access logs to determine when a server buffer overflow attack has been performed. We search through network packets for binary data; then web server's access logs are examined to see if a corresponding event, in which the web server correctly terminates the connection after receiving some binary data, can be located. If no matching log record is discovered within a predetermined timeout, it means that the buffer overflow attack was successful. The following formula captures this scenario:
+
+
 \section{Conclusions}
 
 \printbibliography

@@ -311,6 +311,38 @@
       \field{pages}{359\bibrangedash 376}
       \range{pages}{18}
     \endentry
+    \entry{piromsopa2006buffer}{inproceedings}{}
+      \name{author}{2}{}{%
+        {{hash=984f99d302cbf3cff5c991d3d1c9a6c6}{%
+           family={Piromsopa},
+           familyi={P\bibinitperiod},
+           given={Krerk},
+           giveni={K\bibinitperiod}}}%
+        {{hash=699ca84d85aec08085ac6587ca04de4a}{%
+           family={Enbody},
+           familyi={E\bibinitperiod},
+           given={Richard\bibnamedelima J},
+           giveni={R\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+      }
+      \list{organization}{1}{%
+        {IEEE}%
+      }
+      \strng{namehash}{80cad1b6972aacdb6975ca9f96b4cdde}
+      \strng{fullhash}{80cad1b6972aacdb6975ca9f96b4cdde}
+      \strng{bibnamehash}{80cad1b6972aacdb6975ca9f96b4cdde}
+      \strng{authorbibnamehash}{80cad1b6972aacdb6975ca9f96b4cdde}
+      \strng{authornamehash}{80cad1b6972aacdb6975ca9f96b4cdde}
+      \strng{authorfullhash}{80cad1b6972aacdb6975ca9f96b4cdde}
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{2006 IEEE International Conference on Electro/Information Technology}
+      \field{title}{Buffer-overflow protection: the theory}
+      \field{year}{2006}
+      \field{pages}{454\bibrangedash 458}
+      \range{pages}{5}
+    \endentry
     \entry{zargar2009identification}{inproceedings}{}
       \name{author}{2}{}{%
         {{hash=a136902e7a5f872b087f332393f2ca47}{%
