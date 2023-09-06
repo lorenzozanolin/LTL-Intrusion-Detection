@@ -82,23 +82,23 @@ According to~\cite{barringer2004program}, EAGLE offers a succinct but powerful s
 \subsection{Basics}\label{sec:ltl}
 In EAGLE recursion definitions are supported; as exmaple, in the current framework we can build the following definitions:
 \begin{align*}
-& \underline{\text{min}}\ \text{Next}(\underline{\text{Form}}\ F) = \bigcirc F \\
-& \underline{\text{max}}\ \text{Always}(\underline{\text{Form}}\ F) = F \land \bigcirc \text{Always}(F) \\
-& \underline{\text{min}}\ \text{Eventually}(\underline{\text{Form}}\ F) = F \lor \bigcirc \text{Eventually}(F) \\
-& \underline{\text{min}}\ \text{Until}(\underline{\text{Form}}\ F_1, \underline{\text{Form}}\ F_2) = F_2 \lor (F_1 \land \bigcirc \text{Until}(F_1,F_2))
+& \underline{\text{min}}\ \mathtt{Next}(\underline{\text{Form}}\ F) = \bigcirc F \\
+& \underline{\text{max}}\ \mathtt{Always}(\underline{\text{Form}}\ F) = F \land \bigcirc \mathtt{Always}(F) \\
+& \underline{\text{min}}\ \mathtt{Eventually}(\underline{\text{Form}}\ F) = F \lor \bigcirc \mathtt{Eventually}(F) \\
+& \underline{\text{min}}\ \mathtt{Until}(\underline{\text{Form}}\ F_1, \underline{\text{Form}}\ F_2) = F_2 \lor (F_1 \land \bigcirc \mathtt{Until}(F_1,F_2))
 \end{align*}
 
-As we can see, rules are parameterized by an EAGLE formula (of type $\underline{\text{Form}}$), which means that we will be able to write EAGLE formulas such as $\text{Always}(\text{Eventually}(x>0))$. Also, the $\text{Always}$ operator is defined as maximal solution of the equation $X=F\land \bigcirc X$, while the $\text{Eventually}$ operator represents the minimal solution to the equation $X=F\lor \bigcirc X$.
+As we can see, rules are parameterized by an EAGLE formula (of type $\underline{\text{Form}}$), which means that we will be able to write EAGLE formulas such as $\mathtt{Always}(\mathtt{Eventually}(x>0))$. Also, the $\mathtt{Always}$ operator is defined as maximal solution of the equation $X=F\land \bigcirc X$, while the $\mathtt{Eventually}$ operator represents the minimal solution to the equation $X=F\lor \bigcirc X$.
 
 Assume that we want to state the following property: "\textit{Whenever there is a login by any user x, then eventually the user x logs out}". In LTL we can write the following formula: 
 \begin{align*}
-    & \square{(\text{(action = login)}\rightarrow \underline{\text{let}}\ \text{k} =userId\ \underline{\text{in}}\ \lozenge(\text{action = logout}\land userId = k))}
+    & \square{((action = \mathtt{login})\rightarrow \underline{\text{let}}\ k=userId\ \underline{\text{in}}\ \lozenge(action = \mathtt{logout}\land userId = k))}
 \end{align*}
-In this formula we use the operator \underline{let} \_ \underline{in} \_ to bind the value of $userId$ in the current event to the local variable $k$ whenever $\text{(action = login)}$ in the current event; we then impose the condition that the value of $userId$ in some event in future must be same as the user id bound to k and that the action of the event must be logout.
+In this formula we use the operator \underline{let} \_ \underline{in} \_ to bind the value of $userId$ in the current event to the local variable $k$ whenever $(action = \mathtt{login})$ in the current event; we then impose the condition that the value of $userId$ in some event in future must be same as the user id bound to k and that the action of the event must be logout.
 In EAGLE we can express the same property with the following rules:
 \begin{align*}
-    & \underline{\text{min}}\ \text{EvLogout}(\underline{\text{string}}\ k) = (\text{action = logout}\land userId = k) \lor \bigcirc \text{EvLogout}(k) \\
-    & \underline{\text{mon}}\ M_2 = ((\text{action = login})\rightarrow \text{EvLogout}(userId)) 
+    & \underline{\text{min}}\ \mathtt{EvLogout}(\underline{\text{string}}\ k) = (action = \mathtt{logout}\land userId = k) \lor \bigcirc \mathtt{EvLogout}(k) \\
+    & \underline{\text{mon}}\ M_2 = ((action = \mathtt{login})\rightarrow \mathtt{EvLogout}(userId)) 
 \end{align*}
 As a result, rules in EAGLE give us the power to create specific temporal operators as well as to bind and modify data. This property turns out to be crucial for succinctly expressing executions of attack-safe systems. As we can see, each rule begins with a term that describes its type ($\underline{\text{min}}$, $\underline{\text{max}}$, $\underline{\text{mon}}$); we will read more about it later.
 
@@ -106,9 +106,9 @@ Lastly, two assumptions must be made:\begin{enumerate}
     \item There is a finite sequence of events called $\sigma=\alpha_{1},\ldots ,\alpha_{n}$ that is a merge of the system registered logs organized by ascending time. 
     The structure of an event record $\alpha_i$ is the following:
     \begin{align*}
-        & \text{LoginLogoutEvent}\{userId:\underline{\text{string}},action: \underline{\text{int}}, time: \underline{\text{double}}\} 
+        & \mathtt{LoginLogoutEvent}\{userId:\underline{\text{string}},\ action: \underline{\text{int}},\ time: \underline{\text{double}}\} 
     \end{align*}
-    An example of event could be: $\{userId:\text{"Lori"},action:\text{login},time:\text{20}\}$
+    An example of event could be: $\{userId:\mathtt{"Lori"},\ action:\mathtt{login},\ time:\mathtt{20}\}$
     \item For each attack, there is a formula $F$ which specifies the absence of it.
 \end{enumerate}
 To make the paper self-contained, we will present the syntax and semantics of EAGLE.
@@ -160,20 +160,20 @@ where $\overline{F}$ and $\overline{P}$ represent tuples of type $\overline{\tex
     
 An \textbf{important} note is that, given a trace $\sigma=\alpha_{1},\ldots ,\alpha_{n}$ the index $i$ of the trace can become $0$ (before the first state) and $n+1$, thus going beyond the limits; both of these situations result in rule applications evaluating to either true if maximal or false if minimal, without first taking the rules body into account. Let us explain why using an example. Given the definition 
 \begin{align*}
-    & \underline{\text{min}}\ \text{Property}(\underline{\text{Form}}\ F) =F \lor \bigcirc \text{Property}(F)
+    & \underline{\text{min}}\ \mathtt{Property}(\underline{\text{Form}}\ F) =F \lor \bigcirc \mathtt{Property}(F)
 \end{align*}
 and the sequence $\sigma=\alpha_{1},\ldots ,\alpha_{n}$, Property will evaluate to \textit{true} 
 \begin{align*}
-    & evaluate(\ldots evaluate(evaluate(\text{Property},\alpha_1),\alpha_2),\ldots,\alpha_n)=true
+    & evaluate(\ldots evaluate(evaluate(\mathtt{Property},\alpha_1),\alpha_2),\ldots,\alpha_n)=true
 \end{align*}
 if and only if the rule is true at some given event $\alpha_i$. 
 Once the sequence has been completely analyzed, we will obtain a big disjunction (in case of a \underline{\text{min}}) or a big conjunction (in case of a \underline{\text{max}}) and the final value will close the evalutation. Continuing the example, the extended formula will be:
 \begin{align*}
-    & F \lor \bigcirc(F \lor \bigcirc(\ldots F \lor \bigcirc \textbf{Property(F)})) 
+    & F \lor \bigcirc(F \lor \bigcirc(\ldots F \lor \bigcirc \mathbf{Property(F)})) 
 \end{align*}
-and the bold \textbf{Property(F)} will be evaluated to false, since it is the last of a big disjunction.
+and the bold $\mathbf{Property(F)}$ will be evaluated to false, since it is the last of a big disjunction.
 \subsection{Evaluation algorithm}\label{algo}
-As already mentioned, monitored formulas ($\underline{\text{mon}}$) evolve at every event, to store relevant informations about past istants. The evolved formula's value is determined at the conclusion of the event series; if it is true, the formula is satisfied by the event sequence; otherwise, it is violated. Formally, a formula $F' = \text evaluate(F, \alpha_i)$ is created when a formula $F$ is evaluated at an event $\alpha_i = \sigma(i)$ and has the condition that $\sigma, i \models F$ if and only if $\sigma, i+1 \models F'$. With $F$ being the evolved formula, we compute the boolean function $value(F)$ at the conclusion of the trace. The definition of the function $evaluate: \underline{\text{Form}} \times \underline{\text{State}} \to \underline{\text{Form}}$ uses an auxiliary function $update: \underline{\text{Form}} \times \underline{\text{State}} \to \underline{\text{Form}}$ to pre-evaluate a formula if it is guarded by the previous operator $\bigodot$. At the end (or at the beginning) of a trace, the
+As already mentioned, monitored formulas ($\underline{\text{mon}}$) evolve at every event, to store relevant informations about past istants. The evolved formula's value is determined at the conclusion of the event series; if it is true, the formula is satisfied by the event sequence; otherwise, it is violated. Formally, a formula $F' = evaluate(F, \alpha_i)$ is created when a formula $F$ is evaluated at an event $\alpha_i = \sigma(i)$ and has the condition that $\sigma, i \models F$ if and only if $\sigma, i+1 \models F'$. With $F$ being the evolved formula, we compute the boolean function $value(F)$ at the conclusion of the trace. The definition of the function $evaluate: \underline{\text{Form}} \times \underline{\text{State}} \to \underline{\text{Form}}$ uses an auxiliary function $update: \underline{\text{Form}} \times \underline{\text{State}} \to \underline{\text{Form}}$ to pre-evaluate a formula if it is guarded by the previous operator $\bigodot$. At the end (or at the beginning) of a trace, the
 function $value : \underline{\text{Form}} \rightarrow \{ \underline{\text{true}}, \underline{\text{false}} \}$, when applied to $F$, returns true if and only if $\sigma,|\sigma|+1 \models F$ (or $\sigma,0 \models F$), and returns false otherwise.
 
 
@@ -197,44 +197,44 @@ rule application, for which get generated based on the definition of rules in th
 %\noindent\begin{minipage}[l]{\textwidth}
    % \raggedright
     %\begin{align*}
-        \text{value}(\underline{\text{true}}) & = \underline{\text{true}} \\
-        \text{value}(\underline{\text{false}}) & = \underline{\text{false}} \\ 
-        \text{value}(\text{exp}) & = \underline{\text{false}} \\
-        \text{value}(F_1\ \text{op}\ F_2) & = \text{value}(F_1)\ \text{op}\ \text{value}(F_2) \\
-        \text{value}(\neg{F}) & = \neg{\text{value}(F)}  \\
-        \text{value}(\bigcirc F) & =
+        value(\underline{\text{true}}) & = \underline{\text{true}} \\
+        value(\underline{\text{false}}) & = \underline{\text{false}} \\ 
+        value(\text{exp}) & = \underline{\text{false}} \\
+        value(F_1\ \text{op}\ F_2) & = value(F_1)\ \text{op}\ value(F_2) \\
+        value(\neg{F}) & = \neg{value(F)}  \\
+        value(\bigcirc F) & =
         \begin{cases}
             F & \text{if at the beginning of a trace} \\
             \underline{\text{false}} & \text{if at the end of a trace} \\
         \end{cases}\\
-        \text{value}(F_1 \cdot F_2,\alpha_i) & = \text{value}(F_1)\land \text{value}(F_2) \\ \\
+        value(F_1 \cdot F_2,\alpha_i) & = value(F_1)\land value(F_2) \\ \\
    % \end{align*}
 %\end{minipage}
 %\hfill
 %\begin{minipage}[r]{\textwidth}
    % \raggedleft
     %\begin{align*}
-        \text{update}(\underline{\text{true}},\alpha_i) & = \underline{\text{true}} \\
-        \text{update}(\underline{\text{false}},\alpha_i) & = \underline{\text{false}} \\ 
-        \text{update}(\text{exp},\alpha_i) & = \text{exp}\\
-        \text{update}(F_1\ \text{op}\ F_2,\alpha_i) & = \text{update}(F_1,\alpha_i)\ \text{op}\ \text{update}(F_2,\alpha_i) \\
-        \text{update}(\neg{F},\alpha_i) & = \neg{\text{update}(F,\alpha_i)}  \\
-        \text{update}(\bigcirc F,\alpha_i) & = \text{update}(F,\alpha_i)  \\
-        \text{update}(F_1 \cdot F_2,\alpha_i) & = \text{update}(F_1,\alpha_i)\cdot F_2
+        update(\underline{\text{true}},\alpha_i) & = \underline{\text{true}} \\
+        update(\underline{\text{false}},\alpha_i) & = \underline{\text{false}} \\ 
+        update(\text{exp},\alpha_i) & = \text{exp}\\
+        update(F_1\ \text{op}\ F_2,\alpha_i) & = update(F_1,\alpha_i)\ \text{op}\ update(F_2,\alpha_i) \\
+        update(\neg{F},\alpha_i) & = \neg{update(F,\alpha_i)}  \\
+        update(\bigcirc F,\alpha_i) & = update(F,\alpha_i)  \\
+        update(F_1 \cdot F_2,\alpha_i) & = update(F_1,\alpha_i)\cdot F_2
     \end{align*}
     }
 %\end{minipage}
 Let us introduce an example to better understand the algorithm. Given the following rules 
 \begin{align*}
-    &\underline{\text{max}}\ \text{Always}(\underline{\text{Form}}\ F)  = F \land \bigcirc \text{Always}(F) \\
-    &\underline{\text{min}}\ \text{EvTimedLogout}(\underline{\text{string }} k, \underline{\text{double }} t, \underline{\text{double }} \delta) = (\text{time} - t \leq \delta) \\
-    &\quad\quad\quad\quad \land ((action = \text{logout} \land userId = k) \lor \bigcirc \text{EvTimedLogout}(k, t, \delta)) \\
-    &\underline{\text{mon}}\ M_3  = \text{Always}((action = \text{login}) \rightarrow \text{EvTimedLogout}(userId,time, 100))
+    &\underline{\text{max}}\ \mathtt{Always}(\underline{\text{Form}}\ F)  = F \land \bigcirc \mathtt{Always}(F) \\
+    &\underline{\text{min}}\ \mathtt{EvTimedLogout}(\underline{\text{string }} k, \underline{\text{double }} t, \underline{\text{double }} \delta) = (\text{time} - t \leq \delta) \\
+    &\quad\quad\quad\quad \land ((action = \mathtt{logout} \land userId = k) \lor \bigcirc \mathtt{EvTimedLogout}(k, t, \delta)) \\
+    &\underline{\text{mon}}\ M_3  = \mathtt{Always}((action = \mathtt{login}) \rightarrow \mathtt{EvTimedLogout}(userId,time, 100))
 \end{align*}
-and a trace $\sigma=\alpha_1,\alpha_2$, where $\alpha_1=\{userId:\text{"Lori"},action:\text{login},time:\text{17.0}\}$ and $\alpha_1=\{userId:\text{"Lori"},action:\text{logout},time:\text{150.0}\}$, the initial formula $M_3$ gets modified. At time $1$, when $\alpha_1$ is analyzed, $M_3$ changes as follows:
+and a trace $\sigma=\alpha_1,\alpha_2$, where $\alpha_1=\{userId:\mathtt{"Lori"},\ action:\mathtt{login},\ time:\mathtt{17.0}\}$ and $\alpha_1=\{userId:\mathtt{"Lori"},\ action:\mathtt{logout},\ time:\mathtt{150.0}\}$, the initial formula $M_3$ gets modified. At time $1$, when $\alpha_1$ is analyzed, $M_3$ changes as follows:
 \begin{align*}
-    &evaluate(M_3,\alpha_1)  = \text{EvTimedLogout("Lori",17.0, 100)} \\ 
-    &\quad\quad\quad\quad \land\text{Always}((action = \text{login}) \rightarrow \text{EvTimedLogout}(userId,time, 100))
+    &evaluate(M_3,\alpha_1)  = \mathtt{EvTimedLogout("Lori",17.0, 100)} \\ 
+    &\quad\quad\quad\quad \land\mathtt{Always}((action = \mathtt{login}) \rightarrow \mathtt{EvTimedLogout}(userId,time, 100))
 \end{align*}
 At the second event the predicate $(time-t \leq \delta)$ gets instantiated to $(150.0-17.0 \leq 100)$ which is false; thus the whole formula becomes false, indicating that the two-event trace violates the property $M_3$. 
 
@@ -243,10 +243,10 @@ It's essential to emphasize that the logic EAGLE operates with a \textit{finite}
 \subsection{Relationship to LTL+P}
 According to~\cite{barringer2004rule,barringer2003eagle}, we can define both \textbf{Future Time LTL} and \textbf{Past Time LTL} operators. The future modalities are written in section~\ref{sec:ltl}, therefore let us list the past ones:
 \begin{align*}
-    & \underline{\text{min}}\ \text{Previous}(\underline{\text{Form}}\ F) = \odot F \\
-    & \underline{\text{max}}\ \text{AlwaysInPast}(\underline{\text{Form}}\ F) = F \land \odot \text{AlwaysInPast}(F) \\
-    & \underline{\text{min}}\ \text{EventuallyInPast}(\underline{\text{Form}}\ F) = F \lor \odot \text{EventuallyInPast}(F) \\
-    & \underline{\text{min}}\ \text{Since}(\underline{\text{Form}}\ F_1, \underline{\text{Form}}\ F_2) = F_2 \lor (F_1 \land \odot \text{Since}(F_1,F_2))
+    & \underline{\text{min}}\ \mathtt{Previous}(\underline{\text{Form}}\ F) = \odot F \\
+    & \underline{\text{max}}\ \mathtt{AlwaysInPast}(\underline{\text{Form}}\ F) = F \land \odot \mathtt{AlwaysInPast}(F) \\
+    & \underline{\text{min}}\ \mathtt{EventuallyInPast}(\underline{\text{Form}}\ F) = F \lor \odot \mathtt{EventuallyInPast}(F) \\
+    & \underline{\text{min}}\ \mathtt{Since}(\underline{\text{Form}}\ F_1, \underline{\text{Form}}\ F_2) = F_2 \lor (F_1 \land \odot \mathtt{Since}(F_1,F_2))
 \end{align*}
 % Note that UNLESS is maximal
 By combining the definitions for the future and past time LTLs defined above, we obtain a temporal logic over the future, present and past, in which one can freely intermix the future and past time modalities. 
@@ -268,6 +268,17 @@ An error notice is produced or a pre-specified mechanism is triggered to take a 
 Some evaluations were also have been done in~\cite{naldurg2004temporal}, using the DARPA Intrusion Detection Evaluation dataset~\cite{mchugh2000testing}. The experiment was done using offline mode, against some of the attacks presented in Section~\ref{attacks}. Although the used hardware is now outdated and obsolete, the overhead was rather modest, thus this method should still be theoretically helpful today.
 
 \section{Example of attacks}\label{attacks}
+We give some examples of how EAGLE can be utilized to build formulas that correlate to desired execution trace characteristics of a system under observation in this section. In this context, a trace $\sigma$ that violates this specification is referred to as an intrusion or an attack; to explain how the framework may be used, we use examples from actual attacks illustrated in~\cite{naldurg2004temporal}. These illustrations demonstrate the expressive power of EAGLE formalism as well as its numerous features. In all the following examples, the rule Always is the one defined in Section~\ref{sec:ltl}.
+
+\textbf{Smurf attacks.}
+A smurf attack~\cite{zargar2009identification} is a type of Distributed Denial of Service (DDoS) attack that targets computer networks; in this scenario, the attacker sends a large volume of Internet Control Message Protocol (ICMP) echo request packets (commonly known as "ping" packets) to a network's broadcast address. This broadcast address is the address that reaches all devices on the targeted network. The attacker spoofs the source IP address of these ICMP packets to make it appear as if they are originating from the victim's IP address and since the broadcast address sends the request to all devices on the network, all devices will respond with ICMP echo replies to the victim's IP address. This results in a flood of traffic overwhelming the victim's network and causing it to become unreachable or severely degraded in performance. To detect this kind of attacks, we need to work on network logs; we will use a network tool called \textit{tcpdump}. The monitored formula that describes the absence of the attack is the following:
+\begin{align*}
+    & \underline{\text{max}}\ \mathtt{smurfAttack()} = (type = \text{"ICMP"})\land isBroadcast(ip) \\
+    & \underline{\text{mon}}\ \mathtt{smurfSafety} =\ \mathtt{Always}(\neg\ \mathtt{smurfAttack()}) 
+\end{align*}
+as we can see, the \textit{type} field of a record schema describes the type of network packet, while the \textit{ip} field is the destination of the packet.The $\mathtt{smurfAttack}$ rule determines whether the packet is a ping packet and whether the source's IP address is a broadcast ip, i.e. all the host bits are set to 1. Thus, \textit{"Always there is no attack"} can be used to describe how the system behaves well in response to this attack.
+
+\textbf{Cookie-Stealing attacks.}
 
 \section{Conclusions}
 

@@ -311,6 +311,38 @@
       \field{pages}{359\bibrangedash 376}
       \range{pages}{18}
     \endentry
+    \entry{zargar2009identification}{inproceedings}{}
+      \name{author}{2}{}{%
+        {{hash=a136902e7a5f872b087f332393f2ca47}{%
+           family={Zargar},
+           familyi={Z\bibinitperiod},
+           given={Gholam\bibnamedelima Reza},
+           giveni={G\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
+        {{hash=72fe72ead4e4bfa6f5df162e2f6e1247}{%
+           family={Kabiri},
+           familyi={K\bibinitperiod},
+           given={Peyman},
+           giveni={P\bibinitperiod}}}%
+      }
+      \list{organization}{1}{%
+        {IEEE}%
+      }
+      \strng{namehash}{c7a9cba5df6ba607feee45a6f8ec50ab}
+      \strng{fullhash}{c7a9cba5df6ba607feee45a6f8ec50ab}
+      \strng{bibnamehash}{c7a9cba5df6ba607feee45a6f8ec50ab}
+      \strng{authorbibnamehash}{c7a9cba5df6ba607feee45a6f8ec50ab}
+      \strng{authornamehash}{c7a9cba5df6ba607feee45a6f8ec50ab}
+      \strng{authorfullhash}{c7a9cba5df6ba607feee45a6f8ec50ab}
+      \field{sortinit}{Z}
+      \field{sortinithash}{96892c0b0a36bb8557c40c49813d48b3}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{2009 IEEE Student Conference on Research and Development (SCOReD)}
+      \field{title}{Identification of effective network features to detect Smurf attacks}
+      \field{year}{2009}
+      \field{pages}{49\bibrangedash 52}
+      \range{pages}{4}
+    \endentry
   \enddatalist
 \endrefsection
 \endinput
