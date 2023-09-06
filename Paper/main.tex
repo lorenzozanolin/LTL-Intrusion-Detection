@@ -287,15 +287,22 @@ According to the formula below, a specific cookie must always be utilized by the
 %    & \underline{\text{mon}}\ \mathtt{CookieSafe} =\ \mathtt{Always}(\mathtt{SafeUse}(name,ip)) 
 %\end{align*}
 \begin{align*}
-    & \underline{\text{min}}\ \mathtt{Hijack}(\underline{\text{string}}\ c,\underline{\text{int}}\ i) = ((name=c)\land\neg(ip=i))\lor\odot\ \mathtt{Hijack}(c,i) \\
+    & \underline{\text{min}}\ \mathtt{Hijack}(\underline{\text{string}}\ c,\underline{\text{string}}\ i) = ((name=c)\land\neg(ip=i))\lor\odot\ \mathtt{Hijack}(c,i) \\
     & \underline{\text{mon}}\ \mathtt{CookieSafe} =\ \mathtt{Always}(\neg\mathtt{Hijack}(name,ip)) 
 \end{align*}
 A trace that violates this formula therefore encodes a cookie-stealing attack. The rule $\mathtt{Hijack}$ checks wheter it occurs a situation in which we have the same coookie $c$ associated with two different ip $i$; if it's true then it means that a cookie has been stolen and reused by an attacker. With $\mathtt{CookieSafe}$ we want to check that it never occurs a situation just as the one described.
 
-\textbf{Multi-domain Buffer Overflows}
+\textbf{Multi-domain Buffer Overflows attacks.}
 According to~\cite{piromsopa2006buffer}, a buffer-overflow attack is an attack that (possibly implicitly) uses memory-manipulating operations to overflow a buffer which results in the modification of an address to point to malicious or unexpected code. In this case, we will integrate data from various log sources; to be more exact, we will examine both network and web server access logs to determine when a server buffer overflow attack has been performed. We search through network packets for binary data; then web server's access logs are examined to see if a corresponding event, in which the web server correctly terminates the connection after receiving some binary data, can be located. If no matching log record is discovered within a predetermined timeout, it means that the buffer overflow attack was successful. The following formula captures this scenario:
+\begin{align*}
+    & \underline{\text{min}}\ \mathtt{EventuallyClosed}(\underline{\text{long}}\ t,\underline{\text{long}}\ d,\underline{\text{string}}\ i1,\underline{\text{string}}\ i2) = (time-t<d)\\
+    & \quad\quad\land ((ip1=i1\land ip2=i2\land log=web\land type=closed)\lor \bigcirc\mathtt{EventuallyClosed}(t,d,i1,i2) ) \\
+    & \underline{\text{mon}}\ \mathtt{BufferSafe} =\ \mathtt{Always}((log=network\land type=binary) \\
+    & \quad\quad\rightarrow\mathtt{EventuallyClosed}(time,100,ip1,ip2))
+\end{align*}
+In each record we have the $log$ field which indicates the source of the log, the $time$ represents the istant in which the event occurs, $ip1$ represents the source address, $ip2$ represents the destination IP address and finally the $type$ field can be $binary, closed,\ldots$ We assume that a connection is identified by the tuple $(ip1,ip2)$. In order, the $\mathtt{EventuallyClosed}$ rule states that the connection between IP addresses $i1$ and $i2$ must end eventually within time $d$; finally, the monitor rule $\mathtt{BufferSafe}$ states that it is always the case that if there is an event of $binary$ access in the network log then eventually within time $100$ there must be a matching event in the webserver log that denotes the closing of the connection. 
 
-
+\textbf{Password guessing attacks.}
 \section{Conclusions}
 
 \printbibliography
