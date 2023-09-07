@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.6.20)  6 SEP 2023 18:26
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.6.20)  7 SEP 2023 11:44
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -689,7 +689,7 @@ Overfull \hbox (59.09996pt too wide) detected at line 302
 []
  []
 
-[10] [11] (./main.aux)
+[10] [11] [12] (./main.aux)
 Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: F6D5ED996A8718F504C2993149D87F69;1317.
 Package logreq Info: Writing requests to 'main.run.xml'.
@@ -697,8 +697,8 @@ Package logreq Info: Writing requests to 'main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 19537 strings out of 478268
- 335851 string characters out of 5846347
+ 19538 strings out of 478268
+ 335858 string characters out of 5846347
  1062542 words of memory out of 5000000
  37489 multiletter control sequences out of 15000+600000
  480513 words of font info for 73 fonts, out of 8000000 for 9000
@@ -721,10 +721,10 @@ e/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive
 22/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/202
 2/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive
 /2022/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (11 pages, 315440 bytes).
+Output written on main.pdf (12 pages, 318673 bytes).
 PDF statistics:
- 232 PDF objects out of 1000 (max. 8388607)
- 181 compressed objects within 2 object streams
- 36 named destinations out of 1000 (max. 500000)
+ 239 PDF objects out of 1000 (max. 8388607)
+ 187 compressed objects within 2 object streams
+ 37 named destinations out of 1000 (max. 500000)
  78 words of extra memory for PDF output out of 10000 (max. 10000000)
 
