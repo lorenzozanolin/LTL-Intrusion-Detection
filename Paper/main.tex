@@ -178,7 +178,7 @@ function $value : \underline{\text{Form}} \rightarrow \{ \underline{\text{true}}
 
 
 \textbf{Calculus.} According to~\cite{barringer2004rule}, the $evaluate$, $update$ and $value$ functions are defined a priori for all operators except for the
-rule application, for which get generated based on the definition of rules in the specification. The definitions of these functions on the different primitive operators are the following ($op\text{ can be }\lor , \land, \rightarrow $):
+rule application, for which get generated based on the definition of rules in the specification. The definitions of these functions on the different primitive operators (except the previous operator $\odot$) are the following ($op\text{ can be }\lor , \land, \rightarrow $):
 %evaluate
 {\allowdisplaybreaks
 \begin{align*}
@@ -207,6 +207,12 @@ rule application, for which get generated based on the definition of rules in th
             F & \text{if at the beginning of a trace} \\
             \underline{\text{false}} & \text{if at the end of a trace} \\
         \end{cases}\\
+        value(F_1 \cdot F_2,\alpha_i) & = value(F_1)\land value(F_2) \\ 
+        value(\mathtt{R}(F_1,\ldots,F_n)) & =
+        \begin{cases}
+            \underline{\text{true}} & \text{if }\mathtt{R}\text{ is } \underline{\text{max}}\\
+            \underline{\text{false}} & \text{if }\mathtt{R}\text{ is } \underline{\text{min}}\\
+        \end{cases}\\
         value(F_1 \cdot F_2,\alpha_i) & = value(F_1)\land value(F_2) \\ \\
    % \end{align*}
 %\end{minipage}
@@ -223,6 +229,19 @@ rule application, for which get generated based on the definition of rules in th
         update(F_1 \cdot F_2,\alpha_i) & = update(F_1,\alpha_i)\cdot F_2
     \end{align*}
     }
+Focusing of \textit{Future Time Operators}, we have:
+\begin{align*}
+    evaluate(\mathtt{Next}(F),s)&=evaluate(\bigcirc F,s) \\
+    evaluate(\mathtt{Always}(F),s)&=evaluate(F\land\bigcirc\mathtt{Always}(F),s) \\
+    evaluate(\mathtt{Eventually}(F),s)&=evaluate(F\lor\bigcirc\mathtt{Eventually}(F),s) \\
+    evaluate(\mathtt{Until}(F_1,F_2),s)&=evaluate(F_2\lor(F_1\land\bigcirc\mathtt{Until}(F_1,F_2)),s) \\ \\
+    update(\mathtt{Next}(F),s)&=\mathtt{Next}(update(F,s)) \\
+    update(\mathtt{Always}(F),s)&=\mathtt{Always}(update(F,s)) \\
+    update(\mathtt{Eventually}(F),s)&=\mathtt{Eventually}(update(F,s)) \\
+    update(\mathtt{Until}(F_1,F_2),s)&=\mathtt{Until}(update(F_1,s),update(F_2,s))
+\end{align*}
+while, for the \textit{Past Time Operators} the $\odot$ operator is removed and instead a rule $\mathtt{Previous}$ is introduced; more details can be found in~\cite{barringer2004program}.
+
 %\end{minipage}
 Let us introduce an example to better understand the algorithm. Given the following rules 
 \begin{align*}
