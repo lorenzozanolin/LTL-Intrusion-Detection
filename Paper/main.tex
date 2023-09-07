@@ -314,6 +314,20 @@ Assuming the system accepts telnet connections to remote login; it won't take lo
 \end{align*}
 as we can see, the rules here are numerous. In $\mathtt{Counter}$, the arguments $t, d, c, i, C$ represent the rule invocation time, the timeout period, the current number of unsuccessful-guesses count, the source IP address doing the guess, and the threshold count. When the number of guesses from the IP address $i$ exceeds the threshold count $C$ within the timeout period $d$, an attack has taken place. The parameterized rule $\mathtt{Counter}$ starts with the initial count $c$ set to 1 whenever there is a $\mathtt{Failure}$ during login. The number of guesses is increased by one for each instance of an event signifying a failed login attempt from the same IP address within the timeout period $d$. The rule $\mathtt{Counter}$ also determines whether the local counter $c$ surpasses the threshold $C$ within time d, and if it does, the entire rule become false, indicating an attack. Finally, with the rule $\mathtt{PassGuessSafe}$ we assure that whenever there is a failed login from a specific IP address, we make sure that within time $300$ seconds the number of login-failures from the same IP address must be less than or equal to $3$.
 
+\textbf{Port Scanning attacks.}
+According to~\cite{kanlayasiri2000rule}, Port scanning attack is a method for discovering exploitable communication channels that has been used for a long time. The key idea is to probe the network ports and then keep the information about them that are useful for an attack.
+Hackers frequently employ a port scan approach to find gaps or weak spots in a network. Attackers can use a port scan attack to identify open ports and determine if they are accepting or rejecting data; additionally, it can show whether a company uses firewalls or other active security measures. 
+Assuming that our server has multiple network inferfaces, thus multiple IP addresses; the victim machine can presume that port scans are malicious when the counter of reached ports overcomes a specific threshold in a short amount of time. The formulas are the following:
+\begin{align*}
+    & \underline{\text{max}}\ \mathtt{NewPort}(\underline{\text{string}}\ i1,\underline{\text{string}}\ i2,\underline{\text{Set}}\ S) = (i1=ip1)\land(i2=ip2)\land (port \notin S)\\
+    & \underline{\text{max}}\ \mathtt{Counter}(\underline{\text{long}}\ t, \underline{\text{long}}\ d, \underline{\text{int}}\ c,\underline{\text{string}}\ i1,\underline{\text{string}}\ i2,\underline{\text{Set}}\ S,\underline{\text{int}}\ C) = (time-t<d)\\
+    & \quad\quad\rightarrow((\mathtt{NewPort}(i1,i2,S)\rightarrow(c\leq C\land \bigcirc\mathtt{Counter}(t,d,c+1,i1,i2,S\cup\{port\},C)))  \\
+    & \quad\quad\land(\neg \mathtt{NewPort}(i1,i2,S)\rightarrow\mathtt{Counter}(t,d,c,i1,i2,S,C))) \\
+    & \underline{\text{mon}}\ \mathtt{PortScanSafe} =\ \mathtt{Always}(\mathtt{Counter}(time,100,1,ip1,ip2,\{port\},10)) 
+\end{align*}
+in this case we have two IPs; $ip1$ is the source IP, while $ip2$ is the destination one. The parameterized $\mathtt{Counter}$ rule states that the number of port scans between a source and destination IP  address pair $(i1,i2)$ recorded do not surpass a threshold $C$ within time $d$. The rule $\mathtt{NewPort}$ checks if the port number,
+involved in any communication between the IP addresses $i1$ and $i2$, exists in the set $S$ of all port numbers (involved in all communications between $i1$ and $i2$) within the timeout period $d$.
+
 \section{Conclusions}
 
 \printbibliography

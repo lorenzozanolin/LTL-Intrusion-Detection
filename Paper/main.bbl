@@ -245,6 +245,43 @@
       \field{pages}{26\bibrangedash 35}
       \range{pages}{10}
     \endentry
+    \entry{kanlayasiri2000rule}{inproceedings}{}
+      \name{author}{3}{}{%
+        {{hash=495a828b7387c885d9348789367f415a}{%
+           family={Kanlayasiri},
+           familyi={K\bibinitperiod},
+           given={Urupoj},
+           giveni={U\bibinitperiod}}}%
+        {{hash=29fd3f84ee3b0c91a30216a7a47f5b7d}{%
+           family={Sanguanpong},
+           familyi={S\bibinitperiod},
+           given={Surasak},
+           giveni={S\bibinitperiod}}}%
+        {{hash=983ecf1f17ab9e1b577388ba0f2abbc4}{%
+           family={Jaratmanachot},
+           familyi={J\bibinitperiod},
+           given={Wipa},
+           giveni={W\bibinitperiod}}}%
+      }
+      \list{organization}{1}{%
+        {Citeseer}%
+      }
+      \strng{namehash}{e0a96630d36070ed75d2d2a91de0c550}
+      \strng{fullhash}{e0a96630d36070ed75d2d2a91de0c550}
+      \strng{bibnamehash}{e0a96630d36070ed75d2d2a91de0c550}
+      \strng{authorbibnamehash}{e0a96630d36070ed75d2d2a91de0c550}
+      \strng{authornamehash}{e0a96630d36070ed75d2d2a91de0c550}
+      \strng{authorfullhash}{e0a96630d36070ed75d2d2a91de0c550}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the 23rd electrical engineering conference, Chiang Mai Thailand}
+      \field{title}{A rule-based approach for port scanning detection}
+      \field{year}{2000}
+      \field{pages}{485\bibrangedash 488}
+      \range{pages}{4}
+    \endentry
     \entry{mchugh2000testing}{article}{}
       \name{author}{1}{}{%
         {{hash=7185e56b04836e18e995b763f90c1d65}{%
