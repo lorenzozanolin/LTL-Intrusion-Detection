@@ -72,9 +72,8 @@ There are three Intrusion Detection System approaches, according to the literatu
 In this paper we will focus on \textit{signature-based} approach using temporal logic; we use EAGLE\cite{barringer2004rule,barringer2003eagle} to specify a system's attack-safe behavior. EAGLE allows recursively built temporal formulas, parameterizable by both logical formulas and data expressions, across three primitive modalities: "next", "previous", and "concatenation". The logic allows us to describe temporal patterns involving reasoning about data-values observed in individual events. Unlike LTL, EAGLE allows us to design attacks with fundamentally statistical characteristics; password guessing attacks and ICMP-flood denial of service attacks are two examples. We will monitor EAGLE formulas using an online algorithm that processes each event as it happens and updates the monitored formula to store a relevant summary. An intrusion alarm is triggered if, for any reason, the updated formula turns out to be false; as a result, the entire process operates in real-time. We'll see how the implementation, MONID, examines the event stream to see if the monitored formula (which is used to hold the pertinent summary of the system) is being broken.
 
 %% INTRODURRE VELOCE ESEMPIO E STRUTTURA DEL PROGRAMMA
-
 %%%%%   DA RISCRIVERE ALLA FINE
-In Section 2 we will analyze the basics of EAGLE. In Section 3 we will analyze MONID framework and some evalutations on the performances. In Section 4 we will see some attacks specifications. In section 5 we will conclude.
+In Section 2, we'll deeply explore EAGLE, covering everything from its syntax to semantics and the evaluation algorithm, with the add of practical examples. Moving on to Section 3, we'll delve into the MONID framework, which employs EAGLE to construct an intrusion detection system. Section 4 will focus on specific EAGLE rules tailored for the detection of various types of attacks and finally, in Section 5, we will draw our conclusions.
 %%%%5
 
 \section{EAGLE, a Temporal Monitoring Logic}
@@ -256,7 +255,7 @@ and a trace $\sigma=\alpha_1,\alpha_2$, where $\alpha_1=\{userId:\mathtt{"Lori"}
 \end{align*}
 At the second event the predicate $(time-t \leq \delta)$ gets instantiated to $(150.0-17.0 \leq 100)$ which is false; thus the whole formula becomes false, indicating that the two-event trace violates the property $M_3$. 
 
-It's essential to emphasize that the logic EAGLE operates with a \textit{finite} trace semantics; the monitoring algorithm, as written before, can check whetet the formula is satisfied or not only at the conclusion of a trace. However, in intrusion detection scenarios, the notion of the "end of a trace" makes no sense since event sequences can theoretically be infinite. In such cases, the aim is to trigger an alarm as soon as a property is violated and this is done by continuously checking the formula's satisfaction status after each event. In practice, once we have the specification of the attack pattern in terms of $\varphi$, we can express the system's safe behavior as $\square(\neg \varphi)$. Note that if a sequence of events corresponding to the attack is discovered, this formula becomes false.
+It's essential to emphasize that the logic EAGLE operates with a \textit{finite} trace semantics; the monitoring algorithm, as written before, can check whether the formula is satisfied or not only at the conclusion of a trace. However, in intrusion detection scenarios, the notion of the "end of a trace" makes no sense since event sequences can theoretically be infinite. In such cases, the aim is to trigger an alarm as soon as a property is violated and this is done by continuously checking the formula's satisfaction status after each event. In practice, once we have the specification of the attack pattern in terms of $\varphi$, we can express the system's safe behavior as $\square(\neg \varphi)$. Note that if a sequence of events corresponding to the attack is discovered, this formula becomes false.
 
 \subsection{Relationship to LTL+P}
 According to~\cite{barringer2004rule,barringer2003eagle}, we can define both \textbf{Future Time LTL} and \textbf{Past Time LTL} operators. The future modalities are written in section~\ref{sec:ltl}, therefore let us list the past ones:
@@ -349,6 +348,8 @@ in this case we have two IPs; $ip1$ is the source IP, while $ip2$ is the destina
 involved in any communication between the IP addresses $i1$ and $i2$, exists in the set $S$ of all port numbers (involved in all communications between $i1$ and $i2$) within the timeout period $d$.
 
 \section{Conclusions}
+In conclusion, we have introduced a new temporal logic named EAGLE, which serves as the foundation for the MONID framework, which is a useful tool for system intrusion detection.
+MONID continuously monitor these attack specifications during system execution and when the observed execution contradicts the monitored formula, we detect an intrusion. We have showcased this by creating formulas to identify several common attacks and testing our monitoring algorithm on large event logs provided by DARPA. These examples can serve as templates for specifying many other types of attacks. The obtained results were excellent, both in terms of detected attacks and system overhead.
 
 \printbibliography
 
