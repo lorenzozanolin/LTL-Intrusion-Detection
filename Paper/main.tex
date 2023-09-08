@@ -212,9 +212,8 @@ rule application, for which get generated based on the definition of rules in th
         \begin{cases}
             \underline{\text{true}} & \text{if }\mathtt{R}\text{ is } \underline{\text{max}}\\
             \underline{\text{false}} & \text{if }\mathtt{R}\text{ is } \underline{\text{min}}\\
-        \end{cases}\\
-        value(F_1 \cdot F_2,\alpha_i) & = value(F_1)\land value(F_2) \\ \\
-   % \end{align*}
+        \end{cases}\\ \\
+           % \end{align*}
 %\end{minipage}
 %\hfill
 %\begin{minipage}[r]{\textwidth}
@@ -269,6 +268,8 @@ According to~\cite{barringer2004rule,barringer2003eagle}, we can define both \te
 \end{align*}
 % Note that UNLESS is maximal
 By combining the definitions for the future and past time LTLs defined above, we obtain a temporal logic over the future, present and past, in which one can freely intermix the future and past time modalities. 
+% a differenza di ltl non salva tutta la sequenza ma solo una formula che riassume tutto. La seconda componente non è uno stato (insieme di cose vere) ma un record
+% EAGLE è almeno espressivo quanto LTLP
 
 \section{MONID: Structure analysis}
 MONID is a prototype which can detect intrusions either online or offline. System-level event data is delivered to MONID server either directly from relevant log files (offline) or online via application code that has been properly instrumented. In the online mode, MONID runs as a server that receives streams of events
