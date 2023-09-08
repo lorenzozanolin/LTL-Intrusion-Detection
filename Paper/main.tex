@@ -173,7 +173,7 @@ Once the sequence has been completely analyzed, we will obtain a big disjunction
 \end{align*}
 and the bold $\mathbf{Property(F)}$ will be evaluated to false, since it is the last of a big disjunction.
 \subsection{Evaluation algorithm}\label{algo}
-As already mentioned, monitored formulas ($\underline{\text{mon}}$) evolve at every event, to store relevant informations about past istants. The evolved formula's value is determined at the conclusion of the event series; if it is true, the formula is satisfied by the event sequence; otherwise, it is violated. Formally, a formula $F' = evaluate(F, \alpha_i)$ is created when a formula $F$ is evaluated at an event $\alpha_i = \sigma(i)$ and has the condition that $\sigma, i \models F$ if and only if $\sigma, i+1 \models F'$. With $F$ being the evolved formula, we compute the boolean function $value(F)$ at the conclusion of the trace. The definition of the function $evaluate: \underline{\text{Form}} \times \underline{\text{State}} \to \underline{\text{Form}}$ uses an auxiliary function $update: \underline{\text{Form}} \times \underline{\text{State}} \to \underline{\text{Form}}$ to pre-evaluate a formula if it is guarded by the previous operator $\bigodot$. At the end (or at the beginning) of a trace, the
+As already mentioned, monitored formulas ($\underline{\text{mon}}$) evolve at every event, to store relevant informations about past istants. The evolved formula's value is determined at the conclusion of the event series; if it is true, the formula is satisfied by the event sequence; otherwise, it is violated. Formally, a formula $F' = evaluate(F, \alpha_i)$ is created when a formula $F$ is evaluated at an event $\alpha_i = \sigma(i)$ and has the condition that $\sigma, i \models F$ if and only if $\sigma, i+1 \models F'$. With $F$ being the evolved formula, we compute the boolean function $value(F)$ at the conclusion of the trace. The definition of the function $evaluate: \underline{\text{Form}} \times \underline{\text{State}} \to \underline{\text{Form}}$ uses an auxiliary function $update: \underline{\text{Form}} \times \underline{\text{State}} \to \underline{\text{Form}}$ to pre-evaluate a formula if it is guarded by the previous operator $\bigodot$. Note that $\underline{\text{Form}}$ in the practical use represents the monitored formula, while $\underline{\text{State}}$ represents the current event. At the end (or at the beginning) of a trace, the
 function $value : \underline{\text{Form}} \rightarrow \{ \underline{\text{true}}, \underline{\text{false}} \}$, when applied to $F$, returns true if and only if $\sigma,|\sigma|+1 \models F$ (or $\sigma,0 \models F$), and returns false otherwise.
 
 
@@ -249,7 +249,7 @@ Let us introduce an example to better understand the algorithm. Given the follow
     &\quad\quad\quad\quad \land ((action = \mathtt{logout} \land userId = k) \lor \bigcirc \mathtt{EvTimedLogout}(k, t, \delta)) \\
     &\underline{\text{mon}}\ M_3  = \mathtt{Always}((action = \mathtt{login}) \rightarrow \mathtt{EvTimedLogout}(userId,time, 100))
 \end{align*}
-and a trace $\sigma=\alpha_1,\alpha_2$, where $\alpha_1=\{userId:\mathtt{"Lori"},\ action:\mathtt{login},\ time:\mathtt{17.0}\}$ and $\alpha_1=\{userId:\mathtt{"Lori"},\ action:\mathtt{logout},\ time:\mathtt{150.0}\}$, the initial formula $M_3$ gets modified. At time $1$, when $\alpha_1$ is analyzed, $M_3$ changes as follows:
+and a trace $\sigma=\alpha_1,\alpha_2$, where $\alpha_1=\{userId:\mathtt{"Lori"},\ action:\mathtt{login},\ time:\mathtt{17.0}\}$ and $\alpha_2=\{userId:\mathtt{"Lori"},\ action:\mathtt{logout},\ time:\mathtt{150.0}\}$, the initial formula $M_3$ gets modified. At time $1$, when $\alpha_1$ is analyzed, $M_3$ changes as follows:
 \begin{align*}
     &evaluate(M_3,\alpha_1)  = \mathtt{EvTimedLogout("Lori",17.0, 100)} \\ 
     &\quad\quad\quad\quad \land\mathtt{Always}((action = \mathtt{login}) \rightarrow \mathtt{EvTimedLogout}(userId,time, 100))
@@ -267,7 +267,7 @@ According to~\cite{barringer2004rule,barringer2003eagle}, we can define both \te
     & \underline{\text{min}}\ \mathtt{Since}(\underline{\text{Form}}\ F_1, \underline{\text{Form}}\ F_2) = F_2 \lor (F_1 \land \odot \mathtt{Since}(F_1,F_2))
 \end{align*}
 % Note that UNLESS is maximal
-By combining the definitions for the future and past time LTLs defined above, we obtain a temporal logic over the future, present and past, in which one can freely intermix the future and past time modalities. 
+By combining the definitions for the future and past time LTLs defined above, we obtain a temporal logic over the future, present and past, in which one can freely intermix the future and past time modalities; thus, we can state that EAGLE is expressive at least as LTL+P.
 % a differenza di ltl non salva tutta la sequenza ma solo una formula che riassume tutto. La seconda componente non è uno stato (insieme di cose vere) ma un record
 % EAGLE è almeno espressivo quanto LTLP
 
