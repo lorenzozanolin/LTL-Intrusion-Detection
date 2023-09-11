@@ -176,16 +176,43 @@
     EAGLE operates with \textit{finite trace} semantics, meaning it checks formula satisfaction only at the end of a trace. However, in intrusion detection where event sequences can be infinite, the goal is to trigger an alarm as soon as a property is violated, thus MONID continuously checks the formula's satisfaction status after each event.
 
     Let us start with an example; we want to express the property "\textit{Whenever there is a login by any user x, then eventually the user x logs out}". In EAGLE we can do it with the following rules:
-    \begin{align*}
-        & \underline{\text{min}}\ \mathtt{EvLogout}(\underline{\text{string}}\ k) = (action = \mathtt{logout}\land userId = k) \lor \bigcirc \mathtt{EvLogout}(k) \\
-        & \underline{\text{mon}}\ M_2 = ((action = \mathtt{login})\rightarrow \mathtt{EvLogout}(userId)) 
-    \end{align*}
-    Once the rules are created, the monitor will evaluate and update the monitored formula $M_2$. 
+    \begin{ex} 
     \vspace{2.5mm}
-
-    A possibile trace $\sigma=\alpha_1,\alpha_2$, where $\alpha_1=\{userId:\mathtt{"Lori"},\ action:\mathtt{login},\ time:\mathtt{17.0}\}$ and $\alpha_2=\{userId:\mathtt{"Lori"},\ action:\mathtt{logout},\ time:\mathtt{150.0}\}$ can satisfy $M_2$.
+    $ \underline{\text{min}}\ \mathtt{EvLogout}(\underline{\text{string}}\ k) = (action = \mathtt{logout}\land userId = k) \lor \bigcirc \mathtt{EvLogout}(k) $\\
+    $  \underline{\text{mon}}\ M_2 = ((action = \mathtt{login})\rightarrow \mathtt{EvLogout}(userId)) $\\
+    \vspace{2.5mm}
+    Once the rules are created, the monitor will evaluate and update the monitored formula $M_2$. 
+    A possibile trace $\sigma=\alpha_1,\alpha_2 $ , where:\\
+    \vspace{2.5mm} 
+    $\alpha_1=\{userId:\mathtt{"Lori"},\ action:\mathtt{login},\ time:\mathtt{17.0}\}$ \\$\alpha_2=\{userId:\mathtt{"Lori"},\ action:\mathtt{logout},\ time:\mathtt{150.0}\}$\\ 
+    \vspace{2.5mm}
+    $satisfies$ $M_2$.
+    \end{ex}
 \end{frame}
 
+\begin{frame}[allowframebreaks]{Syntax}
+    Each specification $S$ is made up of an observer part $O$ and a declaration part $D$.
+    \begin{align*}
+    S &::= D \, O \\
+    D &::= R^* \\
+    O &::= M^* \\
+    R &::= \{\underline{\text{max}}\ |\ \underline{\text{min}} \}\ N(T_1\ x_1, \ldots, T_n\ x_n) = F \\
+    M &::= \underline{\text{mon}}\ N = F \\
+    T &::= \underline{\text{Form}}\ |\ \text{primitive type} \\
+    F &::= \text{expression}\ |\ \underline{\text{true}}\ |\ \underline{\text{false}}\ |\ \neg F\ |\ F_1 \land F_2\ |\ F_1 \lor F_2\ |\\
+            &F_1 \rightarrow F_2\ |\ \bigcirc F\ |\ \odot F\ |\ F_1 \cdot F_2\ |\ N(F_1, \ldots, F_n)\ |\ x_i
+    \end{align*}
+    Let us focus on some details.\\
+    Definitions can start with different keywords:
+    \begin{itemize}
+        \item $\underline{\text{mon}}$: specifies the EAGLE formulas to be monitored and cannot have a recursive definition; as already told, these kind of rules will evolve as new events appear.
+        \item $\underline{\text{max}}$: defines \textit{safety properties} (nothing bad ever happens) and have a maximal interpretation.
+        \item $\underline{\text{min}}$: defines \textit{liveness properties} (something good eventually happens) and have a minimal interpretation.
+    \end{itemize}
+
+    
+
+\end{frame}
 
 
 \section{Conclusions}
