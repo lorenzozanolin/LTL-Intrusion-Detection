@@ -242,25 +242,20 @@
     \end{block}
 
     \newpage
-
     More details are in the paper; let us introduce an example.
     \begin{ex}
         Given the following rules\\
-        \vspace{2.5mm}
+        \vspace{1.5mm}
         $\quad\underline{\text{max}}\ \mathtt{Always}(\underline{\text{Form}}\ F)  = F \land \bigcirc \mathtt{Always}(F)$ \\
         $\quad\underline{\text{min}}\ \mathtt{EvTimedLogout}(\underline{\text{string }} k, \underline{\text{double }} t, \underline{\text{double }} \delta) = (\text{time} - t \leq \delta)$ \\
         $\quad\quad\quad\quad\quad \land ((action = \mathtt{logout} \land userId = k) \lor \bigcirc \mathtt{EvTimedLogout}(k, t, \delta))$ \\
         $\quad\underline{\text{mon}}\ M_3  = \mathtt{Always}((action = \mathtt{login}) \rightarrow \mathtt{EvTimedLogout}(userId,time, 100))$ \\
-        \vspace{2.5mm}
-        and a trace $\sigma=\alpha_1,\alpha_2$, where $\alpha_1=\{userId:\mathtt{"Lori"},\ action:\mathtt{login},\ time:\mathtt{17.0}\}$ and $\alpha_2=\{userId:\mathtt{"Lori"},\ action:\mathtt{logout},\ time:\mathtt{150.0}\}$.\\ $M_3$ gets modified, at first step, in \\
-        \vspace{2.5mm}
+        \vspace{1.5mm}
+        and a trace $\sigma=\alpha_1,\alpha_2$ , where\\\vspace{1.5mm} $\quad\alpha_1=\{userId:\mathtt{"Lori"},\ action:\mathtt{login},\ time:\mathtt{17.0}\}$\\ $\quad\alpha_2=\{userId:\mathtt{"Lori"},\ action:\mathtt{logout},\ time:\mathtt{150.0}\}$.\\ \vspace{1.5mm}$M_3$ gets modified, at first step, in \\
+        \vspace{1.5mm}
         $\quad evaluate(M_3,\alpha_1)  = \mathtt{EvTimedLogout("Lori",17.0, 100)}$ \\ 
         $\quad\quad\quad\quad\quad \land\ \mathtt{Always}((action = \mathtt{login}) \rightarrow \mathtt{EvTimedLogout}(userId,time, 100))$.
-
-    \end{ex}
-
-    
-
+    \end{ex}    %continuazione?
 \end{frame}
 
 
