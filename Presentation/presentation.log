@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.6.20)  11 SEP 2023 11:38
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.6.20)  11 SEP 2023 12:24
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1511,9 +1511,13 @@ Overfull \hbox (2.96399pt too wide) has occurred while \output is active
 
  <./lib/layouts/title_bg.pdf>]
 LaTeX Font Info:    Font shape `T1/Roboto-LF/m/it' aliased to
-(Font)              `T1/Roboto-LF/regular/it' on input line 124.
+(Font)              `T1/Roboto-LF/regular/it' on input line 123.
 LaTeX Font Info:    Font shape `T1/Roboto-LF/regular/it' will be
-(Font)              scaled to size 10.95pt on input line 124.
+(Font)              scaled to size 10.95pt on input line 123.
+LaTeX Font Info:    Font shape `T1/Roboto-LF/m/n' aliased to
+(Font)              `T1/Roboto-LF/regular/n' on input line 123.
+LaTeX Font Info:    Font shape `T1/Roboto-LF/regular/n' will be
+(Font)              scaled to size 12.0pt on input line 123.
 
 Overfull \hbox (45.52718pt too wide) has occurred while \output is active
  [] 
@@ -1527,11 +1531,10 @@ Overfull \hbox (2.96399pt too wide) has occurred while \output is active
 [4
 
 ]
-<images/monid.png, id=100, 1379.1525pt x 576.1525pt>
-File: images/monid.png Graphic file (type png)
-<use images/monid.png>
-Package pdftex.def Info: images/monid.png  used on input line 131.
-(pdftex.def)             Requested size: 344.78728pt x 144.03777pt.
+LaTeX Font Info:    Font shape `T1/Roboto-LF/b/n' aliased to
+(Font)              `T1/Roboto-LF/bold/n' on input line 137.
+LaTeX Font Info:    Font shape `T1/Roboto-LF/bold/n' will be
+(Font)              scaled to size 10.95pt on input line 137.
 
 Overfull \hbox (45.52718pt too wide) has occurred while \output is active
  [] 
@@ -1544,7 +1547,13 @@ Overfull \hbox (2.96399pt too wide) has occurred while \output is active
 
 [5
 
- <./images/monid.png>]
+]
+<images/monid.png, id=105, 1379.1525pt x 576.1525pt>
+File: images/monid.png Graphic file (type png)
+<use images/monid.png>
+Package pdftex.def Info: images/monid.png  used on input line 146.
+(pdftex.def)             Requested size: 344.78728pt x 144.03777pt.
+
 Overfull \hbox (45.52718pt too wide) has occurred while \output is active
  [] 
  []
@@ -1556,7 +1565,7 @@ Overfull \hbox (2.96399pt too wide) has occurred while \output is active
 
 [6
 
-]
+ <./images/monid.png>]
 Overfull \hbox (45.52718pt too wide) has occurred while \output is active
  [] 
  []
@@ -1567,7 +1576,6 @@ Overfull \hbox (2.96399pt too wide) has occurred while \output is active
  []
 
 [7
-
 
 ]
 Overfull \hbox (45.52718pt too wide) has occurred while \output is active
@@ -1607,6 +1615,19 @@ Overfull \hbox (2.96399pt too wide) has occurred while \output is active
 
 [10
 
+
+]
+Overfull \hbox (45.52718pt too wide) has occurred while \output is active
+ [] 
+ []
+
+
+Overfull \hbox (2.96399pt too wide) has occurred while \output is active
+[][][][] 
+ []
+
+[11
+
 ]
 \tf@nav=\write7
 \openout7 = `presentation.nav'.
@@ -1625,11 +1646,11 @@ Package logreq Info: Writing requests to 'presentation.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 37142 strings out of 478268
- 736552 string characters out of 5846347
+ 37167 strings out of 478268
+ 737007 string characters out of 5846347
  1366028 words of memory out of 5000000
- 54627 multiletter control sequences out of 15000+600000
- 556327 words of font info for 81 fonts, out of 8000000 for 9000
+ 54647 multiletter control sequences out of 15000+600000
+ 567821 words of font info for 90 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  128i,19n,122p,745b,1551s stack positions out of 10000i,1000n,20000p,200000b,200000s
 {/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/roboto/rbto_b5rac7.enc}</
@@ -1642,10 +1663,10 @@ sr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr
 /local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/lo
 cal/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/loc
 al/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb>
-Output written on presentation.pdf (10 pages, 3347690 bytes).
+Output written on presentation.pdf (11 pages, 3349567 bytes).
 PDF statistics:
- 194 PDF objects out of 1000 (max. 8388607)
- 119 compressed objects within 2 object streams
- 34 named destinations out of 1000 (max. 500000)
+ 199 PDF objects out of 1000 (max. 8388607)
+ 123 compressed objects within 2 object streams
+ 36 named destinations out of 1000 (max. 500000)
  104 words of extra memory for PDF output out of 10000 (max. 10000000)
 

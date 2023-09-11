@@ -110,12 +110,25 @@
 \setLayout{vertical}
 
 \begin{frame}
+    \frametitle{Intrusion Detection}
+    \textit{Intrusion detection} means maintaining constant surveillance on a system in order to detect any misuse of these weak areas as soon as feasible so that they can be repaired.\\
+    There are three approaches:
+    \begin{itemize}
+        \item \textit{signature-based}: aims to identify patterns and match them with known signs of intrusions;
+        \item \textit{anomaly-based}: can identify new attacks when it detects behavior that differs significantly from previously learned normal behavior;
+        \item \textit{hybrid}: combines the best of both worlds by looking at patterns and one-off events.
+    \end{itemize}
+    \vspace{5mm}
+    We will present MONID which is a \textit{signature-based} intrusion detector.
+\end{frame}
+
+\begin{frame}
     \frametitle{What is MONID?}
-    MONID is a prototype which can detect intrusions on a system; in this scenario we are focusing on a \textit{signature-based} approach.\\
+    MONID is a prototype which can detect intrusions on a system and operates in both online and offline modes.\\
     \vspace{5mm}
     In order:
     \begin{enumerate}
-        \item we will use the logic EAGLE to define intrusion patterns using temporal logic formula $\varphi$; in this case the monitored formula will be $\psi=\square (\neg\varphi)$.
+        \item we will use the logic \textbf{EAGLE} to define intrusion patterns using temporal logic formula $\varphi$; in this case the monitored formula will be $\psi=\square (\neg\varphi)$.
         \item MONID will create a stream of events $\sigma=\alpha_{1},\alpha_{2},\ldots$ obtained from a merge of the logs by ascending time order;
         \item a monitor will processes each event $\alpha_i$ as it happens and updates the monitored formula $\psi$ to store a relevant summary;
         \item an intrusion alarm is triggered if, for any reason, $\alpha_{1},\alpha_{2} \ldots\not\models\psi$.
@@ -126,8 +139,10 @@
 \begin{frame}
     \frametitle{What is MONID? (cont'd)}
     The architecture is the following.\\
-    \vspace{5mm}
+    \vspace{2.5mm}
     \includegraphics[scale=0.25]{images/monid.png}
+    \vspace{2.5mm}\\
+    Now, let us start from the basics of EAGLE.
 \end{frame}
 
 
