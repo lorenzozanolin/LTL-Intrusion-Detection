@@ -111,7 +111,23 @@
 
 \begin{frame}
     \frametitle{What is MONID?}
+    MONID is a prototype which can detect intrusions on a system; in this scenario we are focusing on a \textit{signature-based} approach.\\
+    \vspace{5mm}
+    In order:
+    \begin{enumerate}
+        \item we will use the logic EAGLE to define intrusion patterns using temporal logic formula $\varphi$; in this case the monitored formula will be $\psi=\square (\neg\varphi)$.
+        \item MONID will create a stream of events $\sigma=\alpha_{1},\alpha_{2},\ldots$ obtained from a merge of the logs by ascending time order;
+        \item a monitor will processes each event $\alpha_i$ as it happens and updates the monitored formula $\psi$ to store a relevant summary;
+        \item an intrusion alarm is triggered if, for any reason, $\alpha_{1},\alpha_{2} \ldots\not\models\psi$.
+    \end{enumerate}
     
+\end{frame}
+
+\begin{frame}
+    \frametitle{What is MONID? (cont'd)}
+    The architecture is the following.\\
+    \vspace{5mm}
+    \includegraphics[scale=0.25]{images/monid.png}
 \end{frame}
 
 

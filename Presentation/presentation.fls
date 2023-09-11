@@ -1800,6 +1800,11 @@ INPUT /usr/local/texlive/2022/texmf-dist/fonts/tfm/google/roboto/Roboto-Bold-lf-
 INPUT /usr/local/texlive/2022/texmf-dist/fonts/tfm/google/roboto/Roboto-Italic-lf-t1.tfm
 INPUT /usr/local/texlive/2022/texmf-dist/fonts/vf/google/roboto/Roboto-Italic-lf-t1.vf
 INPUT /usr/local/texlive/2022/texmf-dist/fonts/tfm/google/roboto/Roboto-Italic-lf-t1--base.tfm
+INPUT ./images/monid.png
+INPUT ./images/monid.png
+INPUT images/monid.png
+INPUT ./images/monid.png
+INPUT ./images/monid.png
 OUTPUT presentation.nav
 OUTPUT presentation.toc
 OUTPUT presentation.snm
@@ -1812,3 +1817,9 @@ INPUT /usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/roboto/rbto_b5rac7.enc
 INPUT /usr/local/texlive/2022/texmf-dist/fonts/type1/google/roboto/Roboto-Bold.pfb
 INPUT /usr/local/texlive/2022/texmf-dist/fonts/type1/google/roboto/Roboto-Italic.pfb
 INPUT /usr/local/texlive/2022/texmf-dist/fonts/type1/google/roboto/Roboto-Regular.pfb
+INPUT /usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb
+INPUT /usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb
+INPUT /usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb
+INPUT /usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb
+INPUT /usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb
+INPUT /usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb
