@@ -1,11 +1,11 @@
 # Fdb version 3
-["biber presentation"] 1694438201 "presentation.bcf" "presentation.bbl" "presentation" 1694439250
-  "presentation.bcf" 1694439249 107033 fec6268c71deb2cebe0754e9944e0915 "pdflatex"
+["biber presentation"] 1694443469 "presentation.bcf" "presentation.bbl" "presentation" 1694443644
+  "presentation.bcf" 1694443644 107033 fec6268c71deb2cebe0754e9944e0915 "pdflatex"
   "thud.bib" 1694266556 3550 e094031c8c58844034c92fffb58f3480 ""
   (generated)
   "presentation.bbl"
   "presentation.blg"
-["pdflatex"] 1694439248 "presentation.tex" "presentation.pdf" "presentation" 1694439250
+["pdflatex"] 1694443642 "presentation.tex" "presentation.pdf" "presentation" 1694443644
   "/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/roboto/rbto_b5rac7.enc" 1576101225 3075 0696ceafc85b8352a913efb9ba64bc17 ""
   "/usr/local/texlive/2022/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2022/texmf-dist/fonts/tfm/google/roboto/Roboto-Bold-lf-t1--base.tfm" 1576101225 1840 1834297dad21c65d0f959ffe1bfe4fbd ""
@@ -49,6 +49,7 @@
   "/usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb" 1248133631 32626 4f5c1b83753b1dd3a97d1b399a005b4b ""
   "/usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb" 1248133631 31099 c85edf1dd5b9e826d67c9c7293b6786c ""
   "/usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb" 1248133631 31764 459c573c03a4949a528c2cc7f557e217 ""
+  "/usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb" 1248133631 34694 ad62b13721ee8eda1dcc8993c8bd7041 ""
   "/usr/local/texlive/2022/texmf-dist/fonts/vf/google/roboto/Roboto-Bold-lf-t1.vf" 1576101225 1752 10f701f4d31b7e0acdc3f8b9dc833b2d ""
   "/usr/local/texlive/2022/texmf-dist/fonts/vf/google/roboto/Roboto-Italic-lf-t1.vf" 1576101225 1752 6c68cdeafcce5558dbd9f2de68b5c2b5 ""
   "/usr/local/texlive/2022/texmf-dist/fonts/vf/google/roboto/Roboto-Regular-lf-t1.vf" 1576101225 1756 c18d4e19a33f0a1a1d05fe5eb9d0fa2c ""
@@ -277,6 +278,7 @@
   "/usr/local/texlive/2022/texmf.cnf" 1647878952 577 209b46be99c9075fd74d4c0369380e8c ""
   "beamerthemeUfg.sty" 1694266621 9252 08a75fe3a8dd2edb660083fa4fc71653 ""
   "images/monid.png" 1694422896 94997 013a85a73ba33886fce8c382a1010459 ""
+  "images/semantics.png" 1694439752 151529 9f7c242feea11125c3951c21f2136a9f ""
   "lib/layouts/horizontal_bg.pdf" 1694266621 481933 ddd6031001c82ff4222c0daffa5a74a5 ""
   "lib/layouts/intro_bg.pdf" 1694266621 686039 53f4b373d371bfe3b18eaa878ee6ece1 ""
   "lib/layouts/title_bg.pdf" 1694266621 868320 88f8737b5d18bbc9f69bb46e77a0f2a9 ""
@@ -284,13 +286,13 @@
   "lib/logos/infw.png" 1694266621 101886 8ac7f42156b3c9e8864508f46fa7d377 ""
   "lib/logos/infw2.png" 1694266621 224501 c573432908bccb26fb74c0423fed307a ""
   "lib/logos/ufgw.png" 1694267136 2078 21f24e13fe152f4e2ea0c9b5da7654c9 ""
-  "presentation.aux" 1694439249 5427 c151ec542ad14db638499f93fa13dee6 "pdflatex"
-  "presentation.bbl" 1694438202 17018 ddc08496ea32d33634748efdfd6e366f "biber presentation"
-  "presentation.nav" 1694439249 2548 f5c9ca350808796aba1a7f505f55ffa6 "pdflatex"
-  "presentation.out" 1694439249 362 c1f957140c678e5f214763b927b1128a "pdflatex"
-  "presentation.run.xml" 1694439249 2355 441b8a4ce6a2dbd0d11588fefa67217a "pdflatex"
-  "presentation.tex" 1694439246 9945 2ac3731dc7ecdb073cda91416ec98452 ""
-  "presentation.toc" 1694439249 137 afd094792b96b8ef43d28ab4de5acf47 "pdflatex"
+  "presentation.aux" 1694443644 5939 eb78194049223f444d216301b63af49e "pdflatex"
+  "presentation.bbl" 1694443471 17018 ddc08496ea32d33634748efdfd6e366f "biber presentation"
+  "presentation.nav" 1694443644 2916 d9929669c5c5cf8e70acb4d122c5fd73 "pdflatex"
+  "presentation.out" 1694443644 362 c1f957140c678e5f214763b927b1128a "pdflatex"
+  "presentation.run.xml" 1694443644 2355 441b8a4ce6a2dbd0d11588fefa67217a "pdflatex"
+  "presentation.tex" 1694443640 13471 5ed502d066089226ec1e71b95e33c690 ""
+  "presentation.toc" 1694443644 137 1bb85806a69dc64fd06f5cbe6bc772b6 "pdflatex"
   (generated)
   "presentation.aux"
   "presentation.bcf"

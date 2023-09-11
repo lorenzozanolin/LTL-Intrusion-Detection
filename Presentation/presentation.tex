@@ -171,22 +171,23 @@
     EAGLE offers a succinct but powerful set of primitives, supporting recursive parameterized equations with a minimal/maximal fix-point semantics together with three temporal operators: next-time ($\bigcirc$), previous-time ($\odot$), and concatenation ($\cdot$).\\
     \vspace{2.5mm}
     As a result, rules in EAGLE give us the power to create specific temporal operators as well as to bind and modify data. This property turns out to be crucial for succinctly expressing executions of attack-safe systems.
-
     \vspace{2.5mm}
-    EAGLE operates with \textit{finite trace} semantics, meaning it checks formula satisfaction only at the end of a trace. However, in intrusion detection where event sequences can be infinite, the goal is to trigger an alarm as soon as a property is violated, thus MONID continuously checks the formula's satisfaction status after each event.
-
-    Let us start with an example; we want to express the property "\textit{Whenever there is a login by any user x, then eventually the user x logs out}". In EAGLE we can do it with the following rules:
+    EAGLE operates with \textit{finite trace} semantics, meaning it checks formula satisfaction only at the end of a trace. However, in intrusion detection where event sequences can be infinite, the goal is to trigger an alarm as soon as a property is violated, thus MONID continuously checks the formula's satisfaction status after each event.\\
+    \vspace{2.5mm}
+    
+    Let us start with an example.
     \begin{ex} 
+    We want to express the property "\textit{Whenever there is a login by any user x, then eventually the user x logs out}". In EAGLE we can do it with the following rules:\\
     \vspace{2.5mm}
-    $ \underline{\text{min}}\ \mathtt{EvLogout}(\underline{\text{string}}\ k) = (action = \mathtt{logout}\land userId = k) \lor \bigcirc \mathtt{EvLogout}(k) $\\
-    $  \underline{\text{mon}}\ M_2 = ((action = \mathtt{login})\rightarrow \mathtt{EvLogout}(userId)) $\\
+    $\quad \underline{\text{min}}\ \mathtt{EvLogout}(\underline{\text{string}}\ k) = (action = \mathtt{logout}\land userId = k) \lor \bigcirc \mathtt{EvLogout}(k) $\\
+    $\quad \underline{\text{mon}}\ M_2 = ((action = \mathtt{login})\rightarrow \mathtt{EvLogout}(userId)) $\\
     \vspace{2.5mm}
     Once the rules are created, the monitor will evaluate and update the monitored formula $M_2$. 
     A possibile trace $\sigma=\alpha_1,\alpha_2 $ , where:\\
     \vspace{2.5mm} 
     $\alpha_1=\{userId:\mathtt{"Lori"},\ action:\mathtt{login},\ time:\mathtt{17.0}\}$ \\$\alpha_2=\{userId:\mathtt{"Lori"},\ action:\mathtt{logout},\ time:\mathtt{150.0}\}$\\ 
     \vspace{2.5mm}
-    $satisfies$ $M_2$.
+    satisfies $M_2$.
     \end{ex}
 \end{frame}
 
@@ -213,6 +214,51 @@
     \begin{block}{Note.}    
         The difference between maximal and minimal interpretation becomes important only when we are evaluating the at the boundaries of a trace; $\underline{\text{max}}$ rules evaluates at $\underline{\text{true}}$ at initial and final istants, while $\underline{\text{min}}$ rules evaluates at $\underline{\text{false}}$.
     \end{block}    
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Semantics}
+    The semantics of the logic is defined in terms of the \textit{satisfaction} relation $\models$ which defines whether a finite execution trace $\sigma$ satisfies the specification $\varphi=D \, O$.\\
+    \vspace*{5mm}
+    Given a trace $\sigma$ and a specification $D \, O$, satisfaction is defined as follows:
+    \[
+    \sigma \models D \, O \text{ iff } \forall (\underline{\text{mon}}\ N = F) \in O.\ \sigma ,1 \models_D \, F
+    \]
+    In other words, a trace satisfies a specification if it fulfills each monitored formula ($\underline{\text{mon}}$) when monitoring from position 1, which is the initial state.\\
+    \vspace*{5mm}
+    In the following slide we will present the definition of the satisfaction relation $\models_D \subseteq (Trace \times \mathbb{N}) \times \underline{\text{Form}}$ for a set of rule definitions $D$. 
+
+    \includegraphics[scale=0.22]{images/semantics.png}
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Evaluation algorithm}
+    As we can see, a function called $evaluate$ emerges; there are additional functions as well. Let us list them.
+    \begin{itemize}
+        \item $evaluate: \underline{\text{Form}} \times \underline{\text{State}}$. This function is used to evolve at every event the monitored formulas.
+        \item $update: \underline{\text{Form}} \times \underline{\text{State}} \to \underline{\text{Form}}$. This function is used by $evaluate$ to pre-evaluate a formula if it is guarded by the previous operator $\odot$
+        \item $value : \underline{\text{Form}} \rightarrow \{ \underline{\text{true}}, \underline{\text{false}} \}$. This function returns true if and only if $\sigma,|\sigma|+1 \models F$ (or $\sigma,0 \models F$), and returns false otherwise.
+    \end{itemize}
+    \begin{block}{Note.}
+        Formally, a formula $F' = evaluate(F, \alpha_i)$ is created when a formula $F$ is evaluated at an event $\alpha_i = \sigma(i)$ and has the condition that $\sigma, i \models F$ if and only if $\sigma, i+1 \models F'$. With $F$ being the evolved formula, we compute the boolean function $value(F)$ at the conclusion of the trace.
+    \end{block}
+
+    \newpage
+
+    Better details are in the paper; let us introduce an example.
+    \begin{ex}
+        Given the following rules\\
+        \vspace{2.5mm}
+        $\quad\underline{\text{max}}\ \mathtt{Always}(\underline{\text{Form}}\ F)  = F \land \bigcirc \mathtt{Always}(F)$ \\
+        $\quad\underline{\text{min}}\ \mathtt{EvTimedLogout}(\underline{\text{string }} k, \underline{\text{double }} t, \underline{\text{double }} \delta) = (\text{time} - t \leq \delta)$ \\
+        $\quad\quad\quad\quad\quad \land ((action = \mathtt{logout} \land userId = k) \lor \bigcirc \mathtt{EvTimedLogout}(k, t, \delta))$ \\
+        $\quad\underline{\text{mon}}\ M_3  = \mathtt{Always}((action = \mathtt{login}) \rightarrow \mathtt{EvTimedLogout}(userId,time, 100))$ \\
+        \vspace{2.5mm}
+        and a trace $\sigma=\alpha_1,\alpha_2$, where $\alpha_1=\{userId:\mathtt{"Lori"},\ action:\mathtt{login},\ time:\mathtt{17.0}\}$ and $\alpha_2=\{userId:\mathtt{"Lori"},\ action:\mathtt{logout},\ time:\mathtt{150.0}\}$.\\ $M_3$ gets modified, at first step, in \\
+        \vspace{2.5mm}
+        $\quad evaluate(M_3,\alpha_1)  = \mathtt{EvTimedLogout("Lori",17.0, 100)}$ \\ 
+        $\quad\quad\quad\quad\quad \land\ \mathtt{Always}((action = \mathtt{login}) \rightarrow \mathtt{EvTimedLogout}(userId,time, 100))$.
+
+    \end{ex}
+
     
 
 \end{frame}

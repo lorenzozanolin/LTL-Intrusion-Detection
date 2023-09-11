@@ -1,15 +1,15 @@
 [0] Config.pm:307> INFO - This is Biber 2.17
 [0] Config.pm:310> INFO - Logfile is 'presentation.blg'
-[53] biber-darwin:340> INFO - === Mon Sep 11, 2023, 15:16:42
-[64] Biber.pm:418> INFO - Reading 'presentation.bcf'
-[134] Biber.pm:969> INFO - Using all citekeys in bib section 0
+[55] biber-darwin:340> INFO - === Mon Sep 11, 2023, 16:44:30
+[66] Biber.pm:418> INFO - Reading 'presentation.bcf'
+[135] Biber.pm:969> INFO - Using all citekeys in bib section 0
 [147] Biber.pm:4383> INFO - Processing section 0
-[157] Biber.pm:4574> INFO - Looking for bibtex file 'thud.bib' for section 0
-[158] bibtex.pm:1713> INFO - LaTeX decoding ...
+[156] Biber.pm:4574> INFO - Looking for bibtex file 'thud.bib' for section 0
+[157] bibtex.pm:1713> INFO - LaTeX decoding ...
 [168] bibtex.pm:1518> INFO - Found BibTeX data source 'thud.bib'
-[236] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[236] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
-[236] Biber.pm:4203> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'en-US'
-[236] Biber.pm:4209> INFO - No sort tailoring available for locale 'en-US'
-[244] bbl.pm:654> INFO - Writing 'presentation.bbl' with encoding 'UTF-8'
+[237] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[237] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[238] Biber.pm:4203> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'en-US'
+[238] Biber.pm:4209> INFO - No sort tailoring available for locale 'en-US'
+[245] bbl.pm:654> INFO - Writing 'presentation.bbl' with encoding 'UTF-8'
 [250] bbl.pm:757> INFO - Output to presentation.bbl

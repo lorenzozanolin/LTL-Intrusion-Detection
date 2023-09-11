@@ -1824,6 +1824,11 @@ INPUT /usr/local/texlive/2022/texmf-dist/fonts/tfm/google/roboto/Roboto-Italic-l
 INPUT /usr/local/texlive/2022/texmf-dist/fonts/vf/google/roboto/Roboto-Bold-lf-t1.vf
 INPUT /usr/local/texlive/2022/texmf-dist/fonts/tfm/google/roboto/Roboto-Bold-lf-t1--base.tfm
 INPUT /usr/local/texlive/2022/texmf-dist/fonts/tfm/public/cm/cmtt12.tfm
+INPUT ./images/semantics.png
+INPUT ./images/semantics.png
+INPUT images/semantics.png
+INPUT ./images/semantics.png
+INPUT ./images/semantics.png
 OUTPUT presentation.nav
 OUTPUT presentation.toc
 OUTPUT presentation.snm
@@ -1844,3 +1849,4 @@ INPUT /usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.p
 INPUT /usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb
 INPUT /usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb
 INPUT /usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb
+INPUT /usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb
