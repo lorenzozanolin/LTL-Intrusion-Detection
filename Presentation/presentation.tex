@@ -258,6 +258,17 @@
     \end{ex}    %continuazione?
 \end{frame}
 
+\begin{frame}{Relationship with LTL+P}
+    We can define both \textbf{Future Time LTL} and \textbf{Past Time LTL} operators. As example, let us show the future ones.
+    \begin{align*}
+        & \underline{\text{min}}\ \mathtt{Next}(\underline{\text{Form}}\ F) = \bigcirc F \\
+        & \underline{\text{max}}\ \mathtt{Always}(\underline{\text{Form}}\ F) = F \land \bigcirc \mathtt{Always}(F) \\
+        & \underline{\text{min}}\ \mathtt{Eventually}(\underline{\text{Form}}\ F) = F \lor \bigcirc \mathtt{Eventually}(F) \\
+        & \underline{\text{min}}\ \mathtt{Until}(\underline{\text{Form}}\ F_1, \underline{\text{Form}}\ F_2) = F_2 \lor (F_1 \land \bigcirc \mathtt{Until}(F_1,F_2))
+    \end{align*}
+    By combining the definitions for the future and past time LTL as defined above, we obtain a temporal logic over the future, present and past, in which one can freely intermix the future and past time modalities; thus, we can state that EAGLE is expressive at least as LTL+P.
+
+\end{frame}
 
 \section{Conclusions}
 \setLayout{mainpoint}
