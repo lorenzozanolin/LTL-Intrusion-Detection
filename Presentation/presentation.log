@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.6.20)  9 SEP 2023 15:46
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.6.20)  11 SEP 2023 10:36
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1490,15 +1490,18 @@ Overfull \hbox (2.96399pt too wide) has occurred while \output is active
 [2
 
  <./lib/layouts/vertical_bg.pdf> <./lib/logos/infw2.png>]
-LaTeX Font Info:    Font shape `T1/Roboto-LF/m/it' aliased to
-(Font)              `T1/Roboto-LF/regular/it' on input line 106.
-LaTeX Font Info:    Font shape `T1/Roboto-LF/regular/it' will be
-(Font)              scaled to size 10.95pt on input line 106.
-
 Overfull \hbox (45.52718pt too wide) has occurred while \output is active
  [] 
  []
 
+LaTeX Font Info:    Font shape `T1/Roboto-LF/m/n' aliased to
+(Font)              `T1/Roboto-LF/regular/n' on input line 109.
+LaTeX Font Info:    Font shape `T1/Roboto-LF/regular/n' will be
+(Font)              scaled to size 24.88pt on input line 109.
+LaTeX Font Info:    Font shape `T1/Roboto-LF/b/n' aliased to
+(Font)              `T1/Roboto-LF/bold/n' on input line 109.
+LaTeX Font Info:    Font shape `T1/Roboto-LF/bold/n' will be
+(Font)              scaled to size 24.88pt on input line 109.
 
 Overfull \hbox (2.96399pt too wide) has occurred while \output is active
 [][][][] 
@@ -1506,7 +1509,7 @@ Overfull \hbox (2.96399pt too wide) has occurred while \output is active
 
 [3
 
-]
+ <./lib/layouts/title_bg.pdf>]
 Overfull \hbox (45.52718pt too wide) has occurred while \output is active
  [] 
  []
@@ -1518,8 +1521,12 @@ Overfull \hbox (2.96399pt too wide) has occurred while \output is active
 
 [4
 
-
 ]
+LaTeX Font Info:    Font shape `T1/Roboto-LF/m/it' aliased to
+(Font)              `T1/Roboto-LF/regular/it' on input line 124.
+LaTeX Font Info:    Font shape `T1/Roboto-LF/regular/it' will be
+(Font)              scaled to size 10.95pt on input line 124.
+
 Overfull \hbox (45.52718pt too wide) has occurred while \output is active
  [] 
  []
@@ -1530,7 +1537,6 @@ Overfull \hbox (2.96399pt too wide) has occurred while \output is active
  []
 
 [5
-
 
 ]
 Overfull \hbox (45.52718pt too wide) has occurred while \output is active
@@ -1550,14 +1556,6 @@ Overfull \hbox (45.52718pt too wide) has occurred while \output is active
  [] 
  []
 
-LaTeX Font Info:    Font shape `T1/Roboto-LF/m/n' aliased to
-(Font)              `T1/Roboto-LF/regular/n' on input line 112.
-LaTeX Font Info:    Font shape `T1/Roboto-LF/regular/n' will be
-(Font)              scaled to size 24.88pt on input line 112.
-LaTeX Font Info:    Font shape `T1/Roboto-LF/b/n' aliased to
-(Font)              `T1/Roboto-LF/bold/n' on input line 112.
-LaTeX Font Info:    Font shape `T1/Roboto-LF/bold/n' will be
-(Font)              scaled to size 24.88pt on input line 112.
 
 Overfull \hbox (2.96399pt too wide) has occurred while \output is active
 [][][][] 
@@ -1565,7 +1563,33 @@ Overfull \hbox (2.96399pt too wide) has occurred while \output is active
 
 [7
 
- <./lib/layouts/title_bg.pdf>]
+
+]
+Overfull \hbox (45.52718pt too wide) has occurred while \output is active
+ [] 
+ []
+
+
+Overfull \hbox (2.96399pt too wide) has occurred while \output is active
+[][][][] 
+ []
+
+[8
+
+
+]
+Overfull \hbox (45.52718pt too wide) has occurred while \output is active
+ [] 
+ []
+
+
+Overfull \hbox (2.96399pt too wide) has occurred while \output is active
+[][][][] 
+ []
+
+[9
+
+]
 \tf@nav=\write7
 \openout7 = `presentation.nav'.
 
@@ -1577,28 +1601,28 @@ Overfull \hbox (2.96399pt too wide) has occurred while \output is active
 
  (./presentation.aux)
 Package rerunfilecheck Info: File `presentation.out' has not changed.
-(rerunfilecheck)             Checksum: AEA4B6A8AE45636C75679C2F0DFA4493;93.
+(rerunfilecheck)             Checksum: 68B205B7C7D9F46121FEB48FE1F84366;196.
 Package logreq Info: Writing requests to 'presentation.run.xml'.
 \openout1 = `presentation.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 37076 strings out of 478268
- 735052 string characters out of 5846347
- 1366025 words of memory out of 5000000
- 54570 multiletter control sequences out of 15000+600000
+ 37098 strings out of 478268
+ 735419 string characters out of 5846347
+ 1366026 words of memory out of 5000000
+ 54587 multiletter control sequences out of 15000+600000
  556327 words of font info for 81 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 128i,19n,122p,745b,1550s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 128i,19n,122p,745b,1551s stack positions out of 10000i,1000n,20000p,200000b,200000s
 {/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/roboto/rbto_b5rac7.enc}</
 usr/local/texlive/2022/texmf-dist/fonts/type1/google/roboto/Roboto-Bold.pfb></u
 sr/local/texlive/2022/texmf-dist/fonts/type1/google/roboto/Roboto-Italic.pfb></
 usr/local/texlive/2022/texmf-dist/fonts/type1/google/roboto/Roboto-Regular.pfb>
 
-Output written on presentation.pdf (7 pages, 3235697 bytes).
+Output written on presentation.pdf (9 pages, 3238323 bytes).
 PDF statistics:
- 140 PDF objects out of 1000 (max. 8388607)
- 83 compressed objects within 1 object stream
- 27 named destinations out of 1000 (max. 500000)
- 91 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 156 PDF objects out of 1000 (max. 8388607)
+ 97 compressed objects within 1 object stream
+ 32 named destinations out of 1000 (max. 500000)
+ 99 words of extra memory for PDF output out of 10000 (max. 10000000)
 
