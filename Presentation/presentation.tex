@@ -112,6 +112,7 @@
 \begin{frame}
     \frametitle{Intrusion Detection}
     \textit{Intrusion detection} means maintaining constant surveillance on a system in order to detect any misuse of these weak areas as soon as feasible so that they can be repaired.\\
+    \vspace{5mm}
     There are three approaches:
     \begin{itemize}
         \item \textit{signature-based}: aims to identify patterns and match them with known signs of intrusions;
@@ -122,8 +123,7 @@
     We will present MONID which is a \textit{signature-based} intrusion detector.
 \end{frame}
 
-\begin{frame}
-    \frametitle{What is MONID?}
+\begin{frame}[allowframebreaks]{What is MONID?}
     MONID is a prototype which can detect intrusions on a system and operates in both online and offline modes.\\
     \vspace{5mm}
     In order:
@@ -133,21 +133,74 @@
         \item a monitor will processes each event $\alpha_i$ as it happens and updates the monitored formula $\psi$ to store a relevant summary;
         \item an intrusion alarm is triggered if, for any reason, $\alpha_{1},\alpha_{2} \ldots\not\models\psi$.
     \end{enumerate}
-    
-\end{frame}
 
-\begin{frame}
-    \frametitle{What is MONID? (cont'd)}
     The architecture is the following.\\
     \vspace{2.5mm}
     \includegraphics[scale=0.25]{images/monid.png}
-    \vspace{2.5mm}\\
-    Now, let us start from the basics of EAGLE.
+\end{frame}
+
+\begin{frame}
+    \frametitle{Assumptions}
+    Two assumptions must be made:
+
+    \vspace{5mm}
+    \begin{enumerate}
+        \item There is a finite sequence of events called $\sigma=\alpha_{1},\ldots ,\alpha_{n}$ that is a merge of the system registered logs organized by ascending time. 
+        The structure of an event record $\alpha_i$ is the following:
+        \begin{align*}
+            & \mathtt{LoginLogoutEvent}\{userId:\underline{\text{string}},\ action: \underline{\text{int}},\ time: \underline{\text{double}}\} 
+        \end{align*}
+        An example of event could be:\\ $\quad\quad\{userId:\mathtt{"Lori"},\ action:\mathtt{login},\ time:\mathtt{20}\}$
+        \item For each attack, there is a formula $\psi$ which specifies the absence of it.
+    \end{enumerate}
+    \vspace{5mm}
+    Now let us start on the basics of EAGLE.
+\end{frame}
+
+
+\section{EAGLE}
+
+\setLayout{mainpoint}
+\setBGColor{Ocean}
+\begin{frame}{}
+    \frametitle{EAGLE,\\ a Temporal Monitoring Logic}
+\end{frame}
+\setLayout{vertical}
+
+\begin{frame}[allowframebreaks]{Basics}
+    EAGLE offers a succinct but powerful set of primitives, supporting recursive parameterized equations with a minimal/maximal fix-point semantics together with three temporal operators: next-time ($\bigcirc$), previous-time ($\odot$), and concatenation ($\cdot$).\\
+    \vspace{2.5mm}
+    As a result, rules in EAGLE give us the power to create specific temporal operators as well as to bind and modify data. This property turns out to be crucial for succinctly expressing executions of attack-safe systems.
+
+    \vspace{2.5mm}
+    EAGLE operates with \textit{finite trace} semantics, meaning it checks formula satisfaction only at the end of a trace. However, in intrusion detection where event sequences can be infinite, the goal is to trigger an alarm as soon as a property is violated, thus MONID continuously checks the formula's satisfaction status after each event.
+
+    Let us start with an example; we want to express the property "\textit{Whenever there is a login by any user x, then eventually the user x logs out}". In EAGLE we can do it with the following rules:
+    \begin{align*}
+        & \underline{\text{min}}\ \mathtt{EvLogout}(\underline{\text{string}}\ k) = (action = \mathtt{logout}\land userId = k) \lor \bigcirc \mathtt{EvLogout}(k) \\
+        & \underline{\text{mon}}\ M_2 = ((action = \mathtt{login})\rightarrow \mathtt{EvLogout}(userId)) 
+    \end{align*}
+    Once the rules are created, the monitor will evaluate and update the monitored formula $M_2$. 
+    \vspace{2.5mm}
+
+    A possibile trace $\sigma=\alpha_1,\alpha_2$, where $\alpha_1=\{userId:\mathtt{"Lori"},\ action:\mathtt{login},\ time:\mathtt{17.0}\}$ and $\alpha_2=\{userId:\mathtt{"Lori"},\ action:\mathtt{logout},\ time:\mathtt{150.0}\}$ can satisfy $M_2$.
 \end{frame}
 
 
 
+\section{Conclusions}
+\setLayout{mainpoint}
+\setBGColor{LightGray}
+\begin{frame}{}
+    \frametitle{Conclusions}
+\end{frame}
+\setLayout{vertical}
 
+
+\begin{frame}
+    \frametitle{Conclusions}
+
+\end{frame}
 
 \begin{frame}[allowframebreaks]{References}
     \nocite{*} 
