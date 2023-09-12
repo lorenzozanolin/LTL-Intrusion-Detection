@@ -282,15 +282,50 @@
     \frametitle{Smurf Attacks}
     A \textit{smurf attack} is a DDoS attack targeting computer networks by sending large volumes of ICMP echo request packets to a broadcast address. The attacker spoofs the source IP address to make it appear as originating from the victim's IP address, causing all devices to respond with ICMP echo replies.\\
     \vspace{2.5mm}
-    In this example we will use \textit{tcpdump} to obtain the logs from the network interface; the formula that describes the absence of the attack is the following.
+    In this example we will use \textit{tcpdump} to obtain the logs from the network interface; the formula that describes the absence of the attack is the following:
     \begin{align*}
         & \underline{\text{max}}\ \mathtt{SmurfAttack()} = (type = \text{"ICMP"})\land isBroadcast(ip) \\
         & \underline{\text{mon}}\ \mathtt{SmurfSafety} =\ \mathtt{Always}(\neg\ \mathtt{SmurfAttack()}) 
     \end{align*}
-
+    where \textit{isBroadcast}() checks whether the source’s IP address is a broadcast ip, i.e. all the host bits are set to 1.
 \end{frame}
 
+\begin{frame}
+    \frametitle{Cookie-stealing Attacks}
+    A \textit{cookie} is a technique used by web application servers to track client-specific session data; these tools are automatically included in client requests. When a malicious user uses an old cookie provided to a different IP address to take over a session, it is considered an attack.\\ \vspace{2.5mm} At this point we need to look at web-server log; the formula that describes the absence of the attack is the following:
+    \begin{align*}
+        & \underline{\text{min}}\ \mathtt{Hijack}(\underline{\text{string}}\ c,\underline{\text{string}}\ i) = ((name=c)\land\neg(ip=i))\lor\odot\ \mathtt{Hijack}(c,i) \\
+        & \underline{\text{mon}}\ \mathtt{CookieSafe} =\ \mathtt{Always}(\neg\mathtt{Hijack}(name,ip)) 
+    \end{align*}
+    where a single cookie is identified from $c$ and it can be associated only at a single $ip$.
+\end{frame}
 
+\begin{frame}
+    \frametitle{Multi-domain Buffer Overflows attacks}
+    A \textit{buffer-overflow} attack uses memory manipulation to overflow a buffer, modifying an address to point to malicious code. Data from network and web server access logs are analyzed to determine when the attack occurred and if no matching log record is found within a timeout, the attack is successful. To capture this scenario we use the following formulas:
+    \begin{align*}
+        & \underline{\text{min}}\ \mathtt{EventuallyClosed}(\underline{\text{long}}\ t,\underline{\text{long}}\ d,\underline{\text{string}}\ i1,\underline{\text{string}}\ i2) = (time-t<d)\\
+        & \quad\quad\land ((ip1=i1\land ip2=i2\land log=web\land type=closed)\\
+        & \quad\quad\quad\lor \bigcirc\mathtt{EventuallyClosed}(t,d,i1,i2) ) \\
+        & \underline{\text{mon}}\ \mathtt{BufferSafe} =\ \mathtt{Always}((log=network\land type=binary) \\
+        & \quad\quad\rightarrow\mathtt{EventuallyClosed}(time,100,ip1,ip2))
+    \end{align*}
+    where a session, identified by $(ip1,ip2)$, must end within $100$ seconds if there is a $binary$ access.
+\end{frame}
+
+\begin{frame}
+    \frametitle{Password guessing attacks}
+    If the system accepts telnet connections for remote login, an attacker can easily compromise a user's password by guessing multiple passwords for a specific user name. We can detect with the following:
+    \begin{align*}
+        & \underline{\text{max}}\ \mathtt{Failure}() = (type=login)\land \neg success\\
+        & \underline{\text{max}}\ \mathtt{Guess}(\underline{\text{string}}\ i) = (ip=i)\land \mathtt{Failure}()\\
+        & \underline{\text{max}}\ \mathtt{Counter}(\underline{\text{long}}\ t, \underline{\text{long}}\ d, \underline{\text{int}}\ c,\underline{\text{string}}\ i,\underline{\text{int}}\ C) = (time-t<d)\\
+        & \quad\quad\rightarrow((\mathtt{Guess}(i)\rightarrow(c\leq C\land \bigcirc\mathtt{Counter}(t,d,c+1,i,C)))  \\
+        & \quad\quad\land(\neg \mathtt{Guess}(i)\rightarrow\mathtt{Counter}(t,d,c,i,C))) \\
+        & \underline{\text{mon}}\ \mathtt{PassGuessSafe} =\ \mathtt{Always}(\mathtt{Failure}()\rightarrow\mathtt{Counter}(time,300,1,ip,3)) 
+    \end{align*}
+    where an attacks is detected if a password has been incorrectly guessed for $3$ times within $300$ seconds.
+\end{frame}
 
 \section{Conclusions}
 \setLayout{mainpoint}
