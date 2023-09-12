@@ -316,7 +316,6 @@ as we can see, the \textit{type} field of a record schema describes the type of 
 \textbf{Cookie-stealing attacks.}
 A cookie is a technique for tracking sessions that a web application server sends to a web client and uses to keep track of client-specific session data. These cookies that serve as authentication tokens are automatically included in requests by clients and in this scenario we assume that a session is exclusively identified by the client's IP address. When a malicious user uses an old cookie provided to a different IP address to take over a session, it is considered an attack.In order to monitor this attack we need to look at a web-server (application-level) log that contains a record of all sessions that the server participates in, along with session-specific state information.
 According to the formula below, a specific cookie must always be utilized by the same IP address.
-
 \begin{align*}
     & \underline{\text{min}}\ \mathtt{Hijack}(\underline{\text{string}}\ c,\underline{\text{string}}\ i) = ((name=c)\land\neg(ip=i))\lor\odot\ \mathtt{Hijack}(c,i) \\
     & \underline{\text{mon}}\ \mathtt{CookieSafe} =\ \mathtt{Always}(\neg\mathtt{Hijack}(name,ip)) 
@@ -325,7 +324,7 @@ A trace that violates this formula therefore encodes a cookie-stealing attack. T
 
 \textbf{Multi-domain Buffer Overflows attacks.}
 According to~\cite{piromsopa2006buffer}, a buffer-overflow attack is an attack that (possibly implicitly) uses memory-manipulating operations to overflow a buffer which results in the modification of an address to point to malicious or unexpected code. In this case, we will integrate data from various log sources; to be more exact, we will examine both network and web server access logs to determine when a server buffer overflow attack has been performed. We search through network packets for binary data; then web server's access logs are examined to see if a corresponding event, in which the web server correctly terminates the connection after receiving some binary data, can be located. If no matching log record is discovered within a predetermined timeout, it means that the buffer overflow attack was successful. The following formulas captures this scenario:
-\begin{align*}
+\begin{align*} 
     & \underline{\text{min}}\ \mathtt{EventuallyClosed}(\underline{\text{long}}\ t,\underline{\text{long}}\ d,\underline{\text{string}}\ i1,\underline{\text{string}}\ i2) = (time-t<d)\\
     & \quad\quad\land ((ip1=i1\land ip2=i2\land log=web\land type=closed)\lor \bigcirc\mathtt{EventuallyClosed}(t,d,i1,i2) ) \\
     & \underline{\text{mon}}\ \mathtt{BufferSafe} =\ \mathtt{Always}((log=network\land type=binary) \\
