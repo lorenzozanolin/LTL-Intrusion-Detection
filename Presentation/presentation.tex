@@ -278,6 +278,18 @@
 \end{frame}
 \setLayout{vertical}
 
+\begin{frame}
+    \frametitle{Smurf Attacks}
+    A \textit{smurf attack} is a DDoS attack targeting computer networks by sending large volumes of ICMP echo request packets to a broadcast address. The attacker spoofs the source IP address to make it appear as originating from the victim's IP address, causing all devices to respond with ICMP echo replies.\\
+    \vspace{2.5mm}
+    In this example we will use \textit{tcpdump} to obtain the logs from the network interface; the formula that describes the absence of the attack is the following.
+    \begin{align*}
+        & \underline{\text{max}}\ \mathtt{SmurfAttack()} = (type = \text{"ICMP"})\land isBroadcast(ip) \\
+        & \underline{\text{mon}}\ \mathtt{SmurfSafety} =\ \mathtt{Always}(\neg\ \mathtt{SmurfAttack()}) 
+    \end{align*}
+
+\end{frame}
+
 
 
 \section{Conclusions}
