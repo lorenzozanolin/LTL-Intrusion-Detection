@@ -1829,6 +1829,18 @@ INPUT ./images/semantics.png
 INPUT images/semantics.png
 INPUT ./images/semantics.png
 INPUT ./images/semantics.png
+INPUT ./images/graph 1.png
+INPUT ./images/graph 1.png
+INPUT images/graph 1.png
+INPUT ./images/graph 1.png
+INPUT ./images/graph 1.png
+INPUT ./images/graph 2.png
+INPUT ./images/graph 2.png
+INPUT images/graph 2.png
+INPUT ./images/graph 2.png
+INPUT ./images/graph 2.png
+INPUT /usr/local/texlive/2022/texmf-dist/fonts/vf/google/roboto/Roboto-Regular-lf-t1.vf
+INPUT /usr/local/texlive/2022/texmf-dist/fonts/tfm/google/roboto/Roboto-Regular-lf-t1--base.tfm
 OUTPUT presentation.nav
 OUTPUT presentation.toc
 OUTPUT presentation.snm
