@@ -302,7 +302,7 @@
 
 \begin{frame}
     \frametitle{Multi-domain Buffer Overflows attacks}
-    A \textit{buffer-overflow} attack uses memory manipulation to overflow a buffer, modifying an address to point to malicious code. Data from network and web server access logs are analyzed to determine when the attack occurred and if no matching log record is found within a timeout, the attack is successful. To capture this scenario we use the following formulas:
+    A \textit{buffer overflow} attack uses memory manipulation to overflow a buffer, modifying an address to point to malicious code. Data from network and web server access logs are analyzed to determine when the attack occurred and if no matching log record is found within a timeout, the attack is successful. To capture this scenario we use the following formulas:
     \begin{align*}
         & \underline{\text{min}}\ \mathtt{EventuallyClosed}(\underline{\text{long}}\ t,\underline{\text{long}}\ d,\underline{\text{string}}\ i1,\underline{\text{string}}\ i2) = (time-t<d)\\
         & \quad\quad\land ((ip1=i1\land ip2=i2\land log=web\land type=closed)\\
@@ -325,6 +325,19 @@
         & \underline{\text{mon}}\ \mathtt{PassGuessSafe} =\ \mathtt{Always}(\mathtt{Failure}()\rightarrow\mathtt{Counter}(time,300,1,ip,3)) 
     \end{align*}
     where an attacks is detected if a password has been incorrectly guessed for $3$ times within $300$ seconds.
+\end{frame}
+
+\begin{frame}
+    \frametitle{Port Scanning attacks}
+    \textit{Port scanning} is a method used to identify exploitable communication channels in networks; it involves probing network ports and keeping useful information for attacks. The victim machine suspect port scans as malicious when the counter of reached ports exceeds a specific threshold. The formulas are the following:
+    \begin{align*}
+        & \underline{\text{max}}\ \mathtt{NewPort}(\underline{\text{string}}\ i1,\underline{\text{string}}\ i2,\underline{\text{Set}}\ S) = (i1=ip1)\land(i2=ip2)\land (port \notin S)\\
+        & \underline{\text{max}}\ \mathtt{Counter}(\underline{\text{long}}\ t, \underline{\text{long}}\ d, \underline{\text{int}}\ c,\underline{\text{string}}\ i1,\underline{\text{string}}\ i2,\underline{\text{Set}}\ S,\underline{\text{int}}\ C) = (time-t<d)\\
+        & \quad\quad\rightarrow((\mathtt{NewPort}(i1,i2,S)\rightarrow(c\leq C\land \bigcirc\mathtt{Counter}(t,d,c+1,i1,i2,S\cup\{port\},C)))  \\
+        & \quad\quad\land(\neg \mathtt{NewPort}(i1,i2,S)\rightarrow\mathtt{Counter}(t,d,c,i1,i2,S,C))) \\
+        & \underline{\text{mon}}\ \mathtt{PortScanSafe} =\ \mathtt{Always}(\mathtt{Counter}(time,100,1,ip1,ip2,\{port\},10)) 
+    \end{align*}
+    where we checks if the number of port scans between $ip1,ip2$ does not exceed a threshold of $10$ within $100$ seconds.
 \end{frame}
 
 \section{Conclusions}
