@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.6.20)  11 SEP 2023 17:50
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.6.20)  12 SEP 2023 11:58
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1535,7 +1535,7 @@ LaTeX Font Info:    Font shape `T1/Roboto-LF/b/n' aliased to
 (Font)              `T1/Roboto-LF/bold/n' on input line 140.
 LaTeX Font Info:    Font shape `T1/Roboto-LF/bold/n' will be
 (Font)              scaled to size 10.95pt on input line 140.
-<images/monid.png, id=107, 1379.1525pt x 576.1525pt>
+<images/monid.png, id=113, 1379.1525pt x 576.1525pt>
 File: images/monid.png Graphic file (type png)
 <use images/monid.png>
 Package pdftex.def Info: images/monid.png  used on input line 140.
@@ -1653,7 +1653,7 @@ Overfull \hbox (2.96399pt too wide) has occurred while \output is active
 
 
 ]
-<images/semantics.png, id=156, 1503.6175pt x 848.16875pt>
+<images/semantics.png, id=162, 1503.6175pt x 848.16875pt>
 File: images/semantics.png Graphic file (type png)
 <use images/semantics.png>
 Package pdftex.def Info: images/semantics.png  used on input line 231.
@@ -1768,7 +1768,6 @@ Overfull \hbox (2.96399pt too wide) has occurred while \output is active
 
 [21
 
-
 ]
 Overfull \hbox (45.52718pt too wide) has occurred while \output is active
  [] 
@@ -1807,6 +1806,19 @@ Overfull \hbox (2.96399pt too wide) has occurred while \output is active
 
 [24
 
+
+]
+Overfull \hbox (45.52718pt too wide) has occurred while \output is active
+ [] 
+ []
+
+
+Overfull \hbox (2.96399pt too wide) has occurred while \output is active
+[][][][] 
+ []
+
+[25
+
 ]
 \tf@nav=\write7
 \openout7 = `presentation.nav'.
@@ -1819,16 +1831,16 @@ Overfull \hbox (2.96399pt too wide) has occurred while \output is active
 
  (./presentation.aux)
 Package rerunfilecheck Info: File `presentation.out' has not changed.
-(rerunfilecheck)             Checksum: C1F957140C678E5F214763B927B1128A;362.
+(rerunfilecheck)             Checksum: 5E2FBD40A0A0E3E742B48A941B4FF764;493.
 Package logreq Info: Writing requests to 'presentation.run.xml'.
 \openout1 = `presentation.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 37276 strings out of 478268
- 738696 string characters out of 5846347
+ 37285 strings out of 478268
+ 738777 string characters out of 5846347
  1371028 words of memory out of 5000000
- 54723 multiletter control sequences out of 15000+600000
+ 54729 multiletter control sequences out of 15000+600000
  583235 words of font info for 98 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  128i,19n,122p,745b,1551s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1845,10 +1857,10 @@ al/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local
 /texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/
 texlive/2022/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/lo
 cal/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on presentation.pdf (24 pages, 3503027 bytes).
+Output written on presentation.pdf (25 pages, 3503670 bytes).
 PDF statistics:
- 301 PDF objects out of 1000 (max. 8388607)
- 203 compressed objects within 3 object streams
- 64 named destinations out of 1000 (max. 500000)
- 125 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 313 PDF objects out of 1000 (max. 8388607)
+ 214 compressed objects within 3 object streams
+ 67 named destinations out of 1000 (max. 500000)
+ 133 words of extra memory for PDF output out of 10000 (max. 10000000)
 
