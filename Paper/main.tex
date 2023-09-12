@@ -282,7 +282,25 @@ An error notice is produced or a pre-specified mechanism is triggered to take a 
 	\label{monid}
 \end{figure}
 
-Some evaluations were also have been done in~\cite{naldurg2004temporal}, using the DARPA Intrusion Detection Evaluation dataset~\cite{mchugh2000testing}. The experiment was done using offline mode, against some of the attacks presented in Section~\ref{attacks}. Although the used hardware is now outdated and obsolete, the overhead was rather modest, thus this method should still be theoretically helpful today.
+Some evaluations were also have been done in~\cite{naldurg2004temporal}, using the DARPA Intrusion Detection Evaluation dataset~\cite{mchugh2000testing}. The experiment was done using offline mode, against some of the attacks presented in Section~\ref{attacks}. More specifically, against the smurf, port-sweep and password-guessing attacks; the experiments detected 5 password-guess attack and 2 port-sweep attack in the logs and the performance overheads for monitoring the Port-Sweep and Password-Attacks are reported in Figure~\ref{graph1} and~\ref{graph2}, respectively. The X-axis in both graphs shows the number of events we are monitoring, as they are obtained from our logs. Each data point is the average overhead calculated for intervals of 10 and 1000 events respectively. The Y-axis plots the ratio between the time spent by the monitor vs. the time between the generation of the events in the actual log. As long as this ratio is less than 1, our monitoring is feasible. The results, show that the average overhead, is around $0.009$ for Port-Sweep attacks and $0.016$ for Password-Guessing attacks.
+Although the used hardware is now outdated and obsolete, the overhead was rather modest, thus this method should still be theoretically helpful today.
+
+\begin{figure}[!htb]
+    \begin{center}
+        \begin{minipage}{0.45\textwidth}
+            \centering
+            \includegraphics[width=\linewidth]{images/graph 1.png}
+            \caption{Performances overhead of Port-Sweep attacks.}\label{graph1}
+        \end{minipage}
+        \hfill
+        \begin{minipage}{0.45\textwidth}
+            \centering
+            \includegraphics[width=\linewidth]{images/graph 2.png}
+            \caption{Performances overhead of Password-Guessing attacks.}\label{graph2}
+        \end{minipage}
+    \end{center}
+\end{figure}
+
 
 \section{Example of attacks}\label{attacks}
 We give some examples of how EAGLE can be utilized to build formulas that correlate to desired execution trace characteristics of a system under observation in this section. In this context, a trace $\sigma$ that violates this specification is referred to as an intrusion or an attack; to explain how the framework may be used, we use examples from actual attacks illustrated in~\cite{naldurg2004temporal}. These illustrations demonstrate the expressive power of EAGLE formalism as well as its numerous features. In all the following examples, the rule Always is the one defined in Section~\ref{sec:ltl}.

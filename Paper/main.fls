@@ -771,6 +771,16 @@ INPUT ./images/monid.png
 INPUT images/monid.png
 INPUT ./images/monid.png
 INPUT ./images/monid.png
+INPUT ./images/graph 1.png
+INPUT ./images/graph 1.png
+INPUT images/graph 1.png
+INPUT ./images/graph 1.png
+INPUT ./images/graph 1.png
+INPUT ./images/graph 2.png
+INPUT ./images/graph 2.png
+INPUT images/graph 2.png
+INPUT ./images/graph 2.png
+INPUT ./images/graph 2.png
 INPUT main.aux
 INPUT ./main.out
 INPUT ./main.out
