@@ -67,19 +67,19 @@ The purpose of this paper is to introduce MONID, which is a framework created fo
 \section{Introduction}
 Even with all of the advances in computer security research, totally safe computer systems remain a long way off. Almost every large and complicated computer system nowadays contains vulnerabilities. Intrusion detection means maintaining constant surveillance on a system in order to detect any misuse of these weak areas as soon as feasible so that they can be repaired.
 
-There are three Intrusion Detection System approaches, according to the literature: \textit{signature-based}\cite{gao2014cyber}, \textit{anomaly-based}\cite{jyothsna2011review} and \textit{hybrid}\cite{garg2016hybrid}. The first approach aims to identify patterns and match them with known signs of intrusions relying on a database of previous intrusions. If activity within the network matches the “signature” of an attack or breach from the database, the detection system creates an alert. This approach has a low false-alarm rate, but it requires us to know the patterns of security attacks in advance and previously unknown attacks would go undetected. In contrast, \textit{anomaly-based} is capable to detect new attacks since an alarm is raised if an observed behavior deviates significantly from pre-learned normal behavior. Finally, a \textit{hybrid system} combines the best of both worlds by looking at patterns and one-off events, a Hybrid Intrusion Detection system can flag new and existing intrusion strategies. 
+According to the literature, there are three approaches to intrusion detection systems: \textit{signature-based}\cite{gao2014cyber}, \textit{anomaly-based}\cite{jyothsna2011review} and \textit{hybrid}\cite{garg2016hybrid}. The first approach aims to identify patterns and match them with known signs of intrusions, relying on a database of previous intrusions. If activity within the network matches the “signature” of an attack or breach in the database, the detection system creates an alert. This approach has a low false-alarm rate, but it requires us to know the patterns of security attacks in advance and previously unknown attacks would go undetected. In contrast, \textit{anomaly-based} is capable of detecting new attacks since an alarm is raised if an observed behavior deviates significantly from pre-learned normal behavior. Finally, a \textit{hybrid system} combines the best of both worlds by looking at patterns and one-off events. A Hybrid Intrusion Detection system can flag new and existing intrusion strategies. 
 
-In this paper we will focus on \textit{signature-based} approach using temporal logic; we use EAGLE\cite{barringer2004rule,barringer2003eagle} to specify a system's attack-safe behavior. EAGLE allows recursively built temporal formulas, parameterizable by both logical formulas and data expressions, across three primitive modalities: "next", "previous", and "concatenation". The logic allows us to describe temporal patterns involving reasoning about data-values observed in individual events. Unlike LTL, EAGLE allows us to design attacks with fundamentally statistical characteristics; password guessing attacks and ICMP-flood denial of service attacks are two examples. We will monitor EAGLE formulas using an online algorithm that processes each event as it happens and updates the monitored formula to store a relevant summary. An intrusion alarm is triggered if, for any reason, the updated formula turns out to be false; as a result, the entire process operates in real-time. We'll see how the implementation, MONID, examines the event stream to see if the monitored formula (which is used to hold the pertinent summary of the system) is being broken.
+In this paper we will focus on \textit{signature-based} approach using temporal logic; we use EAGLE\cite{barringer2004rule,barringer2003eagle} to specify a system's attack-safe behavior. EAGLE allows recursively built temporal formulas, parameterizable by both logical formulas and data expressions, across three primitive modalities: "next", "previous", and "concatenation". The logic allows us to describe temporal patterns involving reasoning about data-values observed in individual events. Unlike LTL, EAGLE allows us to design attacks with fundamentally statistical characteristics; password guessing attacks and ICMP-flood denial of service attacks are two examples. We will monitor EAGLE formulas using an online algorithm that processes each event as it happens and updates the monitored formula to store a relevant summary. An intrusion alarm is triggered if, for any reason, the updated formula turns out to be false; as a result, the entire process operates in real-time. We'll see how the implementation, MONID, examines the event stream to see if the monitored formula (which is used to hold the pertinent summary of the system) is broken.
 
 %% INTRODURRE VELOCE ESEMPIO E STRUTTURA DEL PROGRAMMA
 %%%%%   DA RISCRIVERE ALLA FINE
-In Section 2, we'll deeply explore EAGLE, covering everything from its syntax to semantics and the evaluation algorithm, with the add of practical examples. Moving on to Section 3, we'll delve into the MONID framework, which employs EAGLE to construct an intrusion detection system. Section 4 will focus on specific EAGLE rules tailored for the detection of various types of attacks and finally, in Section 5, we will draw our conclusions.
+In Section 2, we'll deeply explore EAGLE, covering everything from its syntax to semantics and the evaluation algorithm, with the addition of practical examples. Moving on to Section 3, we'll delve into the MONID framework, which employs EAGLE to construct an intrusion detection system. Section 4 will focus on specific EAGLE rules tailored for the detection of various types of attacks and finally, in Section 5, we will draw our conclusions.
 %%%%5
 
 \section{EAGLE, a Temporal Monitoring Logic}
 According to~\cite{barringer2004program}, EAGLE offers a succinct but powerful set of primitives, supporting recursive parameterized equations with a minimal/maximal fix-point semantics together with three temporal operators: next-time ($\bigcirc$), previous-time ($\astrosun$), and concatenation ($\cdot$).
 \subsection{Basics}\label{sec:ltl}
-In EAGLE recursion definitions are supported; as exmaple, in the current framework we can build the following definitions:
+In EAGLE recursion definitions are supported; for example, in the current framework we can build the following definitions:
 \begin{align*}
 & \underline{\text{min}}\ \mathtt{Next}(\underline{\text{Form}}\ F) = \bigcirc F \\
 & \underline{\text{max}}\ \mathtt{Always}(\underline{\text{Form}}\ F) = F \land \bigcirc \mathtt{Always}(F) \\
@@ -87,7 +87,7 @@ In EAGLE recursion definitions are supported; as exmaple, in the current framewo
 & \underline{\text{min}}\ \mathtt{Until}(\underline{\text{Form}}\ F_1, \underline{\text{Form}}\ F_2) = F_2 \lor (F_1 \land \bigcirc \mathtt{Until}(F_1,F_2))
 \end{align*}
 
-As we can see, rules are parameterized by an EAGLE formula (of type $\underline{\text{Form}}$), which means that we will be able to write EAGLE formulas such as $\mathtt{Always}(\mathtt{Eventually}(x>0))$. Also, the $\mathtt{Always}$ operator is defined as maximal solution of the equation $X=F\land \bigcirc X$, while the $\mathtt{Eventually}$ operator represents the minimal solution to the equation $X=F\lor \bigcirc X$.
+As we can see, rules are parameterized by an EAGLE formula (of type $\underline{\text{Form}}$), which means that we will be able to write EAGLE formulas such as $\mathtt{Always}(\mathtt{Eventually}(x>0))$. Also, the $\mathtt{Always}$ operator is defined as the maximal solution of the equation $X=F\land \bigcirc X$, while the $\mathtt{Eventually}$ operator represents the minimal solution to the equation $X=F\lor \bigcirc X$.
 
 Assume that we want to state the following property: "\textit{Whenever there is a login by any user x, then eventually the user x logs out}". In LTL we can write the following formula: 
 \begin{align*}
@@ -108,13 +108,13 @@ Lastly, two assumptions must be made:\begin{enumerate}
         & \mathtt{LoginLogoutEvent}\{userId:\underline{\text{string}},\ action: \underline{\text{int}},\ time: \underline{\text{double}}\} 
     \end{align*}
     An example of event could be: $\{userId:\mathtt{"Lori"},\ action:\mathtt{login},\ time:\mathtt{20}\}$
-    \item For each attack, there is a formula $F$ which specifies the absence of it.
+    \item For each attack, there is a formula $F$ that specifies the absence of it.
 \end{enumerate}
 To make the paper self-contained, we will present the syntax and semantics of EAGLE.
 
 \subsection{Syntax and Semantics}
 \textbf{Syntax.}
-A specification $S$ is made up of an observer part $O$ and a declaration part $D$. $O$ is made up of zero or more monitor definitions $M$, which define what will be watched, while $D$ is made up of zero or more rule definitions $R$. The names of rules and monitors are $(N)$.
+A specification $S$ is made up of an observer's part $O$ and a declaration's part $D$. $O$ is made up of zero or more monitor definitions $M$, which define what will be watched, while $D$ is made up of zero or more rule definitions $R$. The names of rules and monitors are $(N)$.
 \begin{align*}
     S &::= D \, O \\
     D &::= R^* \\
@@ -125,8 +125,8 @@ A specification $S$ is made up of an observer part $O$ and a declaration part $D
     F &::= \text{expression}\ |\ \underline{\text{true}}\ |\ \underline{\text{false}}\ |\ \neg F\ |\ F_1 \land F_2\ |\ F_1 \lor F_2\ |\\
             &F_1 \rightarrow F_2\ |\ \bigcirc F\ |\ \odot F\ |\ F_1 \cdot F_2\ |\ N(F_1, \ldots, F_n)\ |\ x_i
 \end{align*}
-The types $T_i$ of parameters include primitive types like \underline{int}, \underline{long}, \underline{float}, etc. or formulas of type \underline{Form}. Definitions starting with keyword $\underline{\text{mon}}$ specifies the EAGLE formulas to be monitored and cannot have a recursive definition. We will see that these kind of rules will evolve as new events appear. 
-A term indicating whether the interpretation is maximal ($\underline{\text{max}}$) or minimal ($\underline{\text{min}}$) comes before a rule specification $R$. While minimal rules establish \textit{liveness properties} (something good eventually happens), maximal rules define \textit{safety properties} (nothing bad ever happens); we shall see that the difference becomes important only when we are evaluating the at the boundaries of a trace. Finally, recursive definitions of rules are permitted as long as they are tightly guarded by a temporal operator. 
+The types $T_i$ of parameters include primitive types like \underline{int}, \underline{long}, \underline{float}, etc. or formulas of type \underline{Form}. Definitions starting with the keyword $\underline{\text{mon}}$ specify the EAGLE formulas to be monitored and cannot have a recursive definition. We will see that these kinds of rules evolve as new events occur. 
+A term indicating whether the interpretation is maximal ($\underline{\text{max}}$) or minimal ($\underline{\text{min}}$) comes before the rule specification $R$. While minimal rules establish \textit{liveness properties} (something good eventually happens), maximal rules define \textit{safety properties} (nothing bad ever happens); we shall see that the difference becomes important only when we are evaluating the at the boundaries of a trace. Finally, recursive definitions of rules are permitted as long as they are tightly guarded by a temporal operator. 
 
 \textbf{Semantics.} The semantics of the logic is defined in terms of the \textit{satisfaction} relation $\models$ which defines whether a finite execution trace $\sigma$ satisfies the specification $\varphi=D \, O$. The $i$'th state $s_i$ of a trace $\sigma$ is denoted by $\sigma(i)$. The term $\sigma[i, j]$ denotes the sub-trace of $\sigma$ from position $i$ to position $j$, both positions included; if $i \geq j$ then $\sigma[i, j]$ denotes the empty trace.
 
@@ -166,11 +166,11 @@ and the sequence $\sigma=\alpha_{1},\ldots ,\alpha_{n}$, Property will evaluate 
     & evaluate(\ldots evaluate(evaluate(\mathtt{Property},\alpha_1),\alpha_2),\ldots,\alpha_n)=true
 \end{align*}
 if and only if the rule is true at some given event $\alpha_i$. 
-Once the sequence has been completely analyzed, we will obtain a big disjunction (in case of a \underline{\text{min}}) or a big conjunction (in case of a \underline{\text{max}}) and the final value will close the evalutation. Continuing the example, the extended formula will be:
+Once the sequence has been completely analyzed, we will obtain a big disjunction (in the case of a \underline{\text{min}}) or a big conjunction (in the case of a \underline{\text{max}}) and the final value will close the evaluation. Continuing the example, the extended formula will be:
 \begin{align*}
     & F \lor \bigcirc(F \lor \bigcirc(\ldots F \lor \bigcirc \mathbf{Property(F)})) 
 \end{align*}
-and the bold $\mathbf{Property(F)}$ will be evaluated to false, since it is the last of a big disjunction.
+and the bold $\mathbf{Property(F)}$ will be evaluated as false, since it is the last of a big disjunction.
 \subsection{Evaluation algorithm}\label{algo}
 As already mentioned, monitored formulas ($\underline{\text{mon}}$) evolve at every event, to store relevant informations about past istants. The evolved formula's value is determined at the conclusion of the event series; if it is true, the formula is satisfied by the event sequence; otherwise, it is violated. Formally, a formula $F' = evaluate(F, \alpha_i)$ is created when a formula $F$ is evaluated at an event $\alpha_i = \sigma(i)$ and has the condition that $\sigma, i \models F$ if and only if $\sigma, i+1 \models F'$. With $F$ being the evolved formula, we compute the boolean function $value(F)$ at the conclusion of the trace. The definition of the function $evaluate: \underline{\text{Form}} \times \underline{\text{State}} \to \underline{\text{Form}}$ uses an auxiliary function $update: \underline{\text{Form}} \times \underline{\text{State}} \to \underline{\text{Form}}$ to pre-evaluate a formula if it is guarded by the previous operator $\bigodot$. Note that $\underline{\text{Form}}$ in the practical use represents the monitored formula, while $\underline{\text{State}}$ represents the current event. At the end (or at the beginning) of a trace, the
 function $value : \underline{\text{Form}} \rightarrow \{ \underline{\text{true}}, \underline{\text{false}} \}$, when applied to $F$, returns true if and only if $\sigma,|\sigma|+1 \models F$ (or $\sigma,0 \models F$), and returns false otherwise.
