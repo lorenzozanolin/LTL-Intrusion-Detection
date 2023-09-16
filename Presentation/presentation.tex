@@ -337,7 +337,7 @@
         & \quad\quad\land(\neg \mathtt{NewPort}(i1,i2,S)\rightarrow\mathtt{Counter}(t,d,c,i1,i2,S,C))) \\
         & \underline{\text{mon}}\ \mathtt{PortScanSafe} =\ \mathtt{Always}(\mathtt{Counter}(time,100,1,ip1,ip2,\{port\},10)) 
     \end{align*}
-    where we checks if the number of port scans between $ip1,ip2$ does not exceed a threshold of $10$ within $100$ seconds.
+    where we checks if the number of (new) port scans between $ip1,ip2$ does not exceed a threshold of $10$ within $100$ seconds.
 \end{frame}
 
 \begin{frame}
