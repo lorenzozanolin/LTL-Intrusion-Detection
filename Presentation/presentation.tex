@@ -302,7 +302,7 @@
         & \underline{\text{max}}\ \mathtt{SmurfAttack()} = (type = \text{"ICMP"})\land isBroadcast(ip) \\
         & \underline{\text{mon}}\ \mathtt{SmurfSafety} =\ \mathtt{Always}(\neg\ \mathtt{SmurfAttack()}) 
     \end{align*}
-    where \textit{isBroadcast}() checks whether the source’s IP address is a broadcast ip, i.e. all the host bits are set to 1.
+    where \textit{isBroadcast}() checks whether the destination’s IP address is a broadcast ip, i.e. all the host bits are set to 1.
 \end{frame}
 
 \begin{frame}
