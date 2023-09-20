@@ -149,13 +149,13 @@ In other words, a trace satisfies a specification if it fulfills each monitored 
     \sigma, i &\models_D N(\overline{F}, \overline{P}) &\text{iff} 
     &\begin{cases}
     \text{if } 1 \leq i \leq |\sigma| \text{ then:} \\
-    \quad \sigma, i \models_D F[ \overline{f} \mapsto \overline{F}, \overline{p} \mapsto\ evaluate(\overline{P}, \sigma(i))] \\
-    \quad \text{where } (N(\underline{\overline{\text{Form}}}\ \overline{f}, \text{T } p) = F) \in D \\
+    \quad \sigma, i \models_D B[ \overline{f} \mapsto \overline{F}, \overline{p} \mapsto\ evaluate(\overline{P}, \sigma(i))] \\
+    \quad \text{where } (N(\underline{\overline{\text{Form}}}\ \overline{f}, \text{T } p) = B) \in D \\
     \text{otherwise, if } i = 0 \text{ or } i = |\sigma|+1 \text{ then:} \\
-    \quad \text{rule } N \text{ is defined as }\underline{\text{max}}\text{ in } D
+    \quad \text{rule } N \text{ is defined as }\underline{\text{max}}/\underline{\text{min}}\text{ in } D
     \end{cases}
 \end{align*}
-where $\overline{F}$ and $\overline{P}$ represent tuples of type $\overline{\text{Form}}$ and $\overline{T}$ respectively
+where $\overline{F}$ and $\overline{P}$ represent tuples of type $\overline{\text{Form}}$ and $\overline{T}$ respectively.
     
 An \textbf{important} note is that, given a trace $\sigma=\alpha_{1},\ldots ,\alpha_{n}$ the index $i$ of the trace can become $0$ (before the first state) and $n+1$, thus going beyond the limits; both of these situations result in rule applications evaluating to either true if maximal or false if minimal, without first taking the rules body into account. Let us explain why using an example. Given the definition 
 \begin{align*}
