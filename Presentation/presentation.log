@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.6.20)  20 SEP 2023 13:15
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.6.20)  20 SEP 2023 15:49
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1669,7 +1669,7 @@ Overfull \hbox (2.96399pt too wide) has occurred while \output is active
 <images/semantics.png, id=169, 1232.605pt x 693.59125pt>
 File: images/semantics.png Graphic file (type png)
 <use images/semantics.png>
-Package pdftex.def Info: images/semantics.png  used on input line 247.
+Package pdftex.def Info: images/semantics.png  used on input line 246.
 (pdftex.def)             Requested size: 332.8078pt x 187.27214pt.
 
 Overfull \hbox (45.52718pt too wide) has occurred while \output is active
@@ -1794,7 +1794,7 @@ Overfull \hbox (2.96399pt too wide) has occurred while \output is active
 [23
 
 ]
-Overfull \hbox (27.14635pt too wide) detected at line 357
+Overfull \hbox (27.14635pt too wide) detected at line 356
 []
  []
 
@@ -1814,12 +1814,12 @@ Overfull \hbox (2.96399pt too wide) has occurred while \output is active
 <images/graph 1.png, id=228, 1023.825pt x 674.52pt>
 File: images/graph 1.png Graphic file (type png)
 <use images/graph 1.png>
-Package pdftex.def Info: images/graph 1.png  used on input line 378.
+Package pdftex.def Info: images/graph 1.png  used on input line 377.
 (pdftex.def)             Requested size: 168.43271pt x 110.96164pt.
 <images/graph 2.png, id=229, 1023.825pt x 674.52pt>
 File: images/graph 2.png Graphic file (type png)
 <use images/graph 2.png>
-Package pdftex.def Info: images/graph 2.png  used on input line 378.
+Package pdftex.def Info: images/graph 2.png  used on input line 377.
 (pdftex.def)             Requested size: 168.43271pt x 110.96164pt.
 
 Overfull \hbox (45.52718pt too wide) has occurred while \output is active
@@ -1959,7 +1959,7 @@ l/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/
 texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/t
 exlive/2022/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/loc
 al/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on presentation.pdf (32 pages, 3730890 bytes).
+Output written on presentation.pdf (32 pages, 3730888 bytes).
 PDF statistics:
  363 PDF objects out of 1000 (max. 8388607)
  251 compressed objects within 3 object streams
