@@ -1824,11 +1824,15 @@ INPUT /usr/local/texlive/2022/texmf-dist/fonts/tfm/google/roboto/Roboto-Italic-l
 INPUT /usr/local/texlive/2022/texmf-dist/fonts/vf/google/roboto/Roboto-Bold-lf-t1.vf
 INPUT /usr/local/texlive/2022/texmf-dist/fonts/tfm/google/roboto/Roboto-Bold-lf-t1--base.tfm
 INPUT /usr/local/texlive/2022/texmf-dist/fonts/tfm/public/cm/cmtt12.tfm
+INPUT /usr/local/texlive/2022/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm
+INPUT /usr/local/texlive/2022/texmf-dist/fonts/tfm/public/cm/cmbx8.tfm
+INPUT /usr/local/texlive/2022/texmf-dist/fonts/tfm/public/cm/cmbx6.tfm
 INPUT ./images/semantics.png
 INPUT ./images/semantics.png
 INPUT images/semantics.png
 INPUT ./images/semantics.png
 INPUT ./images/semantics.png
+INPUT /usr/local/texlive/2022/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
 INPUT ./images/graph 1.png
 INPUT ./images/graph 1.png
 INPUT images/graph 1.png
@@ -1853,6 +1857,7 @@ INPUT /usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/roboto/rbto_b5rac7.enc
 INPUT /usr/local/texlive/2022/texmf-dist/fonts/type1/google/roboto/Roboto-Bold.pfb
 INPUT /usr/local/texlive/2022/texmf-dist/fonts/type1/google/roboto/Roboto-Italic.pfb
 INPUT /usr/local/texlive/2022/texmf-dist/fonts/type1/google/roboto/Roboto-Regular.pfb
+INPUT /usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 INPUT /usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb
 INPUT /usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb
 INPUT /usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb

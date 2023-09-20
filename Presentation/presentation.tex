@@ -214,6 +214,21 @@
     \begin{block}{Note.}    
         The difference between maximal and minimal interpretation becomes important only when we are evaluating the at the boundaries of a trace; $\underline{\text{max}}$ rules evaluates at $\underline{\text{true}}$ at initial and final istants, while $\underline{\text{min}}$ rules evaluates at $\underline{\text{false}}$.
     \end{block}    
+    \newpage
+    To better understand the mechanism, let us introduce an example.\\ Given the definition 
+    \begin{align*}
+        & \underline{\text{min}}\ \mathtt{Property}(\underline{\text{Form}}\ F) =F \lor \bigcirc \mathtt{Property}(F)
+    \end{align*} 
+    and the sequence $\sigma=\alpha_{1},\ldots ,\alpha_{n}$, $\mathtt{Property}$ will evaluate to \textit{true} 
+    \begin{align*}
+        & evaluate(\ldots evaluate(evaluate(\mathtt{Property},\alpha_1),\alpha_2),\ldots,\alpha_n)=true
+    \end{align*}
+    if and only if the rule is true at some given event $\alpha_i$. Once the sequence has been completely analyzed, we will obtain the following big disjunction: 
+    \begin{align*}
+        & F \lor \bigcirc(F \lor \bigcirc(\ldots F \lor \bigcirc \mathbf{Property(F)})) 
+    \end{align*}
+    $\mathbf{Property(F)}$ will be evaluated as false since it is the last of a big disjunction and we want to close it.
+
 \end{frame}
 
 \begin{frame}[allowframebreaks]{Semantics}
