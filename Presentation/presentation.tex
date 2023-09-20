@@ -248,7 +248,7 @@
 \begin{frame}[allowframebreaks]{Evaluation algorithm}
     As we can see, a function called $evaluate$ emerges; there are additional functions as well. Let us list them.
     \begin{itemize}
-        \item $evaluate: \underline{\text{Form}} \times \underline{\text{State}}$. This function is used to evolve at every event the monitored formulas.
+        \item $evaluate: \underline{\text{Form}} \times \underline{\text{State}} \to \underline{\text{Form}}$. This function is used to evolve at every event the monitored formulas.
         \item $update: \underline{\text{Form}} \times \underline{\text{State}} \to \underline{\text{Form}}$. This function is used by $evaluate$ to pre-evaluate a formula if it is guarded by the previous operator $\odot$
         \item $value : \underline{\text{Form}} \rightarrow \{ \underline{\text{true}}, \underline{\text{false}} \}$. This function returns true if and only if $\sigma,|\sigma|+1 \models F$ (or $\sigma,0 \models F$), and returns false otherwise.
     \end{itemize}
